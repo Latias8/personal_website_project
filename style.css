@@ -2,6 +2,56 @@
    HTML content. To learn how to do something, just try searching Google for questions like
    "how to change link color." */
 
+@font-face {font-family:"Pixel NES";src:url("fonts/Pixel_NES.eot?") format("eot"),url("fonts/Pixel_NES.woff") format("woff"),url("fonts/Pixel_NES.ttf") format("truetype"),url("fonts/Pixel_NES.svg#PixelNES") format("svg");font-weight:normal;font-style:normal;}
+
+/*
+
+@font-face {
+  font-family: nec_apc3;
+  src: url(/fonts/pixelfonts/Web437_NEC_APC3_8x16.woff) format("woff");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: nec_apc3;
+  src: url(/fonts/pixelfonts/Web437_Nix8810_M16.woff) format("woff");
+  font-weight: 700;
+  font-style: normal
+}
+
+ */
+
+@font-face {
+  font-family: russiangothic;
+  src: local("Arial");
+  font-weight: 400;
+  font-style: normal;
+  unicode-range: U+0420-42FF
+}
+
+@font-face {
+  font-family: digital;
+  src: url(/fonts/Digital-7.ttf?) format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "perfect dos vga 437 win";
+  src: url("/fonts/Perfect DOS VGA 437 Win.ttf?") format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+.jersey-10-charted-regular {
+  font-family: "Jersey 10 Charted", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
 body, #debug {
   image-rendering: pixelated;
   font-family: russiangothic,ms ui gothic,nec_apc3,Tahoma;
@@ -69,7 +119,7 @@ table {
   box-sizing: border-box;
   text-indent: initial;
   border-spacing: 2px;
-  border: 1px gray solid;
+  /*border: 1px gray solid;*/
 }
 
 td {
@@ -89,6 +139,13 @@ td {
 
 h1 {
   text-align: center;
+}
+
+h2 {
+  color: #74ff56;
+  /*font-family: "Pixel NES", serif !important;*/
+  margin: 0;
+  /*text-shadow: var(--green-text-shadow)*/
 }
 
 .box {
