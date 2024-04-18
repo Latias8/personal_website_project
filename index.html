@@ -19,7 +19,12 @@
           <h2 class='jersey-10-charted-regular'>Today's info:</h2>
           <br>
           <p>
-          <div id='root'></div>
+          <div id='root'>
+          <div>
+            <h3>22:49</h3>
+            <p>It's so nice having to enter this MANUALLY, <strong>INTO THE HTML.</strong></p>
+          </div>
+        </div>
           </p>
         </div>
       </td>
@@ -31,30 +36,7 @@
   </table>
 </div>
 
-<script>
-  // Function to fetch and display blog posts
-  async function fetchAndDisplayBlogPosts() {
-    const response = await fetch('/gandalf/blog');
-    const data = await response.json();
 
-    // Clear existing blog posts
-    const rootElement = document.getElementById('root');
-    rootElement.innerHTML = '';
-
-    // Display each blog post
-    data.forEach(post => {
-      const postElement = document.createElement('div');
-      postElement.innerHTML = `
-                <h2>${new Date(post.date).toLocaleString()}</h2>
-                <p>${post.text}</p>
-            `;
-      rootElement.appendChild(postElement);
-    });
-  }
-
-  // Call the function to fetch and display blog posts when the page loads
-  window.onload = fetchAndDisplayBlogPosts;
-</script>
 
 </body>
 </html>
