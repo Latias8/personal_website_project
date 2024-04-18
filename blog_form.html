@@ -13,7 +13,7 @@
     document.getElementById('blogForm').addEventListener('submit', async (event) => {
         event.preventDefault();
         const text = document.getElementById('blogText').value;
-        const response = await fetch('/gandalf/blog', {
+        const response = await fetch('https://personal-website-project-eosin.vercel.app/gandalf/blog', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
