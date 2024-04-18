@@ -1,5 +1,4 @@
 const express = require('express');
-const fs = require('fs');
 const app = express();
 const port = 3000;
 
@@ -15,47 +14,22 @@ app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
 
-app.post('/gandalf/blog', (req, res) => {
-    const obj = req.body;
-    const now = new Date();
-
-    // Add the received blog post to the array
-    blogPosts.push({
-        date: now.getTime(),
-        text: obj.text
-    });
-
-    // Redirect to the index.html page
-    res.redirect('/index.html');
+// Endpoint to get blog posts
+app.get('/gandalf/blog', (req, res) => {
+    res.json(blogPosts);
 });
 
-// Serve index.html with blog posts
-app.get('/index.html', (req, res) => {
-    fs.readFile(__dirname + '/index.html', 'utf8', (err, data) => {
-        if (err) {
-            console.error('Error reading index.html:', err);
-            res.status(500).send('Internal Server Error');
-            return;
-        }
-
-        // Inject blog posts into index.html
-        let html = data.replace('<div id="root"></div>', generateBlogPostsHTML());
-
-        res.send(html);
-    });
+// Endpoint to submit new blog posts via URL parameters
+app.get('/gandalf/blog/submit', (req, res) => {
+    const { text } = req.query;
+    if (text) {
+        const now = new Date();
+        blogPosts.push({
+            date: now.getTime(),
+            text
+        });
+        res.redirect('/index.html'); // Redirect to the main page after submitting
+    } else {
+        res.status(400).send('Bad Request: Missing blog post text');
+    }
 });
-
-// Function to generate HTML for blog posts
-function generateBlogPostsHTML() {
-    let postsHTML = '';
-
-    blogPosts.forEach(post => {
-        postsHTML += `
-            <div class="blog-post">
-                <h2>${new Date(post.date).toLocaleString()}</h2>
-                <p>${post.text}</p>
-            </div>`;
-    });
-
-    return postsHTML;
-}
