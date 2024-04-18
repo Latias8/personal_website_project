@@ -179,4 +179,6 @@ h2 {
 .blog-entry {
   border: 1px solid white;
   border-radius: 4px;
+  width: auto;
+  padding: 0 15px;
 }
