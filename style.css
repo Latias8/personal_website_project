@@ -1,0 +1,120 @@
+/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
+   HTML content. To learn how to do something, just try searching Google for questions like
+   "how to change link color." */
+
+body, #debug {
+  image-rendering: pixelated;
+  font-family: russiangothic,ms ui gothic,nec_apc3,Tahoma;
+  background-color: #000;
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+  color: white;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  margin-top: 10px;
+  display: block;
+}
+
+@media screen and (min-width: 601px) {
+  body:before {
+    content: "";
+    position: fixed;
+    opacity: .2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    background-image: url(https://dimden.dev/images/overlay.png);
+    background-position: 0 0;
+    animation-name: Static;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(4);
+    box-shadow: inset 0 0 10em rgb(0 0 0/40%);
+  }
+
+  body:after {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    opacity: .5;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    background-image: url(https://dimden.dev/images/overlay2.png);
+    /*background-repeat: all;*/
+    background-position: 0 0;
+    animation-name: Static;
+    animation-duration: .8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(4);
+  }
+}
+
+#container, #backside-container {
+  width: 900px;
+  margin: 0 auto;
+}
+
+table {
+  display: table;
+  border-collapse: separate;
+  box-sizing: border-box;
+  text-indent: initial;
+  border-spacing: 2px;
+  border: 1px gray solid;
+}
+
+td {
+  display: table-cell;
+  vertical-align: inherit;
+}
+
+#maintd {
+  width: 675px;
+  vertical-align: baseline;
+}
+
+#menutd {
+  width: 225px;
+  vertical-align: baseline;
+}
+
+h1 {
+  text-align: center;
+}
+
+.box {
+  background-color: #000000a8;
+  border: 2px solid #383838;
+  border-radius: 4px;
+  color: #fff;
+  padding: 10px 15px;
+  margin: 5px;
+}
+
+#bg {
+  z-index: -999;
+  background-size: cover;
+  image-rendering: pixelated;
+  background-color: #000;
+  width: 100%;
+  position: absolute;
+}
+
+@keyframes Static {
+  0% {
+    background-position: 0 0
+  }
+
+  100% {
+    background-position: 0 4px
+  }
+}
