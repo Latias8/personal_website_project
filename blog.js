@@ -8,7 +8,7 @@ app.use(express.static('public'));
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-let blogPosts = []; // Array to store blog posts
+let blogPosts = [{"date": "22:46", "text": "It\'s so nice having to MANUALLY enter this in js. I need to get the backend working asap..."}]; // Array to store blog posts
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
