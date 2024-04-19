@@ -23,8 +23,8 @@ app.get('/gandalf/blog', (req, res) => {
 });
 
 // Endpoint to submit new blog posts via URL parameters
-app.get('/gandalf/blog/submit', (req, res) => {
-    const text = req.query.text;
+app.get('/gandalf/blog/submit/:text', (req, res) => {
+    const text = req.params.text;
     console.log(text)
     if (text) {
         const now = new Date();
