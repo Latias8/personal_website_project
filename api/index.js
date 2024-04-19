@@ -17,7 +17,7 @@ app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
 
-app.get("/", (req, res) => { res.send("Express on Vercel");})
+app.get("/", (req, res) => { res.sendFile('/public/index.html', {root: __dirname});})
 
 
 
@@ -36,14 +36,14 @@ app.get('/gandalf/blog/submit/:text', (req, res) => {
             date: now.getTime(),
             text
         });
-        res.redirect('/index'); // Redirect to the main page after submitting
+        res.redirect('/'); // Redirect to the main page after submitting
     } else {
         res.status(400).send('Bad Request: Missing blog post text');
     }
 });
 
 app.get('/index', (req, res) => {
-    res.sendFile('./public/index.html', {root: __dirname});
+    res.sendFile('/public/index.html', {root: __dirname});
     /*res.sendFile('style.css', { root: __dirname })*/
 
 })
