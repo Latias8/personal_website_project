@@ -9,6 +9,8 @@ app.use(express.static('public'));
 // Middleware to parse JSON bodies
 app.use(express.json());
 
+
+
 let blogPosts = []; // Array to store blog posts
 
 app.listen(port, () => {
@@ -16,6 +18,8 @@ app.listen(port, () => {
 });
 
 app.get("/", (req, res) => { res.send("Express on Vercel");})
+
+
 
 // Endpoint to get blog posts
 app.get('/gandalf/blog', (req, res) => {
@@ -43,3 +47,5 @@ app.get('/index', (req, res) => {
     /*res.sendFile('style.css', { root: __dirname })*/
 
 })
+
+module.exports = app;
