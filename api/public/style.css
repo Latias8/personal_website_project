@@ -304,10 +304,13 @@ input {
 
 @keyframes slide {
   0% {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(500px, 0, 0);
+  }
+  50% {
+    transform: translate3d(-500px, 0, 0); /* The image width */
   }
   100% {
-    transform: translate3d(-2000px, 0, 0); /* The image width */
+    transform: translate3d(500px, 0, 0);
   }
 }
 
