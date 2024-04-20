@@ -80,23 +80,23 @@
     const data = await response.json();
 
     // Clear existing blog posts
-    const rootElement = document.getElementById('message');
-    rootElement.innerHTML = '';
+    const boxElement = document.getElementById('message');
+    boxElement.innerHTML = '';
 
     // Display each blog post
     data.forEach(mess => {
       const currDate = mess.date
       let message_content = mess.message;
 
-      const postElement = document.createElement('div');
-      postElement.classList.add('chat-message')
-      postElement.innerHTML = `
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('chat-message')
+      messageElement.innerHTML = `
                 <span class='chat-name'>anon>> </span>
                 <span class='chat-msg'>${message_content}</span>
                 <span class='chat-date'>${currDate}</span>
             `;
-      document.getElementById('messages').appendChild(postElement);
-      console.log('messag loaded')
+      document.getElementById('messages').appendChild(messageElement);
+      console.log('message loaded')
     });
   }
 
