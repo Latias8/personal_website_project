@@ -9,7 +9,13 @@ app.use(express.static('public'));
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-
+// Middleware to set MIME type for CSS files
+app.use((req, res, next) => {
+    if (req.url.endsWith('.css')) {
+        res.setHeader('Content-Type', 'text/css');
+    }
+    next();
+});
 
 let blogPosts = []; // Array to store blog posts
 
