@@ -221,7 +221,7 @@ b {
 }
 
 .chat-name {
-  color: #297c5c;
+  color: #ff7ddb;
 }
 
 #send {
@@ -296,4 +296,23 @@ input {
   border-image: initial;
   padding-block: 1px;
   padding-inline: 2px;
+}
+
+#chat_title {
+  color: #ff7ddb;
+}
+
+@keyframes slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-1692px, 0, 0); /* The image width */
+  }
+}
+
+.sliding-background {
+  height: 2000px;
+  width: 2000px;
+  animation: slide 60s linear infinite;
 }
