@@ -43,9 +43,8 @@ app.get('/gandalf/blog/submit/:text', (req, res) => {
 });
 
 app.get('/main', (req, res) => {
-    res.sendFile('/public/index.html', {root: __dirname});
+    res.sendFile('index.html', { root: __dirname + '/public' });
     /*res.sendFile('style.css', { root: __dirname })*/
-
 })
 
 module.exports = app;
