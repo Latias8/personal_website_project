@@ -35,7 +35,7 @@
 <script>
   // Function to fetch and display blog posts
   async function fetchAndDisplayBlogPosts() {
-    const response = await fetch('/gandalf/blog');
+    const response = await fetch('/entries');
     const data = await response.json();
 
     // Clear existing blog posts

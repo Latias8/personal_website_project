@@ -27,7 +27,7 @@ app.listen(port, () => {
 app.get("/", (req, res) => { res.send("Express on Vercel");})
 
 // Endpoint to get blog posts
-app.get('/gandalf/blog', (req, res) => {
+app.get('/entries', (req, res) => {
     res.json(blogPosts);
 });
 
