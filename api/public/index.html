@@ -99,9 +99,16 @@
   }
 
   // Call the function to fetch and display blog posts when the page loads
+  async function loadContent() {
+    await Promise.all([
+      fetchAndDisplayBlogPosts(),
+      fetchAndDisplayMessages()
+    ]);
+  }
+
+  // Call the function to load content when the page loads
   window.onload = function() {
-    fetchAndDisplayBlogPosts();
-    fetchAndDisplayMessages();
+    loadContent();
   };
 </script>
 
