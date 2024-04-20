@@ -8,6 +8,7 @@ app.use(express.static('public'));
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use(express.static(__dirname + "/public/"));
 
 // Middleware to set MIME type for CSS files
 app.use((req, res, next) => {
