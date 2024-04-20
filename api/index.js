@@ -63,6 +63,8 @@ app.post('/messages', (req, res) => {
         res.status(200).send('Message received and stored successfully');
     } else {
         res.status(400).send('Bad Request: Missing message or date');
+        console.log(message)
+        console.log(date)
     }
 });
 
