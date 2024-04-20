@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path');
+const cors = require('cors');
 
 // Serve static files from the "public" directory
 app.use(express.static('public'));
@@ -9,6 +10,7 @@ app.use(express.static('public'));
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(express.static(__dirname + "/public/"));
+app.use(cors())
 
 // Middleware to set MIME type for CSS files
 app.use((req, res, next) => {
