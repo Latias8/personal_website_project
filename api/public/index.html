@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Isi's Nest</title>
   <link href="/style.css" rel="stylesheet" type="text/css">
+  <script src='js/messages.js'></script>
 </head>
 <body>
 <img src='/images/bg.png' id='bg' alt='kewl background :)'>
@@ -23,9 +24,26 @@
         </div>
           </p>
         </div>
+        <div id="chat" class="box" style="margin-top: 10px;">
+          <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/chat.png">
+          <h2 style="display:inline">Chat</h2>
+          <b id="hotel">ホテル</b>
+          <br><br>
+          <div id="messages">
+            <noscript>
+              <span style="color:red" class="chat-msg">wahh!! javascript is disabled :(</span><br><br>
+            </noscript>
+          </div>
+          <div id="bar" style="margin-top:4px">
+            <input type="text" id="message" placeholder="Enter message - please be nice!" autocomplete="off" maxlength="300">
+            <button id="send">Send</button>
+          </div>
+        </div>
       </td>
       <td id='menutd'>
-        <div class='box'></div>
+        <div class='box'>
+          Much much MUCH is inspired by <a href='https://dimden.dev'>dimden.dev</a>
+        </div>
       </td>
     </tr>
     </tbody>
@@ -54,8 +72,33 @@
     });
   }
 
+  async function fetchAndDisplayMessages() {
+    const response = await fetch('/messages');
+    const data = await response.json();
+
+    // Clear existing blog posts
+    const rootElement = document.getElementById('message');
+    rootElement.innerHTML = '';
+
+    // Display each blog post
+    data.forEach(mess => {
+      const currDate = mess.date
+      let message_content = mess.message;
+
+      const postElement = document.createElement('div');
+      postElement.classList.add('chat-message')
+      postElement.innerHTML = `
+                <span class='chat-name'>anon>> </span>
+                <span class='chat-msg'>${message_content}</span>
+                <span class='chat-date'>${currDate}</span>
+            `;
+      document.getElementById('messages').appendChild(postElement);
+    });
+  }
+
   // Call the function to fetch and display blog posts when the page loads
   window.onload = fetchAndDisplayBlogPosts;
+  window.onload = fetchAndDisplayMessages;
 </script>
 
 </body>

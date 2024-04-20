@@ -1,4 +1,4 @@
-@font-face {font-family:"Pixel NES";src:url("Pixel_NES.eot?") format("eot"),url("Pixel_NES.woff") format("woff"),url("Pixel_NES.ttf") format("truetype"),url("Pixel_NES.svg#PixelNES") format("svg");font-weight:normal;font-style:normal;}
+@font-face {font-family:"Pixel NES";src:url("./fonts/Pixel_NES.eot?") format("eot"),url("./fonts/Pixel_NES.woff") format("woff"),url("./fonts/Pixel_NES.ttf") format("truetype"),url("./fonts/Pixel_NES.svg#PixelNES") format("svg");font-weight:normal;font-style:normal;}
 
 /*
 
@@ -28,14 +28,14 @@
 
 @font-face {
   font-family: digital;
-  src: url(/fonts/Digital-7.ttf?) format("truetype");
+  src: url("./fonts/Digital-7.ttf?") format("truetype");
   font-weight: 400;
   font-style: normal
 }
 
 @font-face {
   font-family: "perfect dos vga 437 win";
-  src: url("/fonts/Perfect DOS VGA 437 Win.ttf?") format("truetype");
+  src: url("./fonts/Perfect DOS VGA 437 Win.ttf?") format("truetype");
   font-weight: 400;
   font-style: normal
 }
@@ -139,7 +139,7 @@ h1 {
 
 h2 {
   color: #74ff56;
-  /*font-family: "Pixel NES", serif !important;*/
+  font-family: "Pixel NES", serif !important;
   margin: 0;
   /*text-shadow: var(--green-text-shadow)*/
 }
@@ -177,4 +177,123 @@ h2 {
   border-radius: 4px;
   width: auto;
   padding: 15px;
+}
+
+#hotel {
+  float: right;
+  right: 55px;
+  height: 1px;
+  font-size: 50px;
+  top: -36px;
+  position: relative;
+  color: #ff7ddb;
+  text-shadow: 0 0 10px #ffffff00, 0 0 20px #ffffff80, 0 0 30px #e000e659, 0 0 40px #00e6b200, 0 0 50px #00e6bd3d, 0 0 60px #b200e629, 0 0 70px #a700e657;
+  user-select: none;
+  font-family: MS Gothic,Tahoma;
+  animation: flickering .1s infinite;
+}
+
+b {
+  font-weight: bold;
+}
+
+#messages {
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+@keyframes flickering {
+  0% {
+    opacity: 0.63;
+  }
+}
+
+.chat-msg {
+  max-width: 360px;
+  word-break: break-word;
+}
+
+.chat-date {
+  color: #5d5d5d;
+  font-size: 12px;
+  padding-right: 5px;
+  float: right;
+}
+
+.chat-name {
+  color: #297c5c;
+}
+
+#send {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #383838;
+  font-family: MS Gothic,monospace;
+  padding: 3px 27px;
+  cursor: pointer;
+}
+
+button {
+  appearance: auto;
+  text-rendering: auto;
+  color: buttontext;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: default;
+  box-sizing: border-box;
+  background-color: buttonface;
+  margin: 0em;
+  padding-block: 1px;
+  padding-inline: 6px;
+  border-width: 2px;
+  border-style: outset;
+  border-image: initial;
+}
+
+#message {
+  bottom: 5px;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #383838;
+  font-family: MS Gothic,monospace;
+  padding: 3px;
+  width: 508px;
+}
+
+input[type="text" i] {
+  padding-block: 1px;
+  padding-inline: 2px;
+}
+
+input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" i]) {
+}
+
+input {
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  appearance: auto;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  margin: 0em;
+  padding: 1px 0px;
+  border-width: 2px;
+  border-style: inset;
+  border-color: rgb(118, 118, 118);
+  border-image: initial;
+  padding-block: 1px;
+  padding-inline: 2px;
 }

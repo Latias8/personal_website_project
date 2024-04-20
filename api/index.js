@@ -19,6 +19,7 @@ app.use((req, res, next) => {
 });
 
 let blogPosts = []; // Array to store blog posts
+let messages = []; // Array to store chat messages
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
@@ -44,6 +45,24 @@ app.get('/gandalf/blog/submit/:text', (req, res) => {
         res.redirect('/main'); // Redirect to the main page after submitting
     } else {
         res.status(400).send('Bad Request: Missing blog post text');
+    }
+});
+
+app.get("/", (req, res) => { res.send("Express on Vercel");})
+
+// Endpoint to get chat messages
+app.get('/messages', (req, res) => {
+    res.json(messages);
+});
+
+// Endpoint to submit new chat messages
+app.post('/messages', (req, res) => {
+    const { message, date } = req.body;
+    if (message && date) {
+        messages.push({ message, date });
+        res.status(200).send('Message received and stored successfully');
+    } else {
+        res.status(400).send('Bad Request: Missing message or date');
     }
 });
 
