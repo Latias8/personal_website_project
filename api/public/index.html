@@ -97,8 +97,10 @@
   }
 
   // Call the function to fetch and display blog posts when the page loads
-  window.onload = fetchAndDisplayBlogPosts;
-  window.onload = fetchAndDisplayMessages;
+  window.onload = function() {
+    fetchAndDisplayBlogPosts();
+    fetchAndDisplayMessages();
+  };
 </script>
 
 </body>

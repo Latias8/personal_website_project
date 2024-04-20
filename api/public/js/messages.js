@@ -28,6 +28,17 @@ function content_loader() {
                 console.error('Error sending message:', error);
             });
 
+        if (messageContent != '') {
+            const postElement = document.createElement('div');
+            postElement.classList.add('chat-message')
+            postElement.innerHTML = `
+                <span class='chat-name'>anon>> </span>
+                <span class='chat-msg'>${messageContent}</span>
+                <span class='chat-date'>${currDate.toLocaleString()}</span>
+            `;
+            document.getElementById('messages').appendChild(postElement);
+        }
+
         // Clear message input
         document.getElementById('message').value = "";
     });
