@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const path = require('path')
+const path = require('path');
 
 // Serve static files from the "public" directory
 app.use(express.static('public'));
@@ -24,8 +24,6 @@ app.listen(port, () => {
 });
 
 app.get("/", (req, res) => { res.send("Express on Vercel");})
-
-
 
 // Endpoint to get blog posts
 app.get('/gandalf/blog', (req, res) => {
@@ -50,7 +48,6 @@ app.get('/gandalf/blog/submit/:text', (req, res) => {
 
 app.get('/main', (req, res) => {
     res.sendFile('index.html', { root: __dirname + '/public' });
-    /*res.sendFile('style.css', { root: __dirname })*/
-})
+});
 
 module.exports = app;
