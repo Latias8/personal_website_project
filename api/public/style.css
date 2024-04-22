@@ -451,8 +451,48 @@ input {
 #music {
   max-width: 365px;
   vertical-align: baseline;
+  overflow: hidden;
 }
 
 #music_title {
   color: deepskyblue;
 }
+
+#scroll-content {
+  padding-top: 15px;
+  /* animation properties */
+  -moz-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+  overflow: hidden;
+
+  -moz-animation: my-animation 10s linear infinite;
+  -webkit-animation: my-animation 10s linear infinite;
+  animation: my-animation 10s linear infinite;
+}
+
+/* for Firefox */
+@-moz-keyframes my-animation {
+  from { -moz-transform: translateX(120%); }
+  to { -moz-transform: translateX(-80%); }
+}
+
+/* for Chrome */
+@-webkit-keyframes my-animation {
+  from { -webkit-transform: translateX(120%); }
+  to { -webkit-transform: translateX(-80%); }
+}
+
+@keyframes my-animation {
+  from {
+    -moz-transform: translateX(120%);
+    -webkit-transform: translateX(120%);
+    transform: translateX(120%);
+  }
+  to {
+    -moz-transform: translateX(-80%);
+    -webkit-transform: translateX(-80%);
+    transform: translateX(-80%);
+  }
+}
+
