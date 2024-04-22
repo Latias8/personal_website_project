@@ -90,7 +90,8 @@ app.get("/", (req, res) => { res.send("Express on Vercel");})
 
 // Endpoint to get chat messages
 app.get('/messages', async (req, res) => {
-    fs.readFile('messages.json', 'utf-8', function(err, data){
+    let messagesPath = path.join(process.cwd(), 'messages.json');
+    fs.readFile(messagesPath, 'utf-8', function(err, data){
         if (err) {
             // handle error
             console.error(err);
