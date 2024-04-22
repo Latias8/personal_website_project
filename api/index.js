@@ -37,8 +37,20 @@ app.get('/entries', async (req, res) => {
             return;
         }
         try {
-            const jsonData = JSON.parse(data);
-            res.json(jsonData);
+            // Split the data by newline
+            const lines = data.split('\n');
+            console.log('LINES: ' + lines)
+            const jsonData = lines.map(line => {
+                try {
+                    // Parse each line as JSON
+                    return JSON.parse(line);
+                } catch (parseError) {
+                    console.error(parseError);
+                    // Handle parse errors by returning null
+                    return null;
+                }
+            }).filter(Boolean); // Filter out any null values
+            res.json(jsonData); // Send JSON data back to the client
         } catch (parseError) {
             console.error(parseError);
             res.status(500).send('Error parsing JSON');
@@ -56,21 +68,23 @@ app.get('/gandalf/blog/submit/:text', (req, res) => {
             "date": now.getTime(),
             "text": text
         }
-        const jsonData = JSON.stringify(data)
-        fs.writeFile("blogs.json", jsonData, (err) => {
-            if (err)
+        const jsonData = JSON.stringify(data);
+        fs.appendFile("blogs.json", jsonData + '\n', (err) => { // Append new blog entry to file with comma and newline
+            if (err) {
                 console.log(err);
-            else {
+                res.status(500).send('Error writing file');
+            } else {
                 console.log("File written successfully\n");
                 console.log("The written has the following contents:");
-                console.log(fs.readFileSync("messages.json", "utf8"));
+                console.log(fs.readFileSync("blogs.json", "utf8"));
+                res.redirect('/main'); // Redirect to the main page after submitting
             }
         });
-        res.redirect('/main'); // Redirect to the main page after submitting
     } else {
         res.status(400).send('Bad Request: Missing blog post text');
     }
 });
+
 
 app.get("/", (req, res) => { res.send("Express on Vercel");})
 
@@ -99,7 +113,7 @@ app.post('/messages', (req, res) => {
     console.log(data)
     if (data) {
         const jsonData = JSON.stringify(data); // Convert data object to JSON string
-        fs.appendFile("messages.json", jsonData + ',\n', (err) => { // Append new message to file with comma and newline
+        fs.appendFile("messages.json", jsonData + '\n', (err) => { // Append new message to file with comma and newline
             if (err)
                 console.log(err);
             else {
