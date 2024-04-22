@@ -116,6 +116,7 @@ table {
   text-indent: initial;
   border-spacing: 2px;
   /*border: 1px gray solid;*/
+  border: 2px solid white;
 }
 
 td {
@@ -401,4 +402,31 @@ input {
   100% {
     opacity: 0.63;
   }
+}
+
+#root {
+  height: 200px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-color: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border: 1px solid #888;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
