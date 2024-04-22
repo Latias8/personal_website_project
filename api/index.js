@@ -90,15 +90,16 @@ app.get("/", (req, res) => { res.send("Express on Vercel");})
 
 // Endpoint to get chat messages
 app.get('/messages', async (req, res) => {
-    let messagesPath = path.join(process.cwd(), 'messages.json');
-    fs.readFile(messagesPath, 'utf-8', function(err, data){
+    let messagesPath = path.join(__dirname, 'messages.json'); // Use __dirname to get the directory of the current script
+    fs.readFile(messagesPath, 'utf-8', function(err, data) {
         if (err) {
             // handle error
             console.error(err);
             res.status(500).send('Error reading file');
             return;
         }
-        try {// Parse the data as JSON
+        try {
+            // Parse the data as JSON
             const jsonData = data.split('\n').filter(Boolean).map(JSON.parse); // Split by newline, filter empty entries, and parse each JSON object
             res.json(jsonData); // Send JSON data back to the client
         } catch (parseError) {
@@ -107,6 +108,7 @@ app.get('/messages', async (req, res) => {
         }
     });
 });
+
 
 // Endpoint to submit new chat messages
 app.post('/messages', (req, res) => {
