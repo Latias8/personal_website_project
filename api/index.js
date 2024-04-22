@@ -29,7 +29,8 @@ app.get("/", (req, res) => { res.send("Express on Vercel");})
 
 // Endpoint to get blog posts
 app.get('/entries', async (req, res) => {
-    fs.readFile('blogs.json', 'utf-8', function(err, data){
+    let blogsPath = path.join(__dirname, 'blogs.json');
+    fs.readFile(blogsPath, 'utf-8', function(err, data){
         if (err) {
             // handle error
             console.error(err);
@@ -69,7 +70,8 @@ app.get('/gandalf/blog/submit/:text', (req, res) => {
             "text": text
         }
         const jsonData = JSON.stringify(data);
-        fs.appendFile("blogs.json", jsonData + '\n', (err) => { // Append new blog entry to file with comma and newline
+        let blogsPath = path.join(__dirname, 'blogs.json');
+        fs.appendFile(blogsPath, jsonData + '\n', (err) => { // Append new blog entry to file with comma and newline
             if (err) {
                 console.log(err);
                 res.status(500).send('Error writing file');
@@ -116,7 +118,8 @@ app.post('/messages', (req, res) => {
     console.log(data)
     if (data) {
         const jsonData = JSON.stringify(data); // Convert data object to JSON string
-        fs.appendFile("messages.json", jsonData + '\n', (err) => { // Append new message to file with comma and newline
+        let messagesPath = path.join(__dirname, 'messages.json');
+        fs.appendFile(messagesPath, jsonData + '\n', (err) => { // Append new message to file with comma and newline
             if (err)
                 console.log(err);
             else {
