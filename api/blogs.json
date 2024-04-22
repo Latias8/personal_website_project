@@ -1,1 +1,2 @@
 {"date":1713797936308,"text":"Hello :)"}
+{"date":1713803016303,"text":"Soooo... I finally got the application to reliably fetch information (blog entries and messages) from storage. However, Vercel works differently from other servers and doesn't provide direct writing permissions to files per say...Meaning that I have to manually append new blog entries for now and that the chat doesn't quite work yet. It's probably for the best that I don't have a timer measuring the amount of hours I spend in my IDE..."}
