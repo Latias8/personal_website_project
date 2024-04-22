@@ -447,3 +447,12 @@ input {
 #warning {
   animation: blink 2s infinite;
 }
+
+#music {
+  max-width: 365px;
+  vertical-align: baseline;
+}
+
+#music_title {
+  color: deepskyblue;
+}
