@@ -183,14 +183,15 @@ h2 {
   float: right;
   right: 55px;
   height: 1px;
-  font-size: 50px;
-  top: -36px;
+  font-size: 30px;
+  top: 0px;
   position: relative;
-  color: #ff7ddb;
-  text-shadow: 0 0 10px #ffffff00, 0 0 20px #ffffff80, 0 0 30px #e000e659, 0 0 40px #00e6b200, 0 0 50px #00e6bd3d, 0 0 60px #b200e629, 0 0 70px #a700e657;
+  color: #ffda7d;
+  text-shadow: 0 0 10px #ffffff00, 0 0 20px #ffffff80, 0 0 30px rgba(255, 240, 148, 0.35), 0 0 40px #00e6b200, 0 0 50px #00e6bd3d, 0 0 60px #b200e629, 0 0 70px #a700e657;
   user-select: none;
   font-family: MS Gothic,Tahoma;
   animation: flickering .1s infinite;
+  z-index: 2;
 }
 
 b {
@@ -344,6 +345,57 @@ input {
 
   50% {
     opacity: 1;
+  }
+
+  100% {
+    opacity: 0.63;
+  }
+}
+
+.spinny {
+  animation: spinnyDance 4s infinite;
+  display: inline-block;
+}
+
+@keyframes spinnyDance {
+  0% {
+    rotation: 90deg;
+  }
+
+  50% {
+    rotation: 45deg;
+  }
+
+  100% {
+    rotation: 90deg;
+  }
+}
+
+.overlay {
+  display: block;
+  position: absolute;
+  height: 2000px;
+  width: 100%;
+  background: #000000;
+  opacity: 60%;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  animation: flickeringAlt2 6s infinite;
+}
+
+#chat {
+  overflow: hidden;
+  position: relative;
+}
+
+@keyframes flickeringAlt2 {
+  0% {
+    opacity: 0.63;
+  }
+
+  50% {
+    opacity: 0.8;
   }
 
   100% {
