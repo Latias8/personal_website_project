@@ -116,7 +116,7 @@ table {
   text-indent: initial;
   border-spacing: 2px;
   /*border: 1px gray solid;*/
-  border: 2px solid white;
+  /*border: 2px solid white;*/
 }
 
 td {
@@ -388,6 +388,7 @@ input {
 #chat {
   overflow: hidden;
   position: relative;
+  border: 2px solid #481c41;
 }
 
 @keyframes flickeringAlt2 {
@@ -408,6 +409,9 @@ input {
   height: 200px;
   overflow: scroll;
   overflow-x: hidden;
+  padding: 4px;
+  padding-top: 0;
+  padding-left: 0;
 }
 
 /* width */
@@ -429,4 +433,8 @@ input {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+#mainbox {
+  border: 2px solid #80cb5a;
 }

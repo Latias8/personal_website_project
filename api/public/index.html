@@ -58,6 +58,9 @@
           I'm using it to start off and will gradually change it over time to be unique.
         </div>
       </td>
+      <td>
+
+      </td>
     </tr>
     </tbody>
   </table>
@@ -68,6 +71,7 @@
   async function fetchAndDisplayBlogPosts() {
     const response = await fetch('/entries');
     const data = await response.json();
+    data.reverse()
 
     // Clear existing blog posts
     const rootElement = document.getElementById('root');
