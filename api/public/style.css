@@ -319,3 +319,34 @@ input {
   width: 2000px;
   animation: slide 60s linear infinite;
 }
+
+.letter {
+  display: inline;
+  height: 60px;
+}
+
+#logo {
+  text-align: center;
+  padding-top: 5px;
+  animation: flickeringAlt 4s infinite;
+  margin-right: 50px;
+}
+
+#logo img {
+  width: 60px;
+  height: 60px;
+}
+
+@keyframes flickeringAlt {
+  0% {
+    opacity: 0.63;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.63;
+  }
+}
