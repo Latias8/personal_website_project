@@ -457,6 +457,7 @@ input {
   vertical-align: baseline;
   overflow: hidden;
   border-left: 6px solid #3bdffd;
+  margin-top: 10px;
 }
 
 #music_title {
@@ -468,6 +469,9 @@ input {
   display: flex;
   align-items: flex-start;
   column-gap: 10px;
+  border: 1px solid white;
+  padding: 2px;
+  border-radius: 2px;
 }
 
 #music_element p {
