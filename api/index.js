@@ -135,6 +135,49 @@ app.post('/messages', (req, res) => {
     }
 });
 
+app.get('/youtube', (req, res) => {
+    const apiKey = 'AIzaSyA-Drb-5llWow0293aP7jRV4CeWtk7qSt4';
+    const channelId = 'UCDnSCd7lAIilJI16TAfawRg';
+
+    let videoId;
+
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&maxResults=1&type=video&key=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+            const newestVideo = data.items[0];
+            videoId = newestVideo.id.videoId;
+
+            // Extract title and thumbnail from snippet
+            const title = newestVideo.snippet.title;
+            const thumbnailUrl = newestVideo.snippet.thumbnails.default.url;
+
+            fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoId}&key=${apiKey}`)
+                .then(response => response.json())
+                .then(data => {
+                    const views = data.items[0].statistics.viewCount;
+
+                    // Construct response object with views, title, and thumbnail
+                    const responseObject = {
+                        views: views,
+                        title: title,
+                        thumbnailUrl: thumbnailUrl
+                    };
+
+                    // Send the response object
+                    res.send(responseObject);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    res.status(500).send('Error fetching data');
+                });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            res.status(500).send('Error fetching data');
+        });
+});
+
+
 app.get('/main', (req, res) => {
     res.sendFile('index.html', { root: __dirname + '/public' });
 });

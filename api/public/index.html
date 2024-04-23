@@ -60,11 +60,9 @@
         <div id='music' class='box'>
           <img style="vertical-align: sub; margin-right: 5px;" height="26" src="/images/Note_Chaos.png">
           <h2 style="display:inline" id='music_title'>Music-News!</h2>
-          <div class='scroll-content'>
-            <div class='music_element'>
+            <div id='music_element'>
               <img src='images/NIKOOOO.gif' height='80px'>
               <p>I have nothing for this section yet lmao</p>
-            </div>
           </div>
         </div>
       </td>
@@ -141,11 +139,40 @@
     });
   }
 
+  async function fetchAndDisplayNewestVid() {
+    const response = await fetch('/youtube');
+    const data = await response.json();
+
+    // Clear existing video
+    const musicElement = document.getElementById('music_element');
+    musicElement.innerHTML = '';
+
+    const block2 = document.createElement('DIV')
+
+    // Display each blog post
+
+    let viewCount = data.views
+    let title = data.title;
+    let thumbnail = data.thumbnailUrl
+
+    block2.innerHTML = `
+              <p class='vid-title'>Title: ${title}</p>
+              <div class='vid-views' style='margin-top: 16px'>Current viewcount: ${viewCount}</div>
+          `;
+
+    musicElement.innerHTML = `
+              <img class='vid-thumb' src='${thumbnail}'>
+          `;
+    musicElement.appendChild(block2)
+      console.log('latest video loaded')
+  }
+
   // Call the function to fetch and display blog posts when the page loads
   async function loadContent() {
     await Promise.all([
       fetchAndDisplayBlogPosts(),
-      fetchAndDisplayMessages()
+      fetchAndDisplayMessages(),
+      fetchAndDisplayNewestVid()
     ]);
   }
 
