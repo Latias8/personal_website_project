@@ -4,19 +4,19 @@
 
 @font-face {
   font-family: nec_apc3;
-  src: url(/fonts/pixelfonts/Web437_NEC_APC3_8x16.woff) format("woff");
+  src: url(./fonts/Web437_NEC_APC3_8x16.woff) format("woff");
   font-weight: 400;
   font-style: normal
 }
 
 @font-face {
   font-family: nec_apc3;
-  src: url(/fonts/pixelfonts/Web437_Nix8810_M16.woff) format("woff");
+  src: url(./fonts/Web437_Nix8810_M16.woff) format("woff");
   font-weight: 700;
   font-style: normal
 }
 
- */
+*/
 
 @font-face {
   font-family: russiangothic;
@@ -35,7 +35,7 @@
 
 @font-face {
   font-family: "perfect dos vga 437 win";
-  src: url("./fonts/Perfect DOS VGA 437 Win.ttf?") format("truetype");
+  src: url("./fonts/Perfect DOS VGA 437 Win.ttf") format("truetype");
   font-weight: 400;
   font-style: normal
 }
@@ -458,7 +458,7 @@ input {
   color: deepskyblue;
 }
 
-#scroll-content {
+.scroll-content {
   padding-top: 15px;
   /* animation properties */
   -moz-transform: translateX(100%);
@@ -469,6 +469,10 @@ input {
   -moz-animation: my-animation 10s linear infinite;
   -webkit-animation: my-animation 10s linear infinite;
   animation: my-animation 10s linear infinite;
+}
+
+.scroll-content:hover {
+  animation-play-state: paused;
 }
 
 /* for Firefox */
@@ -496,3 +500,38 @@ input {
   }
 }
 
+.adHead1 {
+  font-family: "Perfect DOS VGA 437 Win";
+
+}
+
+#cool_guys_box {
+  overflow: hidden;
+}
+
+#awesome_sub_box {
+
+}
+
+@keyframes bob {
+  0% {
+    transform: translateY(-10px);
+  }
+
+  50% {
+    transform: translateY(5px);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+.letter {
+  transition: .2s;
+  animation: bob 4s infinite;
+}
+
+.letter:hover {
+  scale: 110%;
+}
