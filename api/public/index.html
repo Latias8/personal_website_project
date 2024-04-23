@@ -154,14 +154,15 @@
     let viewCount = data.views
     let title = data.title;
     let thumbnail = data.thumbnailUrl
+    let vidUrl = data.videoUrl
 
     block2.innerHTML = `
               <p class='vid-title'>Title: ${title}</p>
-              <div class='vid-views' style='margin-top: 16px'>Current viewcount: ${viewCount}</div>
+              <div class='vid-views' style='margin-top: 16px'>Current viewcount: <mark>${viewCount}</mark></div>
           `;
 
     musicElement.innerHTML = `
-              <img class='vid-thumb' src='${thumbnail}'>
+              <a href='${vidUrl}'><img class='vid-thumb' src='${thumbnail}'></a>
           `;
     musicElement.appendChild(block2)
       console.log('latest video loaded')

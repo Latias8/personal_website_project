@@ -150,6 +150,7 @@ app.get('/youtube', (req, res) => {
             // Extract title and thumbnail from snippet
             const title = newestVideo.snippet.title;
             const thumbnailUrl = newestVideo.snippet.thumbnails.default.url;
+            const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
             fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoId}&key=${apiKey}`)
                 .then(response => response.json())
@@ -160,7 +161,8 @@ app.get('/youtube', (req, res) => {
                     const responseObject = {
                         views: views,
                         title: title,
-                        thumbnailUrl: thumbnailUrl
+                        thumbnailUrl: thumbnailUrl,
+                        videoUrl: videoUrl
                     };
 
                     // Send the response object
