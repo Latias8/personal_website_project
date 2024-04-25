@@ -466,6 +466,9 @@ input {
 
 #music_element {
   margin-top: 25px;
+}
+
+#fullBlock {
   display: flex;
   align-items: flex-start;
   column-gap: 10px;
@@ -474,7 +477,7 @@ input {
   border-radius: 2px;
 }
 
-#music_element p {
+#fullBlock p {
   display: flex;
   align-items: flex-start;
   margin: 0;

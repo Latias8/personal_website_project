@@ -145,8 +145,9 @@
 
     // Clear existing video
     const musicElement = document.getElementById('music_element');
-    musicElement.innerHTML = '';
+    musicElement.innerHTML = `<h3>Newest release:</h3>`;
 
+    const fullBlock = document.createElement('DIV');
     const block2 = document.createElement('DIV')
 
     // Display each blog post
@@ -162,11 +163,15 @@
               <div class='vid-views' style='margin-top: 16px'>Current viewcount: <mark>${viewCount}</mark></div>
           `;
 
-    musicElement.innerHTML = `
+    fullBlock.innerHTML = `
               <a href='${vidUrl}'><img class='vid-thumb' src='${thumbnail}'></a>
           `;
-    musicElement.appendChild(block2)
+    fullBlock.appendChild(block2)
       console.log('latest video loaded')
+
+    musicElement.appendChild(fullBlock)
+
+    fullBlock.id = 'fullBlock'
   }
 
   // Call the function to fetch and display blog posts when the page loads
