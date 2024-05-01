@@ -160,6 +160,8 @@ h2 {
   image-rendering: pixelated;
   background-color: #000;
   position: absolute;
+  background-size: cover;
+  width: 100%;
 }
 
 @keyframes Static {
@@ -177,6 +179,7 @@ h2 {
   border-radius: 4px;
   width: auto;
   padding: 15px;
+  /*background-color: #002100;*/
 }
 
 #hotel {
@@ -315,17 +318,6 @@ input {
   }
 }
 
-.sliding-background {
-  background: url('./images/bg.png') repeat-x;
-  height: 2000px;
-  width: 2000px;
-  animation: slide 120s linear infinite;
-  transition: 1s;
-  background-size: 1600px;
-}
-
-
-
 .letter {
   display: inline;
   height: 60px;
@@ -441,6 +433,7 @@ input {
 
 #mainbox {
   border-left: 6px solid #80cb5a;
+  /*background-color: rgba(49, 255, 12, .1);*/
 }
 
 @keyframes blink {
@@ -577,4 +570,58 @@ input {
   100% {
     transform: rotate(-3deg);
   }
+}
+
+table {
+  background: #000000;
+  padding: 6px;
+  padding-bottom: 25px;
+  border-radius: 16px;
+}
+
+#road {
+  background: url("images/road 1.jpg") repeat-x;
+  background-size: 100% 50%;
+  height: 360px;
+  overflow: hidden;
+}
+
+#kar {
+  position: absolute;
+  width: 8000px;
+  height: 180px;
+  top: 810px;
+  animation: drive 17s infinite;
+  background-image: url("images/kar-long-2-gif.gif");
+}
+
+@keyframes drive {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-5000px);
+  }
+}
+
+/*
+.hole {
+  position: relative;
+  left: 50px;
+  top: 50px;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);
+}
+*/
+
+#road_shadow {
+  animation: drive 17s infinite;
+  height: 180px;
+  width: 8000px;
+  background: url("images/new shadow 1.png") repeat-x;
+  z-index: 100;
+  position: relative;
+  opacity: .7;
 }
