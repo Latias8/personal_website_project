@@ -124,19 +124,21 @@ table {
   border-spacing: 2px;
   /*border: 1px gray solid;*/
   /*border: 2px solid white;*/
+  height: 690px;
 }
 
 td {
   display: table-cell;
-  vertical-align: inherit;
+  vertical-align: bottom;
 }
 
 #maintd {
   width: 675px;
   vertical-align: baseline;
+  padding-bottom: 0;
 }
 
-#menutd {
+.menutd {
   width: 225px;
   vertical-align: baseline;
 }
@@ -159,6 +161,7 @@ h2 {
   color: #fff;
   padding: 10px 15px;
   margin: 5px;
+  margin-bottom: 0;
 }
 
 #bg {
@@ -579,9 +582,9 @@ input {
 }
 
 table {
-  background: #000000;
+  /*background: #000000;*/
   padding: 6px;
-  padding-bottom: 25px;
+  padding-bottom: 0;
   border-radius: 16px;
 }
 
@@ -595,7 +598,7 @@ table {
 #kar {
   position: absolute;
   width: 8000px;
-  height: 180px;
+  height: 170px;
   top: 810px;
   animation: drive 17s infinite;
   background-image: url("images/kar-long-2-gif.gif");
@@ -630,4 +633,33 @@ table {
   z-index: 100;
   position: relative;
   opacity: .7;
+}
+
+.exter {
+  align-items: center;
+}
+
+.pole {
+  width: 50px;
+  height: calc( 100% - 300px );
+  background: black;
+  margin: 0 auto;
+}
+
+#blogPole {
+  border-left: 4px solid greenyellow;
+  border-right: 4px solid greenyellow;
+  height: 400px;
+}
+
+#chatPole {
+  border-left: 4px solid #d92fff;
+  border-right: 4px solid #d92fff;
+  height: 226px;
+}
+
+#musicPole {
+  border-left: 4px solid #2fffff;
+  border-right: 4px solid #2fffff;
+  height: 340px;
 }
