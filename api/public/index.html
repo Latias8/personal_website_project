@@ -210,6 +210,29 @@
   // Call the function to load content when the page loads
   window.onload = function() {
     loadContent();
+    const bro = document.getElementById('lefter')
+    let broCounter = 0
+    bro.addEventListener('click', () => {
+      broCounter += 1;
+      if (broCounter == 1) {
+        bro.textContent = 'stop'
+      }
+      if (broCounter == 2) {
+        bro.textContent = 'I said stop'
+      }
+      if (broCounter == 3) {
+        bro.textContent = 'STAAHHHPPPPP'
+      }
+      if (broCounter == 4) {
+        bro.textContent = 'WHAT PART OF STOP DO YOU NOT UNDERSTAND?!'
+      }
+      if (broCounter == 5) {
+        bro.textContent = 'JHJHSUHUHASDZGZASTZGZSUCUSKAAFLALDFJHUVU'
+      }
+      if (broCounter == 6) {
+        location.href = 'https://youtu.be/xvFZjo5PgG0?si=SyFERjlkMao1Zfgu'
+      }
+    })
   };
 </script>
 <script src='js/messages.js'></script>

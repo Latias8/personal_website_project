@@ -114,6 +114,7 @@ body {
   position: absolute;
   z-index: 1000;
   top: 0;
+  pointer-events: visible;
 }
 
 table {
@@ -130,6 +131,7 @@ table {
 td {
   display: table-cell;
   vertical-align: bottom;
+  padding: 0;
 }
 
 #maintd {
@@ -644,6 +646,7 @@ table {
   height: calc( 100% - 300px );
   background: black;
   margin: 0 auto;
+  border-bottom: 4px solid black;
 }
 
 #blogPole {
