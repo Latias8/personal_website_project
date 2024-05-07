@@ -51,7 +51,6 @@
 
 body, #debug {
   image-rendering: pixelated;
-  font-family: russiangothic,ms ui gothic,nec_apc3,Tahoma;
   background-color: #000;
   font-smooth: never;
   -webkit-font-smoothing: none;
@@ -62,6 +61,7 @@ body {
   overflow-x: hidden;
   margin: 0;
   margin-top: 10px;
+  font-family: russiangothic,ms ui gothic,nec_apc3,Tahoma;
   display: block;
 }
 
@@ -140,9 +140,12 @@ td {
   padding-bottom: 0;
 }
 
-.menutd {
+#menutd {
   width: 225px;
   vertical-align: baseline;
+  position: absolute;
+  top: 460px;
+  left: 7vw;
 }
 
 h1 {
@@ -216,6 +219,7 @@ b {
   -moz-backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  overflow: scroll;
 }
 @keyframes flickering {
   0% {
@@ -396,6 +400,7 @@ input {
   overflow: hidden;
   position: relative;
   border-left: 6px solid #481c41;
+  height: 300px;
 }
 
 @keyframes flickeringAlt2 {
@@ -558,7 +563,7 @@ input {
 
 .letter {
   transition: .2s;
-  animation: bob 4s infinite;
+  animation: bob 8s infinite;
 }
 
 .letter:hover {
@@ -592,8 +597,8 @@ table {
 
 #road {
   background: url("images/road 1.jpg") repeat-x;
-  background-size: 100% 50%;
-  height: 360px;
+  background-size: 100% 100%;
+  height: 180px;
   overflow: hidden;
 }
 
@@ -601,7 +606,7 @@ table {
   position: absolute;
   width: 8000px;
   height: 170px;
-  top: 810px;
+  top: 820px;
   animation: drive 17s infinite;
   background-image: url("images/kar-long-2-gif.gif");
 }
