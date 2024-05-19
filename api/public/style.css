@@ -220,6 +220,8 @@ b {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   overflow: scroll;
+  padding-right: 0;
+  height: 260px;
 }
 @keyframes flickering {
   0% {
@@ -253,6 +255,10 @@ b {
 }
 
 .sub-log {
+  padding-top: 5px;
+}
+
+.sub-log div {
   padding-top: 5px;
 }
 
@@ -410,7 +416,6 @@ input {
 }
 
 #chat {
-  overflow: hidden;
   position: relative;
   border-left: 6px solid #481c41;
   height: 300px;
