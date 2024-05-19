@@ -243,6 +243,19 @@ b {
   color: #ff7ddb;
 }
 
+.chat-title {
+  color: #ff7ddb;
+}
+
+.chat-message {
+  border: 1px white solid;
+  padding: 10px;
+}
+
+.sub-log {
+  padding-top: 5px;
+}
+
 #send {
   background-color: #000;
   color: #fff;
@@ -401,6 +414,7 @@ input {
   position: relative;
   border-left: 6px solid #481c41;
   height: 300px;
+  width: 500px;
 }
 
 @keyframes flickeringAlt2 {

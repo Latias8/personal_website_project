@@ -32,7 +32,7 @@ function content_loader() {
             const postElement = document.createElement('div');
             postElement.classList.add('chat-message')
             postElement.innerHTML = `
-                <span class='chat-name'>anon>> </span>
+                <span class='chat-title'></span>
                 <span class='chat-msg'>${messageContent}</span>
                 <span class='chat-date'>${currDate.toLocaleString()}</span>
             `;

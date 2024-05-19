@@ -48,10 +48,8 @@
       <td>
         <div class='exter'>
         <div id="chat" class="box" style="margin-top: 10px;">
-          <div class='overlay'></div>
           <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/chat.png">
-          <h2 style="display:inline" id='chat_title'>Chat</h2>
-          <b id="hotel">(Not currently working! >.<)</b>
+          <h2 style="display:inline" id='chat_title'>Devlog...</h2>
           <br><br>
           <div id="messages">
             <noscript>
@@ -59,8 +57,6 @@
             </noscript>
           </div>
           <div id="bar" style="margin-top:4px">
-            <input type="text" id="message" placeholder="Enter message - please be nice!" autocomplete="off" maxlength="300">
-            <button id="send">Send</button>
           </div>
         </div>
 
@@ -138,6 +134,7 @@
     });
   }
 
+  /*
   async function fetchAndDisplayMessages() {
     const response = await fetch('/messages');
     const data = await response.json();
@@ -159,6 +156,34 @@
                 <span class='chat-date'>${currDate}</span>
             `;
       document.getElementById('messages').appendChild(messageElement);
+      console.log('message loaded')
+    });
+  }
+  */
+
+  async function fetchAndDisplayDevlogs() {
+    const response = await fetch('/devlogs');
+    const data = await response.json();
+
+    // Display each devlog
+    data.forEach(entry => {
+      const logTitle = entry.title
+      const currDate = entry.date
+      let logContent = entry.message;
+      let logGif = entry.loggif;
+
+      const devlogElement = document.createElement('div');
+      devlogElement.classList.add('chat-message')
+      devlogElement.innerHTML = `
+                <span class='chat-name'>${logTitle}</span>
+                <span class='chat-date'>${currDate}</span>
+                <div class='sub-log'>
+                <span class='chat-msg'>${logContent}</span>
+                <img class='chat-gif' src="${logGif}" width="300px">
+                </div>
+
+            `;
+      document.getElementById('messages').appendChild(devlogElement);
       console.log('message loaded')
     });
   }
@@ -200,7 +225,8 @@
   async function loadContent() {
     await Promise.all([
       fetchAndDisplayBlogPosts(),
-      fetchAndDisplayMessages(),
+      /*fetchAndDisplayMessages(),*/
+      fetchAndDisplayDevlogs(),
       fetchAndDisplayNewestVid()
     ]);
   }
@@ -233,6 +259,5 @@
     })
   };
 </script>
-<script src='js/messages.js'></script>
 </body>
 </html>
