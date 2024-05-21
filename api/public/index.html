@@ -5,10 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Isigia's Nest</title>
   <link href="/style.css" rel="stylesheet" type="text/css">
+  <script>
+    let fireflies_state = true
+    function hide_fireflies() {
+      if (fireflies_state) {
+        document.getElementById('canvas').style.display = 'none';
+        fireflies_state = false
+      } else {
+        document.getElementById('canvas').style.display = 'block';
+        fireflies_state = true
+      }
+    }
+  </script>
 </head>
 <body>
   <img src='./images/pixel moonsky 1.jpg' id='bg' alt='kewl background :)' class='sliding-background'></img>
 <span id="debug"></span>
+  <canvas id='canvas'></canvas>
+  <button id='no-firefly' onclick='hide_fireflies()'>Disable fireflies</button>
 <div id='container'>
   <div id='logo'>
     <img src='images/letters/I%20letter%201.png' style='margin-right: -29px' class='letter'>
@@ -113,7 +127,7 @@
   <div id='road_shadow'></div>
   <div id='kar'></div>
 </div>
-
+  <script src='js/fireflies.js'></script>
 <script>
   // Function to fetch and display blog posts
   async function fetchAndDisplayBlogPosts() {

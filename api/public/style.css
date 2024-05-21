@@ -126,6 +126,7 @@ table {
   /*border: 1px gray solid;*/
   /*border: 2px solid white;*/
   height: 690px;
+  overflow-x: scroll;
 }
 
 td {
@@ -670,4 +671,14 @@ table {
   border-left: 4px solid #2fffff;
   border-right: 4px solid #2fffff;
   height: 340px;
+}
+
+canvas {
+  filter: blur(1px);
+  position: absolute;
+  z-index: -1;
+}
+
+#no-firefly {
+  position: absolute;
 }
