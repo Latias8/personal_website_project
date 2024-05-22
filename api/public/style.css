@@ -441,6 +441,8 @@ input {
   justify-content: center;
   align-items: center;
   text-align: center;
+  transform-origin: center;
+  transform: rotate(0deg);
 }
 
 .widg-img-parent {
@@ -456,6 +458,23 @@ input {
   */
   background: #2a2a2a;
   cursor: pointer;
+  animation: infinite wobble 8s ease;
+  scale: 1.1;
+}
+
+@keyframes wobble {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .widg-text {
