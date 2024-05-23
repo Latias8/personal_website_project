@@ -58,7 +58,6 @@ body, #debug {
 }
 
 body {
-  overflow-x: hidden;
   margin: 0;
   margin-top: 10px;
   font-family: russiangothic,ms ui gothic,nec_apc3,Tahoma;
@@ -106,9 +105,16 @@ body {
   }
 }
 
+.main-content {
+  overflow-x: hidden;
+  max-width: 1666px;
+  min-width: 960px;
+}
+
 #container, #backside-container {
   width: 900px;
   margin: 0 auto;
+  padding-top: 10px;
 }
 
 #lefter {
@@ -436,19 +442,14 @@ input {
   border: 1px white solid;
   border-radius: 4px;
   width: 60px;
-  transition: .2s;
+  transition: .2s, transform .4s;
   background: black;
   justify-content: center;
   align-items: center;
   text-align: center;
   transform-origin: center;
   transform: rotate(0deg);
-}
-
-.widg-img-parent {
-  overflow: hidden;
-  height: auto;
-  width: 60px;
+  animation-play-state: paused;
 }
 
 .widg-elem:hover {
@@ -460,6 +461,7 @@ input {
   cursor: pointer;
   animation: infinite wobble 8s ease;
   scale: 1.1;
+  animation-play-state: running;
 }
 
 @keyframes wobble {
@@ -475,6 +477,12 @@ input {
   100% {
     transform: rotate(0deg);
   }
+}
+
+.widg-img-parent {
+  overflow: hidden;
+  height: auto;
+  width: 60px;
 }
 
 .widg-text {
@@ -699,10 +707,10 @@ table {
 }
 
 #kar {
-  position: absolute;
+  position: relative;
   width: 8000px;
   height: 170px;
-  top: 820px;
+  top: -190px;
   animation: drive 17s infinite;
   background-image: url("images/kar-long-2-gif.gif");
 }
