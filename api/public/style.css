@@ -699,11 +699,24 @@ table {
 
 #road {
   background: url("images/road 1.jpg") repeat-x;
-  background-size: 100% 100%;
+  background-size: cover;
   height: 180px;
   overflow: hidden;
   min-width: 960px;
 }
+
+@media (min-width: 960px) {
+  #road {
+    background-size: 960px 100%;
+  }
+}
+
+@media (max-width: 959px) {
+  #road {
+    background-size: 100% 100%;
+  }
+}
+
 
 #kar {
   position: relative;
