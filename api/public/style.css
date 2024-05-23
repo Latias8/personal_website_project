@@ -711,12 +711,6 @@ table {
   }
 }
 
-@media (max-width: 959px) {
-  #road {
-    background-size: 100% 100%;
-  }
-}
-
 
 #kar {
   position: relative;
