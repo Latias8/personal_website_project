@@ -27,7 +27,11 @@
     <img src='images/letters/S%20letter%201.png' style='margin-right: -23px; animation-delay: 1100ms' class='letter'>
     <img src='images/letters/T%20letter%201.png' class='letter' style='animation-delay: 1200ms'>
     <p>in development...</p>
+    <div class='clock'>
+      <a><a id='hours'>xx</a>:<a id='minutes'>yy</a></a>
+    </div>
   </div>
+
   </div>
   <table>
     <tbody>
@@ -50,9 +54,13 @@
       <td>
         <div class='widget-bar'>
           <div class='widg-elem'>
+            <div class='glitch-parent'>
+              <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
+            </div>
             <div class='widg-img-parent'>
               <img src='images/widgets/neocites%20website%201%201%20widgets%201%20profile%201.png' class='profile' alt='a handsome fella'>
             </div>
+
             <p class='widg-text glow'>whoami</p>
           </div>
           <div class='widg-elem'></div>
@@ -272,6 +280,10 @@
       if (broCounter == 6) {
         location.href = 'https://youtu.be/xvFZjo5PgG0?si=SyFERjlkMao1Zfgu'
       }
+    })
+    setInterval(function(){
+      document.getElementById('hours').innerHTML = (new Date()).getHours().toString()
+      document.getElementById('minutes').innerHTML = (new Date()).getMinutes().toString()
     })
   };
 </script>

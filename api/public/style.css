@@ -455,8 +455,9 @@ input {
   /*
   margin-left: 6px;
   margin-right: 6px;
-  */
-  background: #2a2a2a;
+
+   */
+  background: #1a1a1a;
   cursor: pointer;
   animation: infinite wobble 8s ease;
   scale: 1.1;
@@ -708,8 +709,13 @@ table {
 }
 
 @media (max-width: 960px) {
+  /*
   #road {
     background-size: 960px 180px;
+  }
+  */
+  #road {
+    display: none;
   }
 }
 
@@ -782,4 +788,28 @@ table {
   border-left: 4px solid #2fffff;
   border-right: 4px solid #2fffff;
   height: 340px;
+}
+
+.clock {
+  position: relative;
+  font-size: 32px;
+}
+
+.glitch {
+  height: 80px;
+  width: 60px;
+  opacity: 0;
+  transition: .2s;
+}
+
+.glitch:hover {
+  opacity: .4;
+}
+
+.glitch-parent {
+  overflow: hidden;
+  position: absolute;
+  border-radius: 4px;
+  width: 60px;
+  height: 63px;
 }
