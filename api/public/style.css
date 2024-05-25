@@ -56,11 +56,11 @@ body, #debug {
 }
 
 body {
-  margin: 0;
+  margin: auto;
   margin-top: 10px;
   font-family: russiangothic,ms ui gothic,nec_apc3,Tahoma;
   display: block;
-  max-width: 1666px;
+  max-width: 1950px;
   min-width: 960px;
 }
 
@@ -106,8 +106,9 @@ body {
 
 .main-content {
   overflow-x: hidden;
-  max-width: 1666px;
+  max-width: 1950px;
   min-width: 960px;
+  margin: auto;
 }
 
 #container, #backside-container {
@@ -788,6 +789,10 @@ table {
   border-left: 4px solid #2fffff;
   border-right: 4px solid #2fffff;
   height: 340px;
+}
+
+.main-content {
+  
 }
 
 .clock {
