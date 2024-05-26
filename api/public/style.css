@@ -56,8 +56,7 @@ body, #debug {
 }
 
 body {
-  margin: auto;
-  margin-top: 10px;
+  margin: 10px auto auto;
   font-family: russiangothic,ms ui gothic,nec_apc3,Tahoma;
   display: block;
   max-width: 1950px;
