@@ -823,6 +823,7 @@ table {
   margin-left: 0;
   margin-right: 5px;
   z-index: 0;
+  border-left: #bf84ff 6px solid;
 }
 
 .chatPole_parent .toThaRight:hover {
@@ -877,6 +878,42 @@ table {
   font-family: "Perfect DOS VGA 437 Win";
 }
 
+.status-misc {
+  color: #36dffd;
+  text-shadow: 0 0 20px #36dffd;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-low {
+  color: #8f2eff;
+  text-shadow: 0 0 20px #8f2eff;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-garb {
+  color: #5b5b5b;
+  text-shadow: 0 0 20px #5b5b5b;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-okay {
+  color: #ff80ef;
+  text-shadow: 0 0 20px #ff80ef;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-great {
+  color: #1482ff;
+  text-shadow: 0 0 20px #1482ff;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-fan {
+  color: #ffd814;
+  text-shadow: 0 0 20px #ffd814;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
 .sites {
   display: flex;
   flex-direction: column;
@@ -888,6 +925,7 @@ table {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  border-bottom: 1px solid rgba(70, 70, 70, 0.58);
 }
 
 .platform {
@@ -899,4 +937,16 @@ table {
   width: 20px;
   height: auto;
   margin-right: 10px;
+}
+
+.energy {
+  font-family: "Andromeda Bold";
+}
+
+.motivation {
+  font-family: "Andromeda Bold";
+}
+
+.summa {
+  font-family: "Andromeda Bold";
 }

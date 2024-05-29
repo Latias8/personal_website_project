@@ -158,6 +158,26 @@ app.get('/devlogs', async (req, res) => {
     });
 });
 
+app.get('/mood', async (req, res) => {
+    let moodPath = path.join(__dirname, 'mood.json'); // Use __dirname to get the directory of the current script
+    fs.readFile(moodPath, 'utf-8', function(err, data) {
+        if (err) {
+            // handle error
+            console.error(err);
+            res.status(500).send('Error reading file');
+            return;
+        }
+        try {
+            // Parse the data as JSON
+            const jsonData = data.split('\n').filter(Boolean).map(JSON.parse); // Split by newline, filter empty entries, and parse each JSON object
+            res.json(jsonData); // Send JSON data back to the client
+        } catch (parseError) {
+            console.error(parseError);
+            res.status(500).send('Error parsing JSON');
+        }
+    });
+});
+
 app.get('/youtube', (req, res) => {
     const apiKey = 'AIzaSyA-Drb-5llWow0293aP7jRV4CeWtk7qSt4';
     const channelId = 'UCDnSCd7lAIilJI16TAfawRg';
