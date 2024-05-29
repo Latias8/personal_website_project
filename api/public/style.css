@@ -569,7 +569,7 @@ input {
 }
 
 #music {
-  min-width: 300px;
+  max-width: 300px;
   vertical-align: baseline;
   overflow: hidden;
   border-left: 6px solid #3bdffd;
@@ -815,4 +815,88 @@ table {
   border-radius: 4px;
   width: 60px;
   height: 63px;
+}
+
+.chatPole_parent .toThaRight {
+  float: right;
+  position: relative;
+  margin-left: 0;
+  margin-right: 5px;
+  z-index: 0;
+}
+
+.chatPole_parent .toThaRight:hover {
+  z-index: 2;
+}
+
+.miniprofile {
+  position: absolute;
+  display: inline-block;
+  width: 300px;
+  height: 200px;
+  background-color: #000000a8;
+  border-radius: 4px;
+  margin-left: 5px;
+  margin-top: 2px;
+  border-left: 6px solid white;
+  padding: 10px 15px;
+  z-index: 1;
+}
+
+.statusHead {
+  color: white;
+}
+
+@media screen and (max-width: 1327px) {
+  .miniprofile {
+    transition: 0.1s;
+  }
+
+  .toThaRight {
+    opacity: 0.4;
+  }
+
+  .wrap:hover .miniprofile:hover {
+    opacity: 1;
+  }
+
+  .wrap:hover .miniprofile:not(:hover) {
+    opacity: 0.4;
+  }
+}
+
+.status-ok {
+  color: #36fda0;
+  text-shadow: 0 0 20px #36fda0;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-nuhUh {
+  color: #fd3636;
+  text-shadow: 0 0 20px #fd3636;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.sites {
+  display: flex;
+  flex-direction: column;
+}
+
+.platform_parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.platform {
+  display: flex;
+  align-items: center;
+}
+
+.site_logo {
+  width: 20px;
+  height: auto;
+  margin-right: 10px;
 }

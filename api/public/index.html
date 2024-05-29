@@ -100,7 +100,45 @@
         </div>
 
         </div>
-        <div class='pole' id='chatPole'></div>
+        <div class='chatPole_parent'>
+          <div class='wrap'>
+          <div class='miniprofile'>
+            <h2 style="display:inline" class='statusHead'>How do I feel?</h2>
+          </div>
+          <div class='miniprofile toThaRight'>
+            <h2 style="display:inline" class='statusHead'>Tune in? :0</h2>
+            <div class='sites'>
+              <div class='platform_parent'>
+                <div class='platform twitch'>
+                  <img class='site_logo' alt='' src='https://static-00.iconduck.com/assets.00/twitch-icon-2048x2047-rdv20bdk.png'>
+                  <p>Twitch</p>
+                </div>
+                <div class='status'>
+                  <span>
+                    [
+                    <span class='status-nuhUh'> OFFLINE</span>
+                    ]
+                  </span>
+                </div>
+              </div>
+              <div class='platform_parent'>
+                <div class='platform youtube'>
+                  <img class='site_logo' alt='' src='https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png'>
+                  <p>Youtube</p>
+                </div>
+                <div class='status'>
+                  <span>
+                    [
+                    <span class='status-nuhUh'> OFFLINE</span>
+                    ]
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class='pole' id='chatPole'></div>
+        </div>
         </td>
       <td>
         <div class='exter'>
@@ -302,8 +340,16 @@
       const hours = now.getHours();
       const minutes = now.getMinutes();
 
-      document.getElementById('hours').innerHTML = hours.toString();
-      document.getElementById('minutes').innerHTML = minutes.toString();
+      if (hours.toString().length == 2) {
+        document.getElementById('hours').innerHTML = hours.toString();
+      } else {
+        document.getElementById('hours').innerHTML = '0' + hours.toString();
+      }
+      if (minutes.toString().length == 2) {
+        document.getElementById('minutes').innerHTML = minutes.toString();
+      } else {
+        document.getElementById('minutes').innerHTML = '0' + minutes.toString();
+      }
 
       function getBackgroundColor(hour) {
         let color;
