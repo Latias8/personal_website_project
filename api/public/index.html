@@ -360,6 +360,7 @@
 
       document.querySelector('body').style.backgroundColor = getBackgroundColor(hours);
       document.getElementById('road_shadow').style.opacity = getOpacity(hours);
+      document.querySelector('.main-content').style.backgroundImage = `linear-gradient(rgba(0, 0, 0, ${getOpacity(hours) * 0.8}), rgba(0, 0, 0, ${getOpacity(hours) * 0.8})), url('./images/houseline 1 2.png')`;
     }, 1000);
 
   };

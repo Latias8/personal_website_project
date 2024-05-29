@@ -56,7 +56,7 @@ body, #debug {
 }
 
 body {
-  margin: 10px auto auto;
+  margin: 0 auto auto;
   font-family: russiangothic,ms ui gothic,nec_apc3,Tahoma;
   display: block;
   max-width: 1950px;
@@ -108,6 +108,9 @@ body {
   max-width: 1950px;
   min-width: 960px;
   margin: auto;
+  background-image: linear-gradient(rgba(0, 0, 0, 0),
+  rgba(0, 0, 0, 0)), url("./images/houseline 1 2.png");
+  background-size: cover;
 }
 
 #container, #backside-container {
@@ -566,7 +569,7 @@ input {
 }
 
 #music {
-  max-width: 365px;
+  min-width: 300px;
   vertical-align: baseline;
   overflow: hidden;
   border-left: 6px solid #3bdffd;
@@ -788,10 +791,6 @@ table {
   border-left: 4px solid #2fffff;
   border-right: 4px solid #2fffff;
   height: 340px;
-}
-
-.main-content {
-  
 }
 
 .clock {
