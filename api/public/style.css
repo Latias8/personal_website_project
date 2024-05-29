@@ -939,14 +939,25 @@ table {
   margin-right: 10px;
 }
 
+.youtube {
+  font-family: "Pixel NES";
+}
+
+.twitch {
+  font-family: "Pixel NES";
+}
+
 .energy {
-  font-family: "Andromeda Bold";
+  font-family: "perfect dos vga 437 win";
+  color: #868686;
 }
 
 .motivation {
-  font-family: "Andromeda Bold";
+  font-family: "perfect dos vga 437 win";
+  color: #868686;
 }
 
-.summa {
-  font-family: "Andromeda Bold";
+.summary {
+  font-family: "perfect dos vga 437 win";
+  color: #868686;
 }
