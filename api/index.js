@@ -222,6 +222,54 @@ app.get('/youtube', (req, res) => {
         });
 });
 
+app.get('/youtube/best', (req, res) => {
+    const apiKey = 'AIzaSyA-Drb-5llWow0293aP7jRV4CeWtk7qSt4';
+    const channelId = 'UCDnSCd7lAIilJI16TAfawRg';
+    const maxResults = 50; // Maximum number of videos to fetch in one request
+
+    // Step 1: Fetch the videos from the channel
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=${maxResults}&type=video&key=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+            const videoIds = data.items.map(item => item.id.videoId);
+
+            // Step 2: Get the statistics (view count) for each video
+            return fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${videoIds.join(',')}&key=${apiKey}`);
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Step 3: Find the video with the highest view count
+            let maxViews = 0;
+            let mostViewedVideo = null;
+
+            data.items.forEach(video => {
+                const views = parseInt(video.statistics.viewCount, 10);
+                if (views > maxViews) {
+                    maxViews = views;
+                    mostViewedVideo = video;
+                }
+            });
+
+            if (mostViewedVideo) {
+                // Step 4: Send the response with the details of the video with the most views
+                const responseObject = {
+                    views: mostViewedVideo.statistics.viewCount,
+                    title: mostViewedVideo.snippet.title,
+                    thumbnailUrl: mostViewedVideo.snippet.thumbnails.default.url,
+                    videoUrl: `https://www.youtube.com/watch?v=${mostViewedVideo.id}`
+                };
+
+                res.send(responseObject);
+            } else {
+                res.status(404).send('No videos found');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            res.status(500).send('Error fetching data');
+        });
+});
+
 
 app.get('/main', (req, res) => {
     res.sendFile('index.html', { root: __dirname + '/public' });

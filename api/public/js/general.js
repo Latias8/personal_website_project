@@ -78,11 +78,8 @@ async function fetchAndDisplayDevlogs() {
 async function fetchAndDisplayNewestVid() {
     const response = await fetch('/youtube');
     const data = await response.json();
-
-    // Clear existing video
-    const musicElement = document.getElementById('music_element');
+    const musicElement = document.getElementById('newvid');
     musicElement.innerHTML = `<h3>Newest release:</h3>`;
-
     const fullBlock = document.createElement('DIV');
     const block2 = document.createElement('DIV')
 
@@ -105,10 +102,41 @@ async function fetchAndDisplayNewestVid() {
 
     musicElement.appendChild(fullBlock)
 
-    fullBlock.id = 'fullBlock'
+    fullBlock.classList.add('fullBlock')
 }
 
-const moodList = [{"moodcl":"status-low","moodte":" poor"},{"moodcl":"status-misc","moodte":" could be better"},{"moodcl":"status-ok","moodte":" peak"}]
+async function fetchAndDisplayBestVid() {
+    const response = await fetch('/youtube/best');
+    const data = await response.json();
+    const musicElement = document.getElementById('bestvid');
+    musicElement.innerHTML = `<h3>Most viewed release:</h3>`;
+    const fullBlock = document.createElement('DIV');
+    const block2 = document.createElement('DIV')
+
+    let viewCount = data.views
+    let title = data.title;
+    let thumbnail = data.thumbnailUrl
+    let vidUrl = data.videoUrl
+
+    block2.innerHTML = `
+              <p class='vid-title'>Title:</p>
+              <div><strong>${title}</strong></div>
+              <div class='vid-views' style='margin-top: 16px'>Current viewcount: <mark>${viewCount}</mark></div>
+          `;
+
+    fullBlock.innerHTML = `
+              <a href='${vidUrl}'><img class='vid-thumb' src='${thumbnail}' alt=''></a>
+          `;
+    fullBlock.appendChild(block2)
+    console.log('best video loaded')
+
+    musicElement.appendChild(fullBlock)
+
+    fullBlock.classList.add('fullBlock')
+}
+
+
+const moodList = [{"moodcl":"status-low","moodte":" poor"},{"moodcl":"status-misc","moodte":" could be better"},{"moodcl":"status-gr","moodte":" great"},{"moodcl":"status-ok","moodte":" peak"}]
 const sumList = [{"moodcl":"status-garb","moodte":" Doing like garbage..."},{"moodcl":"status-okay","moodte":" Doing okay."},{"moodcl":"status-great","moodte":" Doing great!"},{"moodcl":"status-fan","moodte":" Doing FANTASTIC!!!"}]
 
 
@@ -132,22 +160,28 @@ async function displayMood() {
     if (energy <= 3) {
         let energdef = moodList[0];
         assignEnergy(energdef);
-    } else if (energy <= 7) {
+    } else if (energy <= 5) {
         let energdef = moodList[1];
         assignEnergy(energdef);
-    } else if (energy <= 10) {
+    } else if (energy <= 7) {
         let energdef = moodList[2];
+        assignEnergy(energdef);
+    } else if (energy <= 10) {
+        let energdef = moodList[3];
         assignEnergy(energdef);
     }
 
     if (motivation <= 3) {
         let motivdef = moodList[0];
         assignMotivation(motivdef);
-    } else if (motivation <= 7) {
+    } else if (motivation <= 5) {
         let motivdef = moodList[1];
         assignMotivation(motivdef);
-    } else if (motivation <= 10) {
+    } else if (motivation <= 7) {
         let motivdef = moodList[2];
+        assignMotivation(motivdef);
+    } else if (motivation <= 10) {
+        let motivdef = moodList[3];
         assignMotivation(motivdef);
     }
 
@@ -196,7 +230,8 @@ async function loadContent() {
         /*fetchAndDisplayMessages(),*/
         fetchAndDisplayDevlogs(),
         displayMood(),
-        fetchAndDisplayNewestVid()
+        fetchAndDisplayNewestVid(),
+        fetchAndDisplayBestVid()
     ]);
 }
 

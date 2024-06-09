@@ -117,6 +117,11 @@ body {
   width: 900px;
   margin: 0 auto;
   padding-top: 10px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
 }
 
 #lefter {
@@ -153,7 +158,7 @@ td {
   width: 225px;
   vertical-align: baseline;
   position: absolute;
-  top: 480px;
+  top: 370px;
   left: 7vw;
 }
 
@@ -580,11 +585,15 @@ input {
   color: deepskyblue;
 }
 
-#music_element {
+.music_element {
   margin-top: 25px;
 }
 
-#fullBlock {
+.music_element h3 {
+  font-family: "perfect dos vga 437 win";
+}
+
+.fullBlock {
   display: flex;
   align-items: flex-start;
   column-gap: 10px;
@@ -593,7 +602,7 @@ input {
   border-radius: 2px;
 }
 
-#fullBlock p {
+.fullBlock p {
   display: flex;
   align-items: flex-start;
   margin: 0;
@@ -790,7 +799,7 @@ table {
 #musicPole {
   border-left: 4px solid #2fffff;
   border-right: 4px solid #2fffff;
-  height: 340px;
+  height: 100px;
 }
 
 .clock {
@@ -848,7 +857,7 @@ table {
   color: white;
 }
 
-@media screen and (max-width: 1327px) {
+@media screen and (max-width: 1417px) {
   .miniprofile {
     transition: 0.1s;
   }
@@ -863,6 +872,18 @@ table {
 
   .wrap:hover .miniprofile:not(:hover) {
     opacity: 0.4;
+  }
+
+  #container {
+    position: relative;
+  }
+
+  #musicPole {
+    height: 0;
+  }
+
+  #menutd {
+    top: 480px;
   }
 }
 
@@ -905,6 +926,12 @@ table {
 .status-great {
   color: #1482ff;
   text-shadow: 0 0 20px #1482ff;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-gr {
+  color: #ff8a14;
+  text-shadow: 0 0 20px #ff8a14;
   font-family: "Perfect DOS VGA 437 Win";
 }
 
@@ -960,4 +987,29 @@ table {
 .summary {
   font-family: "perfect dos vga 437 win";
   color: #868686;
+}
+
+#scroll-container {
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 12;
+  margin: 0 40px;
+  background-color: #000000a8;
+  height: 20px;
+
+}
+
+#scroll-text {
+  -moz-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+
+  -moz-animation: my-animation 30s linear infinite;
+  -webkit-animation: my-animation 30s linear infinite;
+  animation: my-animation 30s linear infinite;
+}
+
+#ad1 {
+  position: relative;
+  height: 300px;
 }
