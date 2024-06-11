@@ -530,7 +530,7 @@ input {
 }
 
 #root {
-  height: 200px;
+  height: 340px;
   overflow: scroll;
   overflow-x: hidden;
   padding: 4px;
@@ -660,7 +660,11 @@ input {
 }
 
 #awesome_sub_box {
-  border: none;
+  border-left: 6px solid #868686;
+}
+
+#awesome_top_box {
+  border-left: 6px solid #868686;
 }
 
 @keyframes bob {
@@ -787,7 +791,7 @@ table {
 #blogPole {
   border-left: 4px solid #80cb5a;
   border-right: 4px solid #80cb5a;
-
+  height: calc( 100% - 720px );
 }
 
 #chatPole {
@@ -1012,4 +1016,8 @@ table {
 #ad1 {
   position: relative;
   height: 300px;
+}
+
+#undablog {
+  text-align: center;
 }
