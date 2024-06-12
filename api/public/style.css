@@ -169,7 +169,7 @@ h1 {
 
 h2 {
   color: #74ff56;
-  font-family: "Pixel NES", serif !important;
+  font-family: "perfect dos vga 437 win", serif !important;
   margin: 0;
   /*text-shadow: var(--green-text-shadow)*/
 }
@@ -999,11 +999,11 @@ table {
 }
 
 .youtube {
-  font-family: "Pixel NES";
+  font-family: "perfect dos vga 437 win";
 }
 
 .twitch {
-  font-family: "Pixel NES";
+  font-family: "perfect dos vga 437 win";
 }
 
 .energy {
