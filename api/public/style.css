@@ -129,6 +129,7 @@ body {
   z-index: 1000;
   top: 0;
   pointer-events: visible;
+  cursor: pointer;
 }
 
 table {
@@ -148,8 +149,8 @@ td {
   padding: 0;
 }
 
-#maintd {
-  width: 675px;
+.maintd {
+  width: 360px;
   vertical-align: baseline;
   padding-bottom: 0;
 }
@@ -235,7 +236,7 @@ b {
   backface-visibility: hidden;
   overflow: scroll;
   padding-right: 0;
-  height: 260px;
+  height: 240px;
 }
 @keyframes flickering {
   0% {
@@ -244,8 +245,9 @@ b {
 }
 
 .chat-msg {
-  max-width: 360px;
+  max-width: calc( 100% - 180px );
   word-break: break-word;
+  display: inline-flex;
 }
 
 .chat-date {
@@ -253,17 +255,32 @@ b {
   font-size: 12px;
   padding-right: 5px;
   float: right;
+  display: inline;
 }
 
 .chat-name {
   color: #ff7ddb;
+  display: inline;
 }
 
 .chat-title {
   color: #ff7ddb;
+
 }
 
 .chat-message {
+  padding: 2px;
+}
+
+.devlog-name {
+  color: #ff8b39;
+}
+
+.devlog-title {
+  color: #ff8b39;
+}
+
+.devlog-message {
   border: 1px white solid;
   padding: 10px;
 }
@@ -316,7 +333,7 @@ button {
   border: 1px solid #383838;
   font-family: MS Gothic,monospace;
   padding: 3px;
-  width: 508px;
+  width: 80%;
 }
 
 input[type="text" i] {
@@ -433,7 +450,11 @@ input {
   position: relative;
   border-left: 6px solid #d92fff;
   height: 300px;
+}
 
+#bar {
+  position: relative;
+  width: 100%;
 }
 
 .widget-bar {
@@ -457,6 +478,7 @@ input {
   transform-origin: center;
   transform: rotate(0deg);
   animation-play-state: paused;
+  scale: 1;
 }
 
 .widg-elem:hover {
@@ -713,6 +735,7 @@ table {
   padding: 6px;
   padding-bottom: 0;
   border-radius: 16px;
+  width: 100%;
 }
 
 #road {
@@ -791,7 +814,7 @@ table {
 #blogPole {
   border-left: 4px solid #80cb5a;
   border-right: 4px solid #80cb5a;
-  height: calc( 100% - 720px );
+  height: calc( 100% - 694.88px );
 }
 
 #chatPole {
@@ -804,6 +827,11 @@ table {
   border-left: 4px solid #2fffff;
   border-right: 4px solid #2fffff;
   height: 100px;
+  margin: 0 auto;
+}
+
+#muex {
+  width: 340px;
 }
 
 .clock {
@@ -1016,8 +1044,79 @@ table {
 #ad1 {
   position: relative;
   height: 300px;
+  border-left: 6px solid #ff8b39;
 }
 
 #undablog {
   text-align: center;
+}
+
+#devlogs {
+  overflow-y: scroll;
+  height: 215px;
+  width: 90%;
+  padding-right: 10px;
+}
+
+.chat-gif {
+  width: 100%;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.fNavElem {
+  width: 60px;
+  height: 60px;
+  background-image: url("images/fNavMenu/folder 1.png");
+  background-size: 60px;
+}
+
+#fNavRoot {
+
+}
+
+.layer {
+  display: none;
+}
+
+.layer0 {
+  display: block;
+}
+
+.exterBtn {
+  width: 60px;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.fMoveElemDown {
+  background-image: url("images/fNavMenu/folder 1.png");
+  background-size: 60px;
+}
+
+.fLogElem {
+  background-image : url("images/fNavMenu/file 1.svg");
+  background-size: 60px;
+}
+
+.fNavCookie:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dimdenLink {
+  color: #62A775;
+}
+
+.credLink {
+  color: #2fffff;
 }

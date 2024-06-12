@@ -1,4 +1,4 @@
-// Function to fetch and display blog posts
+
 async function fetchAndDisplayBlogPosts() {
     const response = await fetch('/entries');
     const data = await response.json();
@@ -21,16 +21,14 @@ async function fetchAndDisplayBlogPosts() {
     });
 }
 
-/*
+
 async function fetchAndDisplayMessages() {
   const response = await fetch('/messages');
   const data = await response.json();
 
-  // Clear existing blog posts
   const boxElement = document.getElementById('message');
   boxElement.innerHTML = '';
 
-  // Display each blog post
   data.forEach(mess => {
     const currDate = mess.date
     let message_content = mess.message;
@@ -39,41 +37,67 @@ async function fetchAndDisplayMessages() {
     messageElement.classList.add('chat-message')
     messageElement.innerHTML = `
               <span class='chat-name'>anon>> </span>
-              <span class='chat-msg'>${message_content}</span>
+              <div class='chat-msg'>${message_content}</div>
               <span class='chat-date'>${currDate}</span>
           `;
     document.getElementById('messages').appendChild(messageElement);
     console.log('message loaded')
   });
 }
-*/
+
 
 async function fetchAndDisplayDevlogs() {
     const response = await fetch('/devlogs');
     const data = await response.json();
+    let counter = 0;
 
     // Display each devlog
     data.forEach(entry => {
+        counter += 1;
+        const logElem = document.createElement('div');
+        logElem.classList.add('exterBtn')
+        logElem.innerHTML = `
+            <button class='fNavElem fLogElem fLE${counter}'></button>
+            <p>log ${counter}</p>
+        `;
+        document.querySelector('.layer2').querySelector('.buttons').appendChild(logElem);
+
+        const layerElem = document.createElement('div');
+        layerElem.classList.add('layer')
+        layerElem.classList.add(`layer10${counter}`)
+        layerElem.innerHTML = `
+            <h3>&gt <a class='fNavCookie projects'>Projects</a> &gt <a class='fNavCookie producerRacing'>producer_racing</a> &gt log 1</h3>
+        `
+        document.getElementById('fNavRoot').appendChild(layerElem);
+
         const logTitle = entry.title
         const currDate = entry.date
         let logContent = entry.message;
         let logGif = entry.loggif;
 
         const devlogElement = document.createElement('div');
-        devlogElement.classList.add('chat-message')
+        devlogElement.classList.add('devlog_instance')
         devlogElement.innerHTML = `
-                <span class='chat-name'>${logTitle}</span>
-                <span class='chat-date'>${currDate}</span>
+            <div id='devlogs'>
+                <span class='devlog-name'>${logTitle}</span>
+                <span class='devlog-date'>${currDate}</span>
                 <div class='sub-log'>
-                <span class='chat-msg'>${logContent}</span>
+                <span class='devlog-msg'>${logContent}</span>
                 <div><img class='chat-gif' src="./images/devl/${logGif}" width="300px" alt=''></div>
                 </div>
-
+            </div>
             `;
-        document.getElementById('messages').appendChild(devlogElement);
-        console.log('message loaded')
+        document.querySelector(`.layer10${counter}`).appendChild(devlogElement);
+        document.querySelector(`.fLE${counter}`).addEventListener('click', () => {
+            document.getElementById('fNavRoot').querySelectorAll('.layer').forEach((layer) => {
+                layer.style.display = 'none';
+            })
+            document.querySelector(`.layer10${counter}`).style.display = 'block';
+        })
+        console.log('devlog loaded')
     });
 }
+
 
 async function fetchAndDisplayNewestVid() {
     const response = await fetch('/youtube');
@@ -227,8 +251,8 @@ async function displayMood() {
 async function loadContent() {
     await Promise.all([
         fetchAndDisplayBlogPosts(),
-        /*fetchAndDisplayMessages(),*/
-        fetchAndDisplayDevlogs(),
+        fetchAndDisplayMessages(),
+        /*fetchAndDisplayDevlogs(),*/
         displayMood(),
         fetchAndDisplayNewestVid(),
         fetchAndDisplayBestVid()
@@ -238,6 +262,14 @@ async function loadContent() {
 // Call the function to load content when the page loads
 window.onload = function() {
     loadContent();
+    document.querySelectorAll('.widg-elem').forEach((elem) => {
+        elem.addEventListener('click', () => {
+            elem.style.scale = '0.9'
+        })
+    })
+    document.getElementById('whoami').addEventListener('click', () => {
+        window.location.href = 'whoami.html'
+    })
     const bro = document.getElementById('lefter')
     let broCounter = 0
     bro.addEventListener('click', () => {

@@ -1,0 +1,68 @@
+@font-face {
+    font-family: "perfect dos vga 437 win";
+    src: url("./fonts/Perfect DOS VGA 437 Win.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal
+}
+
+body {
+    font-family: "perfect dos vga 437 win";
+    text-align: center;
+    color: white;
+    background-color: black;
+    padding: 6px;
+}
+
+.fren {
+    color: greenyellow;
+    text-decoration: none;
+}
+
+.fren:hover {
+    text-decoration: underline;
+}
+
+.yuh {
+    color: #57ff15;
+}
+
+.nuh {
+    color: #ff1515;
+}
+
+h1 {
+    text-shadow: 0 0 20px #cbcbcb;
+}
+
+.mainContent {
+    border: 1px solid white;
+    width: 800px;
+    margin: 0 auto;
+    padding: 16px;
+    padding-left: 0;
+    display: flex;
+    font-size: 18px;
+}
+
+.profile {
+    /*border: 1px solid orange;*/
+    /*border-right: 1px solid white;*/
+    width: 320px;
+    border-bottom: 2px solid white;
+}
+
+.profileImg {
+    width: 320px;
+}
+
+.mainData {
+    /*border: 1px solid deepskyblue;*/
+    border-left: 1px solid white;
+    text-align: left;
+    padding: 4px;
+    padding-left: 8px;
+}
+
+pre {
+    font-family: "perfect dos vga 437 win";
+}

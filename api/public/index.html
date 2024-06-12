@@ -41,11 +41,13 @@
       <td class='maintd'>
         <div class='exter' id='undablog'>
           <div class='box' id='awesome_top_box'>
-            <strong>Much of the CSS here is from <a class='spinny' href='https://dimden.dev'>dimden.dev</a></strong> (awesome site). All the JS has been independently coded however.
+            <strong>Much of the CSS here is from <a class='spinny dimdenLink' href='https://dimden.dev'>dimden.dev</a></strong> (awesome site). All the JS has been independently coded however.
             <br><br>
             <a href="https://dimden.dev/" target='_blank'><img src="https://dimden.dev/services/images/88x31.gif" alt=''></a>
             <br><br>
-            I'm using it to start off and will gradually change it over time to be unique.
+            I'm using it to start off and will gradually change it over time to be unique. :)
+            <br><br>
+            additional credits: <a href='credits.html' class='credLink'>credits</a>
           </div>
           <div id='awesome_sub_box' class='box'>
             <p style='margin: 0' class='adHead1'>
@@ -62,7 +64,7 @@
         <div class='exter'>
         <div class='box' id='mainbox'>
           <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/warning%202.png" id='warning' alt=''>
-          <h2 style="display:inline" class='jersey-10-charted-regular'>Today's info:</h2>
+          <h2 style="display:inline" class='jersey-10-charted-regular'>Blogs:</h2>
           <br>
           <p>
           <div id='root'>
@@ -75,9 +77,9 @@
 
         <div class='pole' id='blogPole'></div>
         </td>
-      <td>
+      <td class='centertd'>
         <div class='widget-bar'>
-          <div class='widg-elem'>
+          <div class='widg-elem' id='whoami'>
             <div class='widg-img-parent'>
               <img src='images/widgets/neocites%20website%201%201%20widgets%201%20profile%201.png' class='profile' alt='a handsome fella'>
             </div>
@@ -109,10 +111,10 @@
             </div>
           </div>
         </div>
-        <div class='exter'>
+        <div class='exter' id='chex'>
         <div id="chat" class="box" style="margin-top: 10px;">
           <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/chat.png" alt=''>
-          <h2 style="display:inline" id='chat_title'>Devlog...</h2>
+          <h2 style="display:inline" id='chat_title'>Chat</h2>
           <br><br>
           <div id="messages">
             <noscript>
@@ -120,6 +122,8 @@
             </noscript>
           </div>
           <div id="bar" style="margin-top:4px">
+            <input type="text" id="message" placeholder="no being mean" autocomplete="off" maxlength="300">
+            <button id="send">Send</button>
           </div>
         </div>
 
@@ -200,8 +204,55 @@
           <div class='pole' id='chatPole'></div>
         </div>
         </td>
-      <td>
+      <td id='muex'>
         <div class='miniprofile advertisement' id='ad1'>
+          <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/fNavMenu/file%201.svg" alt=''>
+          <h2 style="display:inline" class='devlog-title'>Devlog...</h2>
+          <br>
+          <div id='fNavRoot'>
+            <div class='layer0 layer'>
+              <h3>&gt</h3>
+              <div class='buttons'>
+                <div class='exterBtn'>
+                  <button class='patientZero fNavElem fMoveElemDown'></button>
+                  <p>projects</p>
+                </div>
+              </div>
+            </div>
+            <div class='layer1 layer'>
+              <h3>&gt <a class='fNavCookie projects'>Projects</a></h3>
+              <div class='buttons'>
+                <div class='exterBtn'>
+                  <button class='patientZero fNavElem fMoveElemUp'>
+
+                  </button>
+                  <p>..</p>
+                </div>
+                <div class='exterBtn'>
+                  <button class='patientZero fNavElem fMoveElemDown'>
+
+                  </button>
+                  <p>producer_racing</p>
+                </div>
+
+
+              </div>
+            </div>
+            <div class='layer2 layer'>
+              <h3>&gt <a class='fNavCookie projects'>Projects</a> &gt <a class='fNavCookie producerRacing'>producer_racing</a></h3>
+              <div class='buttons'>
+                <div class='exterBtn'>
+                  <button class='patientZero fNavElem fMoveElemUp'>
+
+                  </button>
+                  <p>..</p>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
 
         </div>
         <div class='exter'>
@@ -233,6 +284,8 @@
 </div>
 </div>
 <script src='js/general.js'></script>
+<script src='js/messages.js'></script>
+<script src='js/fNavMenu.js'></script>
 
 </body>
 </html>

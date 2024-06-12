@@ -33,7 +33,7 @@ function content_loader() {
             postElement.classList.add('chat-message')
             postElement.innerHTML = `
                 <span class='chat-title'></span>
-                <span class='chat-msg'>${messageContent}</span>
+                <div class='chat-msg'>${messageContent}</div>
                 <span class='chat-date'>${currDate.toLocaleString()}</span>
             `;
             document.getElementById('messages').appendChild(postElement);

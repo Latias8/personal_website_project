@@ -90,7 +90,7 @@ app.get('/gandalf/blog/submit/:text', (req, res) => {
 
 app.get("/", (req, res) => { res.send("Express on Vercel");})
 
-/*
+
 // Endpoint to get chat messages
 app.get('/messages', async (req, res) => {
     let messagesPath = path.join(__dirname, 'messages.json'); // Use __dirname to get the directory of the current script
@@ -135,7 +135,7 @@ app.post('/messages', (req, res) => {
         console.log(data)
     }
 });
-*/
+
 
 // Endpoint to get devlogs
 app.get('/devlogs', async (req, res) => {
@@ -179,7 +179,7 @@ app.get('/mood', async (req, res) => {
 });
 
 app.get('/youtube', (req, res) => {
-    const apiKey = 'AIzaSyA-Drb-5llWow0293aP7jRV4CeWtk7qSt4';
+    const apiKey = process.env.API_KEY;
     const channelId = 'UCDnSCd7lAIilJI16TAfawRg';
 
     let videoId;
@@ -223,7 +223,7 @@ app.get('/youtube', (req, res) => {
 });
 
 app.get('/youtube/best', (req, res) => {
-    const apiKey = 'AIzaSyA-Drb-5llWow0293aP7jRV4CeWtk7qSt4';
+    const apiKey = process.env.API_KEY;
     const channelId = 'UCDnSCd7lAIilJI16TAfawRg';
     const maxResults = 50; // Maximum number of videos to fetch in one request
 
