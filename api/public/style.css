@@ -41,6 +41,34 @@
   font-style: normal
 }
 
+@font-face {
+  font-family: "hack";
+  src: url("./fonts/hackfonts/Hack-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "hack bold";
+  src: url("./fonts/hackfonts/Hack-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "hack italic";
+  src: url("./fonts/hackfonts/Hack-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "hack bold italic";
+  src: url("./fonts/hackfonts/Hack-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
 .jersey-10-charted-regular {
   font-family: "Jersey 10 Charted", sans-serif;
   font-weight: 400;
@@ -248,6 +276,8 @@ b {
   max-width: calc( 100% - 180px );
   word-break: break-word;
   display: inline-flex;
+  font-family: "hack";
+  font-size: 12px;
 }
 
 .chat-date {
@@ -333,7 +363,7 @@ button {
   border: 1px solid #383838;
   font-family: MS Gothic,monospace;
   padding: 3px;
-  width: 80%;
+  width: calc( 100% - 100px );
 }
 
 input[type="text" i] {
@@ -1074,6 +1104,15 @@ button {
   height: 60px;
   background-image: url("images/fNavMenu/folder 1.png");
   background-size: 60px;
+  transition: .2s;
+}
+
+.fNavElem:hover {
+  scale: 1.2;
+}
+
+.fNavElem:active {
+  scale: 0.9;
 }
 
 #fNavRoot {
