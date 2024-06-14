@@ -1,6 +1,7 @@
 @font-face {font-family:"Pixel NES";src:url("./fonts/Pixel_NES.eot?") format("eot"),url("./fonts/Pixel_NES.woff") format("woff"),url("./fonts/Pixel_NES.ttf") format("truetype"),url("./fonts/Pixel_NES.svg#PixelNES") format("svg");font-weight:normal;font-style:normal;}
 @font-face {font-family:"Andromeda Bold";src:url("./fonts/Andromeda-Bold.otf") format("opentype");font-weight:bold;font-style:normal;}
 
+
 /*
 
 @font-face {
@@ -264,7 +265,7 @@ b {
   backface-visibility: hidden;
   overflow: scroll;
   padding-right: 0;
-  height: 240px;
+  height: 220px;
 }
 @keyframes flickering {
   0% {
@@ -281,6 +282,7 @@ b {
 }
 
 .chat-date {
+  font-family: "digital";
   color: #5d5d5d;
   font-size: 12px;
   padding-right: 5px;
@@ -291,6 +293,8 @@ b {
 .chat-name {
   color: #ff7ddb;
   display: inline;
+  font-family: "hack";
+  font-size: 12px;
 }
 
 .chat-title {
@@ -363,7 +367,7 @@ button {
   border: 1px solid #383838;
   font-family: MS Gothic,monospace;
   padding: 3px;
-  width: calc( 100% - 100px );
+  width: calc( 100% - 120px );
 }
 
 input[type="text" i] {
@@ -483,6 +487,8 @@ input {
 }
 
 #bar {
+  font-family: Dubai;
+  display: inline-block;
   position: relative;
   width: 100%;
 }

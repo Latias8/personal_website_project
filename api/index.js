@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const chatPort = 4000;
 const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
+const http = require('http')//??
+const socketID = require('socket.io')//??
+
 
 // Serve static files from the "public" directory
 app.use(express.static('public'));
@@ -21,9 +25,13 @@ app.use((req, res, next) => {
     next();
 });
 
+/*
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
+
+ */
 
 app.get("/", (req, res) => { res.send("Express on Vercel");})
 
@@ -90,6 +98,7 @@ app.get('/gandalf/blog/submit/:text', (req, res) => {
 
 app.get("/", (req, res) => { res.send("Express on Vercel");})
 
+/* MESSAGE STUFF OLD
 
 // Endpoint to get chat messages
 app.get('/messages', async (req, res) => {
@@ -126,7 +135,6 @@ app.post('/messages', (req, res) => {
             else {
                 console.log("File written successfully\n");
                 console.log("The written has the following contents:");
-                console.log(fs.readFileSync("messages.json", "utf8"));
             }
         });
         res.status(200).send('Message received and stored successfully');
@@ -135,6 +143,33 @@ app.post('/messages', (req, res) => {
         console.log(data)
     }
 });
+
+*/
+let server = http.Server(app)
+server.listen(port);
+let io = socketID(server)
+
+io.on('connection', function (socket) {//??
+    //emit message to client
+    socket.emit('greeting-from-server', {
+        greeting:'Remember! Be nice! :D'
+    })
+
+    /*
+    socket.on('greeting-from-client', data => {//??
+        socket.emit('greeting-from-server',{//??
+            greeting:'Hello Client'//??
+        })//??
+    })//??
+    //??
+
+     */
+    socket.on('message-send', data => {
+        io.emit('message-receive', {
+            message: data
+        })
+    })
+})
 
 
 // Endpoint to get devlogs
@@ -184,7 +219,7 @@ app.get('/youtube', (req, res) => {
 
     let videoId;
 
-    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&maxResults=1&type=video&key=${apiKey}`)
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&maxResults=1&type=video&key=${apiapiapi}`)
         .then(response => response.json())
         .then(data => {
             const newestVideo = data.items[0];
@@ -195,7 +230,7 @@ app.get('/youtube', (req, res) => {
             const thumbnailUrl = newestVideo.snippet.thumbnails.default.url;
             const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
-            fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoId}&key=${apiKey}`)
+            fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoId}&key=${apiapiapi}`)
                 .then(response => response.json())
                 .then(data => {
                     const views = data.items[0].statistics.viewCount;
@@ -228,13 +263,13 @@ app.get('/youtube/best', (req, res) => {
     const maxResults = 50; // Maximum number of videos to fetch in one request
 
     // Step 1: Fetch the videos from the channel
-    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=${maxResults}&type=video&key=${apiKey}`)
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=${maxResults}&type=video&key=${apiapiapi}`)
         .then(response => response.json())
         .then(data => {
             const videoIds = data.items.map(item => item.id.videoId);
 
             // Step 2: Get the statistics (view count) for each video
-            return fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${videoIds.join(',')}&key=${apiKey}`);
+            return fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${videoIds.join(',')}&key=${apiapiapi}`);
         })
         .then(response => response.json())
         .then(data => {

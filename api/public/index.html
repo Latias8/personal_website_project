@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Isigia's Nest</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"
+          integrity="sha512-Xm9qbB6Pu06k3PUwPj785dyTl6oHxgsv9nHp7ej7nCpAqGZT3OZpsELuCYX05DdonFpTlBpXMOxjavIAIUwr0w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link href="/style.css" rel="stylesheet" type="text/css">
+  <script src='js/messages.js'></script>
 </head>
 <body>
 
@@ -114,17 +118,18 @@
         <div class='exter' id='chex'>
         <div id="chat" class="box" style="margin-top: 10px;">
           <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/chat%20icon%201.png" alt=''>
-          <h2 style="display:inline" id='chat_title'>Chat</h2>
+          <h2 style="display:inline" id='chat_title'>Chat_</h2>
           <br><br>
           <div id="messages">
             <noscript>
               <span style="color:red" class="chat-msg">wahh!! javascript is disabled :(</span><br><br>
             </noscript>
           </div>
-          <div id="bar" style="margin-top:4px">
-            <input type="text" id="message" placeholder="no being mean" autocomplete="off" maxlength="300">
+          <div id="bar">
+            ~> <input type="text" id="message" placeholder="no being mean" autocomplete="off" maxlength="300">
             <button id="send">Send</button>
           </div>
+          <input type='text' id='userNameInput' placeholder='custom username' autocomplete='off' maxlength='20'>
         </div>
 
         </div>
@@ -284,7 +289,6 @@
 </div>
 </div>
 <script src='js/general.js'></script>
-<script src='js/messages.js'></script>
 <script src='js/fNavMenu.js'></script>
 
 </body>

@@ -32,11 +32,16 @@ async function fetchAndDisplayMessages() {
   data.forEach(mess => {
     const currDate = mess.date
     let message_content = mess.message;
+    let user = mess.name;
+
+    if (user == undefined || user == '') {
+        user = 'guest';
+    }
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message')
     messageElement.innerHTML = `
-              <span class='chat-name'>anon>> </span>
+              <span class='chat-name'>[root@${user} ~]$ </span>
               <div class='chat-msg'>${message_content}</div>
               <span class='chat-date'>${currDate}</span>
           `;
@@ -251,7 +256,7 @@ async function displayMood() {
 async function loadContent() {
     await Promise.all([
         fetchAndDisplayBlogPosts(),
-        fetchAndDisplayMessages(),
+        /*fetchAndDisplayMessages(),*/
         /*fetchAndDisplayDevlogs(),*/
         displayMood(),
         fetchAndDisplayNewestVid(),
