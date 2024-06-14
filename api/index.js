@@ -6,8 +6,8 @@ const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
 const http = require('http')//??
-const socketID = require('socket.io')//??
-
+//const socketID = require('socket.io')//??
+const Ably = require('ably');
 
 // Serve static files from the "public" directory
 app.use(express.static('public'));
@@ -32,6 +32,13 @@ app.listen(port, () => {
 });
 
  */
+
+const ably = new Ably.Realtime(process.env.ABLY_KEY);
+const channel = ably.channels.get('chat');
+
+channel.subscribe('greeting-from-client', (message) => {
+    console.log('Greeting from client:', message.data);
+});
 
 app.get("/", (req, res) => { res.send("Express on Vercel");})
 
@@ -147,7 +154,7 @@ app.post('/messages', (req, res) => {
 */
 let server = http.Server(app)
 server.listen(port);
-let io = socketID(server)
+/*let io = socketID(server)
 
 io.on('connection', function (socket) {//??
     //emit message to client
@@ -163,13 +170,38 @@ io.on('connection', function (socket) {//??
     })//??
     //??
 
-     */
+
     socket.on('message-send', data => {
         io.emit('message-receive', {
             message: data
         })
     })
 })
+*/
+
+
+
+channel.subscribe('message-send', (message) => {
+    const data = message.data;
+    channel.publish('message-receive', data, (err) => {
+        if (err) {
+            console.log('Error publishing message:', err);
+        } else {
+            console.log('Message received and broadcasted:', data);
+        }
+    });
+});
+
+// Emit greeting message when the server starts
+channel.publish('greeting-from-server', {
+    greeting: 'Remember! Be nice! :D'
+}, (err) => {
+    if (err) {
+        console.log('Error publishing greeting:', err);
+    } else {
+        console.log('Greeting published');
+    }
+});
 
 
 // Endpoint to get devlogs

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", content_loader);
-
+/*
 let socket = io('https://www.isigia.dev')//??
 socket.on('greeting-from-server', function (message) {
     let el = document.createElement("p");//??
@@ -32,8 +32,12 @@ socket.on('message-receive', function (message) {
     console.log('message loaded')
     console.log(mess)
 })
+*/
+
+
 
 function content_loader() {
+    /*
 
     document.getElementById('send').addEventListener("click", () => {
 
@@ -49,7 +53,91 @@ function content_loader() {
             name: user
         });
 
-        /*
+
+
+        // Clear message input
+        document.getElementById('message').value = "";
+
+    });
+
+    //??
+
+     */
+
+    // Initialize Ably
+    const ably = new Ably.Realtime('cGvO1g.XwCFfg:qdisGd27vqDZUoJjoZ4SCsLl2GR7V2NEja3G3dy3nh4');
+
+// Create a channel
+    const channel = ably.channels.get('chat');
+
+// Subscribe to messages on the 'chat' channel
+    channel.subscribe('message-receive', function(message) {
+        const mess = message.data;
+        const currDate = mess.date;
+        let message_content = mess.message;
+        let user = mess.name;
+
+        if (user === undefined || user === '') {
+            user = 'guest';
+        }
+
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('chat-message');
+        messageElement.innerHTML = `
+                <span class='chat-name'>[root@${user} ~]$ </span>
+                <div class='chat-msg'>${message_content}</div>
+                <span class='chat-date'>${currDate}</span>
+            `;
+        document.getElementById('messages').appendChild(messageElement);
+        //console.log('message loaded');
+        //console.log(mess);
+    });
+
+// Function to send a greeting message to the server
+    function sendGreeting() {
+        const message = {
+            greeting: 'User has joined.'
+        };
+        channel.publish('greeting-from-client', message);
+    }
+
+// Subscribe to the 'greeting-from-server' event
+    channel.subscribe('greeting-from-server', function(message) {
+        const greetingMessage = message.data;
+        const el = document.createElement('p');
+        const content = document.createTextNode(greetingMessage.greeting);
+        el.appendChild(content);
+        document.getElementById('messages').appendChild(el);
+
+        sendGreeting();
+    });
+
+// Emit a greeting message when the client joins
+    sendGreeting();
+
+    document.getElementById('send').addEventListener("click", () => {
+        const preDate = new Date();
+        const currDate = preDate.toLocaleString();
+        const messageContent = document.getElementById('message').value;
+        const user = document.getElementById('userNameInput').value;
+        //console.log(messageContent);
+
+        // Publish the message to the 'chat' channel
+        channel.publish('message-send', {
+            date: currDate,
+            message: messageContent,
+            name: user
+        });
+
+        // Clear message input
+        document.getElementById('message').value = "";
+    });
+
+}
+
+
+// IN SEND EVENTLISTENER!
+/*
 
         // Send message to server
         fetch('/messages', {
@@ -74,25 +162,16 @@ function content_loader() {
                 console.error('Error sending message:', error);
             });
         */
-        /*
-        if (messageContent != '') {
-            const postElement = document.createElement('div');
-            postElement.classList.add('chat-message')
-            postElement.innerHTML = `
-                <span class='chat-name'>[root@${user} ~]$ </span>
-                <div class='chat-msg'>${messageContent}</div>
-                <span class='chat-date'>${currDate.toLocaleString()}</span>
-            `;
-            /*document.getElementById('messages').appendChild(postElement);
-
-        }
-        */
-
-        // Clear message input
-        document.getElementById('message').value = "";
-
-    });
-
-    //??
+/*
+if (messageContent != '') {
+    const postElement = document.createElement('div');
+    postElement.classList.add('chat-message')
+    postElement.innerHTML = `
+        <span class='chat-name'>[root@${user} ~]$ </span>
+        <div class='chat-msg'>${messageContent}</div>
+        <span class='chat-date'>${currDate.toLocaleString()}</span>
+    `;
+    /*document.getElementById('messages').appendChild(postElement);
 
 }
+*/
