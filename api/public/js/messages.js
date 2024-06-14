@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", content_loader);
 
-let socket = io('http://localhost:3000')//??
+let socket = io('https://www.isigia.dev')//??
 socket.on('greeting-from-server', function (message) {
     let el = document.createElement("p");//??
     let content =document.createTextNode(message.greeting);//??
