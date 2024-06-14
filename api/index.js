@@ -33,7 +33,7 @@ app.listen(port, () => {
 
  */
 
-const ably = new Ably.Realtime(process.env.ABLY_KEY);
+const ably = new Ably.Realtime('cGvO1g.XwCFfg:qdisGd27vqDZUoJjoZ4SCsLl2GR7V2NEja3G3dy3nh4');
 const channel = ably.channels.get('chat');
 
 channel.subscribe('greeting-from-client', (message) => {
