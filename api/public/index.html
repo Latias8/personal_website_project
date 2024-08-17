@@ -118,16 +118,20 @@
           <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/chat%20icon%201.png" alt=''>
           <h2 style="display:inline" id='chat_title'>Chat_</h2>
           <br><br>
-          <div id="messages">
-            <noscript>
-              <span style="color:red" class="chat-msg">wahh!! javascript is disabled :(</span><br><br>
-            </noscript>
+          <div id='messagesOuter'>
+            <div id="messages">
+              <noscript>
+                <span style="color:red" class="chat-msg">wahh!! javascript is disabled :(</span><br><br>
+              </noscript>
+            </div>
           </div>
           <div id="bar">
-            ~> <input type="text" id="message" placeholder="no being mean" autocomplete="off" maxlength="300">
-            <button id="send">Send</button>
+            ~> <input type="text" id="message" placeholder="no being mean (custom nickname below)" autocomplete="off" maxlength="300">
+            <button id="send">Send<a> -></a></button>
           </div>
-          <input type='text' id='userNameInput' placeholder='custom username' autocomplete='off' maxlength='20'>
+          <div style='display: flex' id='lowerInp'>
+            <div style='padding-right: 4px' class='pre_inp'>(arg)</div> <input type='text' id='userNameInput' placeholder='custom nickname' autocomplete='off' maxlength='20'>
+          </div>
         </div>
 
         </div>
@@ -177,7 +181,7 @@
             <div class='sites'>
               <div class='platform_parent'>
                 <div class='platform twitch'>
-                  <img class='site_logo' alt='' src='https://static-00.iconduck.com/assets.00/twitch-icon-2048x2047-rdv20bdk.png'>
+                  <img class='site_logo' alt='' src='https://cdn-icons-png.flaticon.com/512/5968/5968819.png'>
                   <p>Twitch</p>
                 </div>
                 <div class='status'>

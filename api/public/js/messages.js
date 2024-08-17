@@ -84,9 +84,11 @@ function content_loader() {
         const messageElement = document.createElement('div');
         messageElement.classList.add('chat-message');
         messageElement.innerHTML = `
-                <span class='chat-name'>[root@${user} ~]$ </span>
-                <div class='chat-msg'>${message_content}</div>
+                <div class='pre-flex'>
+                <span class='chat-name'>[root@<a>${user}</a> ~]$ </span>
                 <span class='chat-date'>${currDate}</span>
+                </div> 
+                <div class='chat-msg'>${message_content}</div>
             `;
         document.getElementById('messages').appendChild(messageElement);
         //console.log('message loaded');

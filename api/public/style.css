@@ -263,10 +263,11 @@ b {
   -moz-backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  overflow: scroll;
+  overflow: auto;
   padding-right: 0;
   height: 220px;
 }
+
 @keyframes flickering {
   0% {
     opacity: 0.63;
@@ -274,11 +275,17 @@ b {
 }
 
 .chat-msg {
-  max-width: calc( 100% - 180px );
+  /*max-width: calc( 100% - 180px );*/
+  max-width: 100%;
   word-break: break-word;
   display: inline-flex;
   font-family: "hack";
   font-size: 12px;
+  background-color: rgb(94 24 155 / 30%);
+  padding: 2px;
+  border-radius: 6px;
+
+  padding-left: 4px;
 }
 
 .chat-date {
@@ -295,6 +302,11 @@ b {
   display: inline;
   font-family: "hack";
   font-size: 12px;
+  min-width: 100%;
+}
+
+.chat-name a {
+  color: #ff0098;
 }
 
 .chat-title {
@@ -304,6 +316,13 @@ b {
 
 .chat-message {
   padding: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+#messagePreFlex {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .devlog-name {
@@ -330,10 +349,46 @@ b {
 #send {
   background-color: #000;
   color: #fff;
-  border: 1px solid #383838;
-  font-family: MS Gothic,monospace;
-  padding: 3px 27px;
+  border: 1px solid #181818;
+  font-family: "perfect dos vga 437 win",monospace;
+  padding: 3px 26px;
   cursor: pointer;
+  border-radius: 6px;
+  transition: .7s;
+}
+
+#send a {
+  font-size: 0;
+  transition: .7s;
+}
+
+#send:hover {
+  background-color: #212121;
+  padding: 3px 16px;
+  border: 1px solid #383838;
+}
+
+#send:hover a {
+  font-size: 12px;
+  animation: 1s blink infinite;
+}
+
+#userNameInput {
+  background-color: black;
+  border: 1px solid #181818;
+  color: greenyellow;
+}
+
+.pre_inp {
+  color: #5d5d5d;
+}
+
+#lowerInp {
+  opacity: 20%;
+}
+
+#lowerInp:hover {
+  opacity: 100%;
 }
 
 button {
@@ -364,8 +419,9 @@ button {
   bottom: 5px;
   background-color: #000;
   color: #fff;
-  border: 1px solid #383838;
-  font-family: MS Gothic,monospace;
+  border: 1px solid #181818;
+  border-radius: 6px;
+  font-family: Hack,monospace;
   padding: 3px;
   width: calc( 100% - 120px );
 }
