@@ -1,43 +1,45 @@
 document.addEventListener("DOMContentLoaded", content_loader);
-/*
-let socket = io('https://www.isigia.dev')//??
-socket.on('greeting-from-server', function (message) {
-    let el = document.createElement("p");//??
-    let content =document.createTextNode(message.greeting);//??
-    el.appendChild(content);//??
-    document.getElementById('messages').appendChild(el);//??
-    socket.emit('greeting-from-client', {//??
-        greeting: `User has joined.`//??
-    });//??
-});
 
-socket.on('message-receive', function (message) {
-    const mess = message.message
-    const currDate = mess.date
-    let message_content = mess.message;
-    let user = mess.name;
-
-    if (user == undefined || user == '') {
-        user = 'guest';
-    }
-
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('chat-message')
-    messageElement.innerHTML = `
-              <span class='chat-name'>[root@${user} ~]$ </span>
-              <div class='chat-msg'>${message_content}</div>
-              <span class='chat-date'>${currDate}</span>
-          `;
-    document.getElementById('messages').appendChild(messageElement);
-    console.log('message loaded')
-    console.log(mess)
-})
-*/
 
 
 
 function content_loader() {
-    /*
+    let socket = io('https://www.isigia.dev')//??
+    socket.on('greeting-from-server', function (message) {
+        let el = document.createElement("p");//??
+        let content =document.createTextNode(message.greeting);//??
+        el.appendChild(content);//??
+        document.getElementById('messages').appendChild(el);//??
+        socket.emit('greeting-from-client', {//??
+            greeting: `User has joined.`//??
+        });//??
+    });
+
+    socket.on('message-receive', function (message) {
+        const mess = message;
+        console.log(mess)
+        const currDate = mess.date;
+        let message_content = mess.message;
+        let user = mess.name;
+
+        if (user === undefined || user === '') {
+            user = 'guest';
+        }
+
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('chat-message');
+        messageElement.innerHTML = `
+                <div class='pre-flex'>
+                <span class='chat-name'>[root@<a>${user}</a> ~]$ </span>
+                <span class='chat-date'>${currDate}</span>
+                </div> 
+                <div class='chat-msg'>${message_content}</div>
+            `;
+        document.getElementById('messages').appendChild(messageElement);
+        console.log('message loaded');
+        console.log(mess);
+    })
+
 
     document.getElementById('send').addEventListener("click", () => {
 
@@ -62,8 +64,10 @@ function content_loader() {
 
     //??
 
-     */
 
+
+
+    /*
     // Initialize Ably
     const ably = new Ably.Realtime('cGvO1g.XwCFfg:qdisGd27vqDZUoJjoZ4SCsLl2GR7V2NEja3G3dy3nh4');
 
@@ -134,6 +138,7 @@ function content_loader() {
         // Clear message input
         document.getElementById('message').value = "";
     });
+    */
 
 }
 

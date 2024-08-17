@@ -6,8 +6,8 @@ const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
 const http = require('http')//??
-//const socketID = require('socket.io')//??
-const Ably = require('ably');
+const socketID = require('socket.io')//??
+//const Ably = require('ably');
 
 // Serve static files from the "public" directory
 app.use(express.static('public'));
@@ -33,12 +33,19 @@ app.listen(port, () => {
 
  */
 
+// ably stuff!!!!
+
+/*
+
 const ably = new Ably.Realtime('cGvO1g.XwCFfg:qdisGd27vqDZUoJjoZ4SCsLl2GR7V2NEja3G3dy3nh4');
 const channel = ably.channels.get('chat');
 
 channel.subscribe('greeting-from-client', (message) => {
     console.log('Greeting from client:', message.data);
 });
+
+
+ */
 
 app.get("/", (req, res) => { res.send("Express on Vercel");})
 
@@ -154,7 +161,9 @@ app.post('/messages', (req, res) => {
 */
 let server = http.Server(app)
 server.listen(port);
-/*let io = socketID(server)
+let io = socketID(server)
+
+
 
 io.on('connection', function (socket) {//??
     //emit message to client
@@ -176,11 +185,24 @@ io.on('connection', function (socket) {//??
             message: data
         })
     })
+
+     */
+
+    socket.on('message-send', message => {
+        socket.emit('message-receive', message)
+    })
+
+
 })
-*/
 
 
 
+
+
+
+// MOAR ABLY STUFFFFF
+
+/*
 channel.subscribe('message-send', (message) => {
     const data = message.data;
     channel.publish('message-receive', data, (err) => {
@@ -202,6 +224,10 @@ channel.publish('greeting-from-server', {
         console.log('Greeting published');
     }
 });
+
+
+
+ */
 
 
 // Endpoint to get devlogs
