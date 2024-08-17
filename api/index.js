@@ -189,7 +189,8 @@ io.on('connection', function (socket) {//??
      */
 
     socket.on('message-send', message => {
-        socket.emit('message-receive', message)
+        io.emit('message-receive', message)
+        console.log(message)
     })
 
 
