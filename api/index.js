@@ -171,6 +171,8 @@ io.on('connection', function (socket) {//??
         greeting:'Remember! Be nice! :D'
     })
 
+    io.emit('user-joined')
+
     /*
     socket.on('greeting-from-client', data => {//??
         socket.emit('greeting-from-server',{//??

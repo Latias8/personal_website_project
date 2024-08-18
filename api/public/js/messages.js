@@ -10,9 +10,9 @@ function content_loader() {
         let content =document.createTextNode(message.greeting);//??
         el.appendChild(content);//??
         document.getElementById('messages').appendChild(el);//??
-        socket.emit('greeting-from-client', {//??
-            greeting: `User has joined.`//??
-        });//??
+        //socket.emit('greeting-from-client', {//??
+        //    greeting: `User has joined.`//??
+        //});//??
     });
 
     socket.on('message-receive', function (message) {
@@ -62,6 +62,8 @@ function content_loader() {
 
     });
 
+    socket.on('user-joined')
+
     //??
 
 
@@ -69,7 +71,7 @@ function content_loader() {
 
     /*
     // Initialize Ably
-    const ably = new Ably.Realtime('cGvO1g.XwCFfg:qdisGd27vqDZUoJjoZ4SCsLl2GR7V2NEja3G3dy3nh4');
+    const ably = new Ably.Realtime('nononononono');
 
 // Create a channel
     const channel = ably.channels.get('chat');
@@ -139,6 +141,15 @@ function content_loader() {
         document.getElementById('message').value = "";
     });
     */
+
+    document.querySelector('.main-cover').addEventListener('click', () => {
+        let cover = document.querySelector('.main-cover');
+        let box = document.querySelector('.user-warn-notif-parent')
+        cover.style.opacity = '0';
+        cover.style.pointerEvents = 'none';
+        box.style.opacity = '0';
+        box.style.pointerEvents = 'none';
+    }, true);
 
 }
 

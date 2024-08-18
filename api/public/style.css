@@ -241,18 +241,16 @@ h2 {
 }
 
 #hotel {
-  float: right;
-  right: 55px;
+  top: 10px;
   height: 1px;
-  font-size: 30px;
-  top: 0px;
-  position: relative;
-  color: #ffda7d;
-  text-shadow: 0 0 10px #ffffff00, 0 0 20px #ffffff80, 0 0 30px rgba(255, 240, 148, 0.35), 0 0 40px #00e6b200, 0 0 50px #00e6bd3d, 0 0 60px #b200e629, 0 0 70px #a700e657;
+  font-size: 40px;
+  position: absolute;
+  color: #f67dff;
+  text-shadow: 0 0 10px #ffffff00, 0 0 20px #ffffff80, 0 0 30px rgba(232, 148, 255, 0.35), 0 0 40px #00e6b200, 0 0 50px #00e6bd3d, 0 0 60px #b200e629, 0 0 70px #a700e657;
   user-select: none;
-  font-family: MS Gothic,Tahoma;
+  font-family: "Gang of Three";
   animation: flickering .1s infinite;
-  z-index: 2;
+  z-index: 5000;
 }
 
 b {
@@ -1220,4 +1218,120 @@ button {
 
 .credLink {
   color: #2fffff;
+}
+
+.main-cover {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 60%;
+  z-index: 2000;
+  transition: 1s;
+  min-width: 960px;
+}
+
+.user-warn-notif-parent {
+  display: flex;
+  justify-content: center;
+  transition: 0.5s;
+}
+
+.user-warn-notif {
+  display: flex;
+  position: absolute;
+  min-width: 500px;
+  height: 340px;
+  background-color: #000000;
+  z-index: 4000;
+  top: 60px;
+  border-radius: 16px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid pink;
+  background-image: url("./images/yume nikki srlevi gif 1.gif");
+  background-position: center bottom;
+  background-size: 130%;
+}
+
+.art-cred {
+  color: white;
+  background: black;
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  border-radius: 4px;
+  text-decoration: none;
+  z-index: 4001;
+}
+
+.art-cred:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.uwn-1 {
+  text-align: center;
+  padding: 10px;
+  width: 400px;
+  height: 260px;
+  border: 5px solid white;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.81);
+  z-index: 4001;
+}
+
+.uwn-1 h1 {
+  font-family: "hack bold italic";
+  font-size: 1.5rem;
+}
+
+.uwn-1 p {
+  font-family: "perfect dos vga 437 win";
+  font-size: 1.2rem;
+  padding: 8px 30px;
+}
+
+.red {
+  color: #ff0000;
+}
+
+.yellow {
+  color: yellow;
+  text-decoration: none;
+}
+
+a.yellow:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.purpur {
+  color: #ff00ff;
+  text-decoration: none;
+}
+
+.accept {
+  position: absolute;
+  font-family: "perfect dos vga 437 win";
+  z-index: 4000;
+  top: 420px;
+  animation: infinite blinkAlt 3s;
+}
+
+.with-love {
+  float: right;
+  font-family: "hack italic";
+}
+
+@keyframes blinkAlt {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
