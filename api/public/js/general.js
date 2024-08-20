@@ -53,13 +53,16 @@ async function fetchAndDisplayMessages() {
 
 async function fetchAndDisplayDevlogs() {
     const response = await fetch('/devlogs');
+    console.log(response)
     const data = await response.json();
+    console.log(data)
     let counter = 0;
 
     // Display each devlog
     data.forEach(entry => {
+        console.log(entry)
         counter += 1;
-        const logElem = document.createElement('div');
+        let logElem = document.createElement('div');
         logElem.classList.add('exterBtn')
         logElem.innerHTML = `
             <button class='fNavElem fLogElem fLE${counter}'></button>
@@ -67,7 +70,7 @@ async function fetchAndDisplayDevlogs() {
         `;
         document.querySelector('.layer2').querySelector('.buttons').appendChild(logElem);
 
-        const layerElem = document.createElement('div');
+        let layerElem = document.createElement('div');
         layerElem.classList.add('layer')
         layerElem.classList.add(`layer10${counter}`)
         layerElem.innerHTML = `
@@ -75,12 +78,12 @@ async function fetchAndDisplayDevlogs() {
         `
         document.getElementById('fNavRoot').appendChild(layerElem);
 
-        const logTitle = entry.title
-        const currDate = entry.date
+        let logTitle = entry.title
+        let currDate = entry.date
         let logContent = entry.message;
         let logGif = entry.loggif;
 
-        const devlogElement = document.createElement('div');
+        let devlogElement = document.createElement('div');
         devlogElement.classList.add('devlog_instance')
         devlogElement.innerHTML = `
             <div id='devlogs'>
@@ -93,14 +96,28 @@ async function fetchAndDisplayDevlogs() {
             </div>
             `;
         document.querySelector(`.layer10${counter}`).appendChild(devlogElement);
+        /*
         document.querySelector(`.fLE${counter}`).addEventListener('click', () => {
             document.getElementById('fNavRoot').querySelectorAll('.layer').forEach((layer) => {
                 layer.style.display = 'none';
             })
-            document.querySelector(`.layer10${counter}`).style.display = 'block';
+            document.querySelector(`.layer10${counter}`).style.display = 'block'; // !! Mistake lies here because it calls counter.
         })
+         */
         console.log('devlog loaded')
     });
+
+    document.querySelectorAll('.fLogElem').forEach(logElem => {
+        let currVal = logElem.getAttribute('class');
+        let lastChar = currVal.slice(-1);
+        console.log(lastChar)
+        logElem.addEventListener('click', () => {
+            document.getElementById('fNavRoot').querySelectorAll('.layer').forEach((layer) => {
+                layer.style.display = 'none';
+            })
+            document.querySelector(`.layer10${lastChar}`).style.display = 'block'; // !! Mistake lies here because it calls counter.
+        })
+    })
 }
 
 
