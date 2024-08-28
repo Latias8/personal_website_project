@@ -1,193 +1,316 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Isigia's Nest</title>
+  <script src="https://cdn.ably.io/lib/ably.min-1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"
+          integrity="sha512-Xm9qbB6Pu06k3PUwPj785dyTl6oHxgsv9nHp7ej7nCpAqGZT3OZpsELuCYX05DdonFpTlBpXMOxjavIAIUwr0w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link href="/style.css" rel="stylesheet" type="text/css">
+  <script src='js/messages.js'></script>
 </head>
 <body>
-<div class='scrolling_image_container'>
-  <div id='bg' alt='kewl background :)' class='sliding-background'></div>
+
+<div class='user-warn-notif-parent'>
+  <div id='hotel'>HOLD UP!</div>
+  <div class='user-warn-notif'>
+    <a class='art-cred' href='https://srlevi.tumblr.com/post/183428529700/here-youll-see-bunch-of-characters-who-rarely' target='_blank'>@srlevi</a>
+    <div class='uwn-1'>
+      <h1>Hey there esteemed user!</h1>
+      <p>I have to inform you that this site is under <a class='red'><strong>heavy development</strong></a>, and things are <a class='yellow' href='https://www.youtube.com/watch?v=mG3d_qzoAPA' target='_blank'>bound to break</a>, so please keep that in mind during your stay!</p>
+      <h4>Also <a class='purpur'>chat currently just does not work</a> because I'm using serverless hosting, but the logic is there :(</h4>
+      <a class='with-love'>(with love) - Isigia</a>
+    </div>
+  </div>
+  <a class='accept'>(click anywhere (other than this box) to continue)</a>
 </div>
+
+<div class='main-cover'></div>
+
+<div class='main-content'>
+
 <span id="debug"></span>
+
 <div id='container'>
   <div id='logo'>
-    <img src='images/letters/I%20letter%201.png' style='margin-right: -29px' class='letter'>
-    <img src='images/letters/S%20letter%201.png' style='margin-right: -29px; animation-delay: 100ms' class='letter'>
-    <img src='images/letters/I%20letter%201.png' style='margin-right: -26px; animation-delay: 200ms' class='letter'>
-    <img src='images/letters/G%20letter%201.png' style='margin-right: -24px; animation-delay: 300ms' class='letter'>
-    <img src='images/letters/I%20letter%201.png' style='margin-right: -26px; animation-delay: 400ms' class='letter'>
-    <img src='images/letters/A%20letter%201.png' style='margin-right: -36px; animation-delay: 500ms' class='letter'>
-    <img src='images/letters/appostroph%20letter%201.png' style='margin-right: -37px ; animation-delay: 600ms' class='letter'>
-    <img src='images/letters/S%20letter%201.png' class='letter' style='animation-delay: 700ms'>
-    <img src='images/letters/slash%20slash%20letter%201.png' class='letter' style='animation-delay: 800ms'>
-    <img src='images/letters/N%20letter%201.png' style='margin-right: -20px; animation-delay: 900ms' class='letter'>
-    <img src='images/letters/E%20letter%201.png' style='margin-right: -22px; animation-delay: 1000ms' class='letter'>
-    <img src='images/letters/S%20letter%201.png' style='margin-right: -23px; animation-delay: 1100ms' class='letter'>
-    <img src='images/letters/T%20letter%201.png' class='letter' style='animation-delay: 1200ms'>
+    <img src='images/letters/I%20letter%201.png' style='margin-right: -29px' class='letter' alt=''>
+    <img src='images/letters/S%20letter%201.png' style='margin-right: -29px; animation-delay: 100ms' class='letter' alt=''>
+    <img src='images/letters/I%20letter%201.png' style='margin-right: -26px; animation-delay: 200ms' class='letter' alt=''>
+    <img src='images/letters/G%20letter%201.png' style='margin-right: -24px; animation-delay: 300ms' class='letter' alt=''>
+    <img src='images/letters/I%20letter%201.png' style='margin-right: -26px; animation-delay: 400ms' class='letter' alt=''>
+    <img src='images/letters/A%20letter%201.png' style='margin-right: -36px; animation-delay: 500ms' class='letter' alt=''>
+    <img src='images/letters/appostroph%20letter%201.png' style='margin-right: -37px ; animation-delay: 600ms' class='letter' alt=''>
+    <img src='images/letters/S%20letter%201.png' class='letter' style='animation-delay: 700ms' alt=''>
+    <img src='images/letters/slash%20slash%20letter%201.png' class='letter' style='animation-delay: 800ms' alt=''>
+    <img src='images/letters/N%20letter%201.png' style='margin-right: -20px; animation-delay: 900ms' class='letter' alt=''>
+    <img src='images/letters/E%20letter%201.png' style='margin-right: -22px; animation-delay: 1000ms' class='letter' alt=''>
+    <img src='images/letters/S%20letter%201.png' style='margin-right: -23px; animation-delay: 1100ms' class='letter' alt=''>
+    <img src='images/letters/T%20letter%201.png' class='letter' style='animation-delay: 1200ms' alt=''>
     <p>in development...</p>
+    <div class='clock'>
+      <a><a id='hours'>xx</a>:<a id='minutes'>yy</a></a>
+    </div>
   </div>
+
+  </div>
+  <div id='main-lower-content'>
   <table>
     <tbody>
     <tr>
-      <td id='maintd'>
+      <td class='maintd'>
+        <div class='exter' id='undablog'>
+          <div class='box' id='awesome_top_box'>
+            <strong>Much of the CSS here is from <a class='spinny dimdenLink' href='https://dimden.dev'>dimden.dev</a></strong> (awesome site). All the JS has been independently coded however.
+            <br><br>
+            <a href="https://dimden.dev/" target='_blank'><img src="https://dimden.dev/services/images/88x31.gif" alt=''></a>
+            <br><br>
+            I'm using it to start off and will gradually change it over time to be unique. :)
+            <br><br>
+            additional credits: <a href='credits.html' class='credLink'>credits</a>
+          </div>
+          <div id='awesome_sub_box' class='box'>
+            <p style='margin: 0' class='adHead1'>
+              Some awesome people to whom you should sub:
+            </p>
+            <div id='cool_guys_box'>
+              <div class='scroll-content'>
+                <a href="https://www.youtube.com/@mati_ilan"><img src="./images/banners/mati%20banner%201.png" alt=''></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class='exter'>
         <div class='box' id='mainbox'>
-          <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/warning%202.png" id='warning'>
-          <h2 style="display:inline" class='jersey-10-charted-regular'>Today's info:</h2>
+          <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/warning%202.png" id='warning' alt=''>
+          <h2 style="display:inline">BLOGS:</h2>
           <br>
           <p>
           <div id='root'>
-        </div>
+          </div>
           </p>
         </div>
-        <div id="chat" class="box" style="margin-top: 10px;">
-          <div class='overlay'></div>
-          <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/chat.png">
-          <h2 style="display:inline" id='chat_title'>Chat</h2>
-          <b id="hotel">(Not currently working! >.<)</b>
-          <br><br>
-          <div id="messages">
-            <noscript>
-              <span style="color:red" class="chat-msg">wahh!! javascript is disabled :(</span><br><br>
-            </noscript>
-          </div>
-          <div id="bar" style="margin-top:4px">
-            <input type="text" id="message" placeholder="Enter message - please be nice!" autocomplete="off" maxlength="300">
-            <button id="send">Send</button>
-          </div>
+
+
         </div>
-        <div id='music' class='box'>
-          <img style="vertical-align: sub; margin-right: 5px;" height="26" src="/images/Note_Chaos.png">
-          <h2 style="display:inline" id='music_title'>Music-News!</h2>
-            <div id='music_element'>
-              <img src='images/NIKOOOO.gif' height='80px'>
-              <p>I have nothing for this section yet lmao</p>
+
+        <div class='pole' id='blogPole'></div>
+        </td>
+      <td class='centertd'>
+        <div class='widget-bar'>
+          <div class='widg-elem' id='whoami'>
+            <div class='widg-img-parent'>
+              <img src='images/widgets/neocites%20website%201%201%20widgets%201%20profile%201.png' class='profile' alt='a handsome fella'>
+            </div>
+            <p class='widg-text glow'>whoami</p>
           </div>
-        </div>
-      </td>
-      <td id='menutd'>
-        <div class='box'>
-          <strong>Much of the code here is from <a class='spinny' href='https://dimden.dev'>dimden.dev</a></strong>
-          <br><br>
-          <a href="https://dimden.dev/"><img src="https://dimden.dev/services/images/88x31.gif"></a>
-          <br><br>
-          I'm using it to start off and will gradually change it over time to be unique.
-        </div>
-        <div id='awesome_sub_box' class='box'>
-          <p style='margin: 0' class='adHead1'>
-            Some awesome people to whom you should sub:
-          </p>
-          <div id='cool_guys_box'>
-            <div class='scroll-content'>
-              <a href="https://www.youtube.com/@mati_ilan"><img src="./images/banners/mati%20banner%201.png"></a>
+          <div class='widg-elem'>
+            <div class='glitch-parent'>
+              <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
+            </div>
+          </div>
+          <div class='widg-elem'>
+            <div class='glitch-parent'>
+              <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
+            </div>
+          </div>
+          <div class='widg-elem'>
+            <div class='glitch-parent'>
+              <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
+            </div>
+          </div>
+          <div class='widg-elem'>
+            <div class='glitch-parent'>
+              <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
+            </div>
+          </div>
+          <div class='widg-elem'>
+            <div class='glitch-parent'>
+              <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
             </div>
           </div>
         </div>
+        <div class='exter' id='chex'>
+        <div id="chat" class="box" style="margin-top: 10px;">
+          <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/chat%20icon%201.png" alt=''>
+          <h2 style="display:inline" id='chat_title'>Chat_</h2>
+          <br><br>
+          <div id='messagesOuter'>
+            <div id="messages">
+              <noscript>
+                <span style="color:red" class="chat-msg">wahh!! javascript is disabled :(</span><br><br>
+              </noscript>
+            </div>
+          </div>
+          <div id="bar">
+            ~> <input type="text" id="message" placeholder="no being mean (custom nickname below)" autocomplete="off" maxlength="300">
+            <button id="send">Send<a> -></a></button>
+          </div>
+          <div style='display: flex' id='lowerInp'>
+            <div style='padding-right: 4px' class='pre_inp'>(arg)</div> <input type='text' id='userNameInput' placeholder='custom nickname' autocomplete='off' maxlength='20'>
+          </div>
+        </div>
+
+        </div>
+        <div class='chatPole_parent'>
+          <div class='wrap'>
+          <div class='miniprofile'>
+            <h2 style="display:inline" class='statusHead'>How do I feel?</h2>
+            <div class='sites'>
+              <div class='platform_parent'>
+                <div class='platform energy'>
+                  <p>Energy:</p>
+                </div>
+                <div class='status'>
+
+                  <span class='energ'>
+
+                  </span>
+
+                </div>
+              </div>
+              <div class='platform_parent'>
+                <div class='platform motivation'>
+                  <p>Motivation:</p>
+                </div>
+                <div class='status'>
+
+                  <span class='motiv'>
+
+                  </span>
+
+                </div>
+              </div>
+              <div class='platform_parent'>
+                <div class='platform summary'>
+                  <p>In Summary:</p>
+                </div>
+                <div class='status'>
+                  <span class='summa'>
+
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='miniprofile toThaRight'>
+            <h2 style="display:inline; color: #bf84ff" class='statusHead'>Tune in? :0</h2>
+            <div class='sites'>
+              <div class='platform_parent'>
+                <div class='platform twitch'>
+                  <img class='site_logo' alt='' src='https://cdn-icons-png.flaticon.com/512/5968/5968819.png'>
+                  <p>Twitch</p>
+                </div>
+                <div class='status'>
+                  <span>
+                    [
+                    <span class='status-nuhUh'> OFFLINE</span>
+                    ]
+                  </span>
+                </div>
+              </div>
+              <div class='platform_parent'>
+                <div class='platform youtube'>
+                  <img class='site_logo' alt='' src='https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png'>
+                  <p>Youtube</p>
+                </div>
+                <div class='status'>
+                  <span>
+                    [
+                    <span class='status-nuhUh'> OFFLINE</span>
+                    ]
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class='pole' id='chatPole'></div>
+        </div>
+        </td>
+      <td id='muex'>
+        <div class='miniprofile advertisement' id='ad1'>
+          <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/fNavMenu/file%201.svg" alt=''>
+          <h2 style="display:inline" class='devlog-title'>Devlog...</h2>
+          <br>
+          <div id='fNavRoot'>
+            <div class='layer0 layer'>
+              <h3>&gt</h3>
+              <div class='buttons'>
+                <div class='exterBtn'>
+                  <button class='patientZero fNavElem fMoveElemDown'></button>
+                  <p>projects</p>
+                </div>
+              </div>
+            </div>
+            <div class='layer1 layer'>
+              <h3>&gt <a class='fNavCookie projects'>Projects</a></h3>
+              <div class='buttons'>
+                <div class='exterBtn'>
+                  <button class='patientZero fNavElem fMoveElemUp'>
+
+                  </button>
+                  <p>..</p>
+                </div>
+                <div class='exterBtn'>
+                  <button class='patientZero fNavElem fMoveElemDown'>
+
+                  </button>
+                  <p>producer_racing</p>
+                </div>
+
+
+              </div>
+            </div>
+            <div class='layer2 layer'>
+              <h3>&gt <a class='fNavCookie projects'>Projects</a> &gt <a class='fNavCookie producerRacing'>producer_racing</a></h3>
+              <div class='buttons'>
+                <div class='exterBtn'>
+                  <button class='patientZero fNavElem fMoveElemUp'>
+
+                  </button>
+                  <p>..</p>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class='exter'>
+        <div id='music' class='box'>
+          <img style="vertical-align: sub; margin-right: 5px;" height="26" src="/images/Note_Chaos.png" alt=''>
+          <h2 style="display:inline" id='music_title'>Music-News!</h2>
+            <div class='music_element' id='newvid'>
+              <img src='images/NIKOOOO.gif' height='80px' alt=''>
+              <p>No internet or API token depleted bruh</p>
+          </div>
+          <div class='music_element' id='bestvid'>
+            <img src='images/NIKOOOO.gif' height='80px' alt=''>
+            <p>No internet or API token depleted bruh</p>
+          </div>
+        </div>
+
+        </div>
+        <div class='pole' id='musicPole'></div>
       </td>
-    </tr>
+      </tr>
     </tbody>
   </table>
+  </div>
+  <div id='lefter'>bro</div>
+
+<div id='road'>
+  <div id='road_shadow'></div>
+  <div id='kar'></div>
 </div>
+</div>
+<script src='js/general.js'></script>
+<script src='js/fNavMenu.js'></script>
 
-<script>
-  // Function to fetch and display blog posts
-  async function fetchAndDisplayBlogPosts() {
-    const response = await fetch('/entries');
-    const data = await response.json();
-    data.reverse()
-
-    // Clear existing blog posts
-    const rootElement = document.getElementById('root');
-    rootElement.innerHTML = '';
-
-    // Display each blog post
-    data.forEach(post => {
-      const postElement = document.createElement('div');
-      postElement.classList.add('blog-entry')
-      postElement.innerHTML = `
-                <h2>${new Date(post.date).toLocaleString()}</h2>
-                <p>${post.text}</p>
-            `;
-      rootElement.appendChild(postElement);
-      console.log('post loaded')
-    });
-  }
-
-  async function fetchAndDisplayMessages() {
-    const response = await fetch('/messages');
-    const data = await response.json();
-
-    // Clear existing blog posts
-    const boxElement = document.getElementById('message');
-    boxElement.innerHTML = '';
-
-    // Display each blog post
-    data.forEach(mess => {
-      const currDate = mess.date
-      let message_content = mess.message;
-
-      const messageElement = document.createElement('div');
-      messageElement.classList.add('chat-message')
-      messageElement.innerHTML = `
-                <span class='chat-name'>anon>> </span>
-                <span class='chat-msg'>${message_content}</span>
-                <span class='chat-date'>${currDate}</span>
-            `;
-      document.getElementById('messages').appendChild(messageElement);
-      console.log('message loaded')
-    });
-  }
-
-  async function fetchAndDisplayNewestVid() {
-    const response = await fetch('/youtube');
-    const data = await response.json();
-
-    // Clear existing video
-    const musicElement = document.getElementById('music_element');
-    musicElement.innerHTML = `<h3>Newest release:</h3>`;
-
-    const fullBlock = document.createElement('DIV');
-    const block2 = document.createElement('DIV')
-
-    // Display each blog post
-
-    let viewCount = data.views
-    let title = data.title;
-    let thumbnail = data.thumbnailUrl
-    let vidUrl = data.videoUrl
-
-    block2.innerHTML = `
-              <p class='vid-title'>Title:</p>
-              <div><strong>${title}</strong></div>
-              <div class='vid-views' style='margin-top: 16px'>Current viewcount: <mark>${viewCount}</mark></div>
-          `;
-
-    fullBlock.innerHTML = `
-              <a href='${vidUrl}'><img class='vid-thumb' src='${thumbnail}'></a>
-          `;
-    fullBlock.appendChild(block2)
-      console.log('latest video loaded')
-
-    musicElement.appendChild(fullBlock)
-
-    fullBlock.id = 'fullBlock'
-  }
-
-  // Call the function to fetch and display blog posts when the page loads
-  async function loadContent() {
-    await Promise.all([
-      fetchAndDisplayBlogPosts(),
-      fetchAndDisplayMessages(),
-      fetchAndDisplayNewestVid()
-    ]);
-  }
-
-  // Call the function to load content when the page loads
-  window.onload = function() {
-    loadContent();
-  };
-</script>
-<script src='js/messages.js'></script>
 </body>
 </html>

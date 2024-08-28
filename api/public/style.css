@@ -1,6 +1,7 @@
 @font-face {font-family:"Pixel NES";src:url("./fonts/Pixel_NES.eot?") format("eot"),url("./fonts/Pixel_NES.woff") format("woff"),url("./fonts/Pixel_NES.ttf") format("truetype"),url("./fonts/Pixel_NES.svg#PixelNES") format("svg");font-weight:normal;font-style:normal;}
 @font-face {font-family:"Andromeda Bold";src:url("./fonts/Andromeda-Bold.otf") format("opentype");font-weight:bold;font-style:normal;}
 
+
 /*
 
 @font-face {
@@ -41,17 +42,42 @@
   font-style: normal
 }
 
+@font-face {
+  font-family: "hack";
+  src: url("./fonts/hackfonts/Hack-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "hack bold";
+  src: url("./fonts/hackfonts/Hack-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "hack italic";
+  src: url("./fonts/hackfonts/Hack-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "hack bold italic";
+  src: url("./fonts/hackfonts/Hack-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
 .jersey-10-charted-regular {
   font-family: "Jersey 10 Charted", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-
-
 body, #debug {
   image-rendering: pixelated;
-  font-family: russiangothic,ms ui gothic,nec_apc3,Tahoma;
   background-color: #000;
   font-smooth: never;
   -webkit-font-smoothing: none;
@@ -59,10 +85,11 @@ body, #debug {
 }
 
 body {
-  overflow-x: hidden;
-  margin: 0;
-  margin-top: 10px;
+  margin: 0 auto auto;
+  font-family: russiangothic,ms ui gothic,nec_apc3,Tahoma;
   display: block;
+  max-width: 1950px;
+  min-width: 960px;
 }
 
 @media screen and (min-width: 601px) {
@@ -75,7 +102,7 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1000;
+    z-index: 10000;
     background-image: url(https://dimden.dev/images/overlay.png);
     background-position: 0 0;
     animation-name: Static;
@@ -94,7 +121,7 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1000;
+    z-index: 10000;
     background-image: url(https://dimden.dev/images/overlay2.png);
     /*background-repeat: all;*/
     background-position: 0 0;
@@ -105,9 +132,33 @@ body {
   }
 }
 
+.main-content {
+  overflow-x: hidden;
+  max-width: 1950px;
+  min-width: 960px;
+  margin: auto;
+  background-image: linear-gradient(rgba(0, 0, 0, 0),
+  rgba(0, 0, 0, 0)), url("./images/houseline 1 2.png");
+  background-size: cover;
+}
+
 #container, #backside-container {
   width: 900px;
   margin: 0 auto;
+  padding-top: 10px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+#lefter {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  pointer-events: visible;
+  cursor: pointer;
 }
 
 table {
@@ -118,21 +169,27 @@ table {
   border-spacing: 2px;
   /*border: 1px gray solid;*/
   /*border: 2px solid white;*/
+  height: 690px;
 }
 
 td {
   display: table-cell;
-  vertical-align: inherit;
+  vertical-align: bottom;
+  padding: 0;
 }
 
-#maintd {
-  width: 675px;
+.maintd {
+  width: 360px;
   vertical-align: baseline;
+  padding-bottom: 0;
 }
 
 #menutd {
   width: 225px;
   vertical-align: baseline;
+  position: absolute;
+  top: 370px;
+  left: 7vw;
 }
 
 h1 {
@@ -141,7 +198,7 @@ h1 {
 
 h2 {
   color: #74ff56;
-  font-family: "Pixel NES", serif !important;
+  font-family: "perfect dos vga 437 win", serif !important;
   margin: 0;
   /*text-shadow: var(--green-text-shadow)*/
 }
@@ -153,6 +210,7 @@ h2 {
   color: #fff;
   padding: 10px 15px;
   margin: 5px;
+  margin-bottom: 0;
 }
 
 #bg {
@@ -160,6 +218,8 @@ h2 {
   image-rendering: pixelated;
   background-color: #000;
   position: absolute;
+  min-height: 828px;
+  min-width: 1656px
 }
 
 @keyframes Static {
@@ -177,21 +237,20 @@ h2 {
   border-radius: 4px;
   width: auto;
   padding: 15px;
+  /*background-color: #002100;*/
 }
 
 #hotel {
-  float: right;
-  right: 55px;
+  top: 10px;
   height: 1px;
-  font-size: 30px;
-  top: 0px;
-  position: relative;
-  color: #ffda7d;
-  text-shadow: 0 0 10px #ffffff00, 0 0 20px #ffffff80, 0 0 30px rgba(255, 240, 148, 0.35), 0 0 40px #00e6b200, 0 0 50px #00e6bd3d, 0 0 60px #b200e629, 0 0 70px #a700e657;
+  font-size: 40px;
+  position: absolute;
+  color: #f67dff;
+  text-shadow: 0 0 10px #ffffff00, 0 0 20px #ffffff80, 0 0 30px rgba(232, 148, 255, 0.35), 0 0 40px #00e6b200, 0 0 50px #00e6bd3d, 0 0 60px #b200e629, 0 0 70px #a700e657;
   user-select: none;
-  font-family: MS Gothic,Tahoma;
+  font-family: "Gang of Three";
   animation: flickering .1s infinite;
-  z-index: 2;
+  z-index: 5000;
 }
 
 b {
@@ -202,7 +261,11 @@ b {
   -moz-backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  overflow: auto;
+  padding-right: 0;
+  height: 220px;
 }
+
 @keyframes flickering {
   0% {
     opacity: 0.63;
@@ -210,28 +273,120 @@ b {
 }
 
 .chat-msg {
-  max-width: 360px;
+  /*max-width: calc( 100% - 180px );*/
+  max-width: 100%;
   word-break: break-word;
+  display: inline-flex;
+  font-family: "hack";
+  font-size: 12px;
+  background-color: rgb(94 24 155 / 30%);
+  padding: 2px;
+  border-radius: 6px;
+
+  padding-left: 4px;
 }
 
 .chat-date {
+  font-family: "digital";
   color: #5d5d5d;
   font-size: 12px;
   padding-right: 5px;
   float: right;
+  display: inline;
 }
 
 .chat-name {
   color: #ff7ddb;
+  display: inline;
+  font-family: "hack";
+  font-size: 12px;
+  min-width: 100%;
+}
+
+.chat-name a {
+  color: #ff0098;
+}
+
+.chat-title {
+  color: #ff7ddb;
+
+}
+
+.chat-message {
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+#messagePreFlex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.devlog-name {
+  color: #ff8b39;
+}
+
+.devlog-title {
+  color: #ff8b39;
+}
+
+.devlog-message {
+  border: 1px white solid;
+  padding: 10px;
+}
+
+.sub-log {
+  padding-top: 5px;
+}
+
+.sub-log div {
+  padding-top: 5px;
 }
 
 #send {
   background-color: #000;
   color: #fff;
-  border: 1px solid #383838;
-  font-family: MS Gothic,monospace;
-  padding: 3px 27px;
+  border: 1px solid #181818;
+  font-family: "perfect dos vga 437 win",monospace;
+  padding: 3px 26px;
   cursor: pointer;
+  border-radius: 6px;
+  transition: .7s;
+}
+
+#send a {
+  font-size: 0;
+  transition: .7s;
+}
+
+#send:hover {
+  background-color: #212121;
+  padding: 3px 16px;
+  border: 1px solid #383838;
+}
+
+#send:hover a {
+  font-size: 12px;
+  animation: 1s blink infinite;
+}
+
+#userNameInput {
+  background-color: black;
+  border: 1px solid #181818;
+  color: greenyellow;
+}
+
+.pre_inp {
+  color: #5d5d5d;
+}
+
+#lowerInp {
+  opacity: 20%;
+}
+
+#lowerInp:hover {
+  opacity: 100%;
 }
 
 button {
@@ -262,10 +417,11 @@ button {
   bottom: 5px;
   background-color: #000;
   color: #fff;
-  border: 1px solid #383838;
-  font-family: MS Gothic,monospace;
+  border: 1px solid #181818;
+  border-radius: 6px;
+  font-family: Hack,monospace;
   padding: 3px;
-  width: 508px;
+  width: calc( 100% - 120px );
 }
 
 input[type="text" i] {
@@ -314,17 +470,6 @@ input {
     transform: translate(800px);
   }
 }
-
-.sliding-background {
-  background: url('./images/bg.png') repeat-x;
-  height: 2000px;
-  width: 2000px;
-  animation: slide 120s linear infinite;
-  transition: 1s;
-  background-size: 1600px;
-}
-
-
 
 .letter {
   display: inline;
@@ -390,9 +535,96 @@ input {
 }
 
 #chat {
-  overflow: hidden;
   position: relative;
-  border-left: 6px solid #481c41;
+  border-left: 6px solid #d92fff;
+  height: 300px;
+}
+
+#bar {
+  font-family: Dubai;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+.widget-bar {
+  height: 65px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.78);
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.widg-elem {
+  border: 1px white solid;
+  border-radius: 4px;
+  width: 60px;
+  transition: .2s, transform .4s;
+  background: black;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transform-origin: center;
+  transform: rotate(0deg);
+  animation-play-state: paused;
+  scale: 1;
+}
+
+.widg-elem:hover {
+  /*
+  margin-left: 6px;
+  margin-right: 6px;
+
+   */
+  background: #1a1a1a;
+  cursor: pointer;
+  animation: infinite wobble 8s ease;
+  scale: 1.1;
+  animation-play-state: running;
+}
+
+@keyframes wobble {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.widg-img-parent {
+  overflow: hidden;
+  height: auto;
+  width: 60px;
+}
+
+.widg-text {
+  position: relative;
+  z-index: -500;
+  top: -70px;
+  transition: .5s;
+  opacity: 0;
+}
+
+.glow {
+  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}
+
+.widg-elem:hover .widg-text {
+  transform: translateY(-40px);
+  opacity: 1;
+}
+
+.profile {
+  height: auto;
+  width: 60px;
 }
 
 @keyframes flickeringAlt2 {
@@ -410,7 +642,7 @@ input {
 }
 
 #root {
-  height: 200px;
+  height: 340px;
   overflow: scroll;
   overflow-x: hidden;
   padding: 4px;
@@ -441,6 +673,7 @@ input {
 
 #mainbox {
   border-left: 6px solid #80cb5a;
+  /*background-color: rgba(49, 255, 12, .1);*/
 }
 
 @keyframes blink {
@@ -453,7 +686,7 @@ input {
 }
 
 #music {
-  max-width: 365px;
+  max-width: 300px;
   vertical-align: baseline;
   overflow: hidden;
   border-left: 6px solid #3bdffd;
@@ -464,11 +697,15 @@ input {
   color: deepskyblue;
 }
 
-#music_element {
+.music_element {
   margin-top: 25px;
 }
 
-#fullBlock {
+.music_element h3 {
+  font-family: "perfect dos vga 437 win";
+}
+
+.fullBlock {
   display: flex;
   align-items: flex-start;
   column-gap: 10px;
@@ -477,7 +714,7 @@ input {
   border-radius: 2px;
 }
 
-#fullBlock p {
+.fullBlock p {
   display: flex;
   align-items: flex-start;
   margin: 0;
@@ -535,7 +772,11 @@ input {
 }
 
 #awesome_sub_box {
-  border: none;
+  border-left: 6px solid #868686;
+}
+
+#awesome_top_box {
+  border-left: 6px solid #868686;
 }
 
 @keyframes bob {
@@ -554,7 +795,7 @@ input {
 
 .letter {
   transition: .2s;
-  animation: bob 4s infinite;
+  animation: bob 8s infinite;
 }
 
 .letter:hover {
@@ -576,5 +817,521 @@ input {
 
   100% {
     transform: rotate(-3deg);
+  }
+}
+
+table {
+  /*background: #000000;*/
+  padding: 6px;
+  padding-bottom: 0;
+  border-radius: 16px;
+  width: 100%;
+}
+
+#road {
+  background: url("images/road 1.jpg") repeat-x;
+  background-size: 100% 100%;
+  height: 180px;
+  overflow: hidden;
+  min-width: 960px;
+  width: 100%;
+}
+
+@media (max-width: 960px) {
+  /*
+  #road {
+    background-size: 960px 180px;
+  }
+  */
+  #road {
+    display: none;
+  }
+}
+
+
+#kar {
+  position: relative;
+  width: 8000px;
+  height: 170px;
+  top: -190px;
+  animation: drive 17s infinite;
+  background-image: url("images/kar-long-2-gif.gif");
+}
+
+@keyframes drive {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-5000px);
+  }
+}
+
+/*
+.hole {
+  position: relative;
+  left: 50px;
+  top: 50px;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);
+}
+*/
+
+#road_shadow {
+  animation: drive 17s infinite;
+  height: 180px;
+  width: 8000px;
+  background: url("images/new shadow 1.png") repeat-x;
+  z-index: 100;
+  position: relative;
+  opacity: .7;
+}
+
+.exter {
+  align-items: center;
+}
+
+.pole {
+  width: 50px;
+  height: calc( 100% - 300px );
+  background: black;
+  margin: 0 auto;
+  border-bottom: 4px solid black;
+}
+
+#blogPole {
+  border-left: 4px solid #80cb5a;
+  border-right: 4px solid #80cb5a;
+  height: calc( 100% - 694.88px );
+}
+
+#chatPole {
+  border-left: 4px solid #d92fff;
+  border-right: 4px solid #d92fff;
+  height: 226px;
+}
+
+#musicPole {
+  border-left: 4px solid #2fffff;
+  border-right: 4px solid #2fffff;
+  height: 100px;
+  margin: 0 auto;
+}
+
+#muex {
+  width: 340px;
+}
+
+.clock {
+  position: relative;
+  font-size: 32px;
+}
+
+.glitch {
+  height: 80px;
+  width: 60px;
+  opacity: 0;
+  transition: .2s;
+}
+
+.glitch:hover {
+  opacity: .4;
+}
+
+.glitch-parent {
+  overflow: hidden;
+  position: absolute;
+  border-radius: 4px;
+  width: 60px;
+  height: 63px;
+}
+
+.chatPole_parent .toThaRight {
+  float: right;
+  position: relative;
+  margin-left: 0;
+  margin-right: 5px;
+  z-index: 0;
+  border-left: #bf84ff 6px solid;
+}
+
+.chatPole_parent .toThaRight:hover {
+  z-index: 2;
+}
+
+.miniprofile {
+  position: absolute;
+  display: inline-block;
+  width: 300px;
+  height: 200px;
+  background-color: #000000a8;
+  border-radius: 4px;
+  margin-left: 5px;
+  margin-top: 2px;
+  border-left: 6px solid white;
+  padding: 10px 15px;
+  z-index: 1;
+}
+
+.statusHead {
+  color: white;
+}
+
+@media screen and (max-width: 1417px) {
+  .miniprofile {
+    transition: 0.1s;
+  }
+
+  .toThaRight {
+    opacity: 0.4;
+  }
+
+  .wrap:hover .miniprofile:hover {
+    opacity: 1;
+  }
+
+  .wrap:hover .miniprofile:not(:hover) {
+    opacity: 0.4;
+  }
+
+  #container {
+    position: relative;
+  }
+
+  #musicPole {
+    height: 0;
+  }
+
+  #menutd {
+    top: 480px;
+  }
+}
+
+.status-ok {
+  color: #36fda0;
+  text-shadow: 0 0 20px #36fda0;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-nuhUh {
+  color: #fd3636;
+  text-shadow: 0 0 20px #fd3636;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-misc {
+  color: #36dffd;
+  text-shadow: 0 0 20px #36dffd;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-low {
+  color: #8f2eff;
+  text-shadow: 0 0 20px #8f2eff;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-garb {
+  color: #5b5b5b;
+  text-shadow: 0 0 20px #5b5b5b;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-okay {
+  color: #ff80ef;
+  text-shadow: 0 0 20px #ff80ef;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-great {
+  color: #1482ff;
+  text-shadow: 0 0 20px #1482ff;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-gr {
+  color: #ff8a14;
+  text-shadow: 0 0 20px #ff8a14;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.status-fan {
+  color: #ffd814;
+  text-shadow: 0 0 20px #ffd814;
+  font-family: "Perfect DOS VGA 437 Win";
+}
+
+.sites {
+  display: flex;
+  flex-direction: column;
+}
+
+.platform_parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid rgba(70, 70, 70, 0.58);
+}
+
+.platform {
+  display: flex;
+  align-items: center;
+}
+
+.site_logo {
+  width: 20px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.youtube {
+  font-family: "perfect dos vga 437 win";
+}
+
+.twitch {
+  font-family: "perfect dos vga 437 win";
+}
+
+.energy {
+  font-family: "perfect dos vga 437 win";
+  color: #868686;
+}
+
+.motivation {
+  font-family: "perfect dos vga 437 win";
+  color: #868686;
+}
+
+.summary {
+  font-family: "perfect dos vga 437 win";
+  color: #868686;
+}
+
+#scroll-container {
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 12;
+  margin: 0 40px;
+  background-color: #000000a8;
+  height: 20px;
+
+}
+
+#scroll-text {
+  -moz-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+
+  -moz-animation: my-animation 30s linear infinite;
+  -webkit-animation: my-animation 30s linear infinite;
+  animation: my-animation 30s linear infinite;
+}
+
+#ad1 {
+  position: relative;
+  height: 300px;
+  border-left: 6px solid #ff8b39;
+}
+
+#undablog {
+  text-align: center;
+}
+
+#devlogs {
+  overflow-y: scroll;
+  height: 215px;
+  width: 90%;
+  padding-right: 10px;
+}
+
+.chat-gif {
+  width: 100%;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.fNavElem {
+  width: 60px;
+  height: 60px;
+  background-image: url("images/fNavMenu/folder 1.png");
+  background-size: 60px;
+  transition: .2s;
+}
+
+.fNavElem:hover {
+  scale: 1.2;
+}
+
+.fNavElem:active {
+  scale: 0.9;
+}
+
+#fNavRoot {
+
+}
+
+.layer {
+  display: none;
+}
+
+.layer0 {
+  display: block;
+}
+
+.exterBtn {
+  width: 60px;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.fMoveElemDown {
+  background-image: url("images/fNavMenu/folder 1.png");
+  background-size: 60px;
+}
+
+.fLogElem {
+  background-image : url("images/fNavMenu/file 1.svg");
+  background-size: 60px;
+}
+
+.fNavCookie:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dimdenLink {
+  color: #62A775;
+}
+
+.credLink {
+  color: #2fffff;
+}
+
+.main-cover {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 60%;
+  z-index: 2000;
+  transition: 1s;
+  min-width: 960px;
+}
+
+.user-warn-notif-parent {
+  display: flex;
+  justify-content: center;
+  transition: 0.5s;
+}
+
+.user-warn-notif {
+  display: flex;
+  position: absolute;
+  min-width: 500px;
+  height: 340px;
+  background-color: #000000;
+  z-index: 4000;
+  top: 60px;
+  border-radius: 16px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid pink;
+  background-image: url("./images/yume nikki srlevi gif 1.gif");
+  background-position: center bottom;
+  background-size: 130%;
+}
+
+.art-cred {
+  color: white;
+  background: black;
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  border-radius: 4px;
+  text-decoration: none;
+  z-index: 4001;
+}
+
+.art-cred:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.uwn-1 {
+  text-align: center;
+  padding: 10px;
+  width: 400px;
+  height: 260px;
+  border: 5px solid white;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.81);
+  z-index: 4001;
+}
+
+.uwn-1 h1 {
+  font-family: "hack bold italic";
+  font-size: 1.5rem;
+}
+
+.uwn-1 p {
+  font-family: "perfect dos vga 437 win";
+  font-size: 1.2rem;
+  padding: 8px 30px;
+}
+
+.red {
+  color: #ff0000;
+}
+
+.yellow {
+  color: yellow;
+  text-decoration: none;
+}
+
+a.yellow:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.purpur {
+  color: #ff00ff;
+  text-decoration: none;
+}
+
+.accept {
+  position: absolute;
+  font-family: "perfect dos vga 437 win";
+  z-index: 4000;
+  top: 420px;
+  animation: infinite blinkAlt 3s;
+}
+
+.with-love {
+  float: right;
+  font-family: "hack italic";
+}
+
+@keyframes blinkAlt {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
   }
 }

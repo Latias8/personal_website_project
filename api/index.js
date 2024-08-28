@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const chatPort = 4000;
 const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
+const http = require('http')//??
+const socketID = require('socket.io')//??
+//const Ably = require('ably');
 
 // Serve static files from the "public" directory
 app.use(express.static('public'));
@@ -21,9 +25,27 @@ app.use((req, res, next) => {
     next();
 });
 
+/*
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
+
+ */
+
+// ably stuff!!!!
+
+/*
+
+const ably = new Ably.Realtime('cGvO1g.XwCFfg:qdisGd27vqDZUoJjoZ4SCsLl2GR7V2NEja3G3dy3nh4');
+const channel = ably.channels.get('chat');
+
+channel.subscribe('greeting-from-client', (message) => {
+    console.log('Greeting from client:', message.data);
+});
+
+
+ */
 
 app.get("/", (req, res) => { res.send("Express on Vercel");})
 
@@ -90,6 +112,8 @@ app.get('/gandalf/blog/submit/:text', (req, res) => {
 
 app.get("/", (req, res) => { res.send("Express on Vercel");})
 
+/* MESSAGE STUFF OLD
+
 // Endpoint to get chat messages
 app.get('/messages', async (req, res) => {
     let messagesPath = path.join(__dirname, 'messages.json'); // Use __dirname to get the directory of the current script
@@ -125,7 +149,6 @@ app.post('/messages', (req, res) => {
             else {
                 console.log("File written successfully\n");
                 console.log("The written has the following contents:");
-                console.log(fs.readFileSync("messages.json", "utf8"));
             }
         });
         res.status(200).send('Message received and stored successfully');
@@ -135,13 +158,129 @@ app.post('/messages', (req, res) => {
     }
 });
 
+*/
+let server = http.Server(app)
+server.listen(port);
+let io = socketID(server)
+
+
+
+io.on('connection', function (socket) {//??
+    //emit message to client
+    socket.emit('greeting-from-server', {
+        greeting:'Remember! Be nice! :D'
+    })
+
+    io.emit('user-joined')
+
+    /*
+    socket.on('greeting-from-client', data => {//??
+        socket.emit('greeting-from-server',{//??
+            greeting:'Hello Client'//??
+        })//??
+    })//??
+    //??
+
+
+    socket.on('message-send', data => {
+        io.emit('message-receive', {
+            message: data
+        })
+    })
+
+     */
+
+    socket.on('message-send', message => {
+        io.emit('message-receive', message)
+        console.log(message)
+    })
+
+
+})
+
+
+
+
+
+
+// MOAR ABLY STUFFFFF
+
+/*
+channel.subscribe('message-send', (message) => {
+    const data = message.data;
+    channel.publish('message-receive', data, (err) => {
+        if (err) {
+            console.log('Error publishing message:', err);
+        } else {
+            console.log('Message received and broadcasted:', data);
+        }
+    });
+});
+
+// Emit greeting message when the server starts
+channel.publish('greeting-from-server', {
+    greeting: 'Remember! Be nice! :D'
+}, (err) => {
+    if (err) {
+        console.log('Error publishing greeting:', err);
+    } else {
+        console.log('Greeting published');
+    }
+});
+
+
+
+ */
+
+
+// Endpoint to get devlogs
+app.get('/devlogs', async (req, res) => {
+    let devlogsPath = path.join(__dirname, 'devlogs.json'); // Use __dirname to get the directory of the current script
+    fs.readFile(devlogsPath, 'utf-8', function(err, data) {
+        if (err) {
+            // handle error
+            console.error(err);
+            res.status(500).send('Error reading file');
+            return;
+        }
+        try {
+            // Parse the data as JSON
+            const jsonData = data.split('\n').filter(Boolean).map(JSON.parse); // Split by newline, filter empty entries, and parse each JSON object
+            res.json(jsonData); // Send JSON data back to the client
+        } catch (parseError) {
+            console.error(parseError);
+            res.status(500).send('Error parsing JSON');
+        }
+    });
+});
+
+app.get('/mood', async (req, res) => {
+    let moodPath = path.join(__dirname, 'mood.json'); // Use __dirname to get the directory of the current script
+    fs.readFile(moodPath, 'utf-8', function(err, data) {
+        if (err) {
+            // handle error
+            console.error(err);
+            res.status(500).send('Error reading file');
+            return;
+        }
+        try {
+            // Parse the data as JSON
+            const jsonData = data.split('\n').filter(Boolean).map(JSON.parse); // Split by newline, filter empty entries, and parse each JSON object
+            res.json(jsonData); // Send JSON data back to the client
+        } catch (parseError) {
+            console.error(parseError);
+            res.status(500).send('Error parsing JSON');
+        }
+    });
+});
+
 app.get('/youtube', (req, res) => {
-    const apiKey = 'AIzaSyA-Drb-5llWow0293aP7jRV4CeWtk7qSt4';
+    const apiKey = process.env.API_KEY;
     const channelId = 'UCDnSCd7lAIilJI16TAfawRg';
 
     let videoId;
 
-    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&maxResults=1&type=video&key=${apiKey}`)
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&maxResults=1&type=video&key=${apiapiapi}`)
         .then(response => response.json())
         .then(data => {
             const newestVideo = data.items[0];
@@ -152,7 +291,7 @@ app.get('/youtube', (req, res) => {
             const thumbnailUrl = newestVideo.snippet.thumbnails.default.url;
             const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
-            fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoId}&key=${apiKey}`)
+            fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoId}&key=${apiapiapi}`)
                 .then(response => response.json())
                 .then(data => {
                     const views = data.items[0].statistics.viewCount;
@@ -172,6 +311,54 @@ app.get('/youtube', (req, res) => {
                     console.error('Error fetching data:', error);
                     res.status(500).send('Error fetching data');
                 });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            res.status(500).send('Error fetching data');
+        });
+});
+
+app.get('/youtube/best', (req, res) => {
+    const apiKey = process.env.API_KEY;
+    const channelId = 'UCDnSCd7lAIilJI16TAfawRg';
+    const maxResults = 50; // Maximum number of videos to fetch in one request
+
+    // Step 1: Fetch the videos from the channel
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=${maxResults}&type=video&key=${apiapiapi}`)
+        .then(response => response.json())
+        .then(data => {
+            const videoIds = data.items.map(item => item.id.videoId);
+
+            // Step 2: Get the statistics (view count) for each video
+            return fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${videoIds.join(',')}&key=${apiapiapi}`);
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Step 3: Find the video with the highest view count
+            let maxViews = 0;
+            let mostViewedVideo = null;
+
+            data.items.forEach(video => {
+                const views = parseInt(video.statistics.viewCount, 10);
+                if (views > maxViews) {
+                    maxViews = views;
+                    mostViewedVideo = video;
+                }
+            });
+
+            if (mostViewedVideo) {
+                // Step 4: Send the response with the details of the video with the most views
+                const responseObject = {
+                    views: mostViewedVideo.statistics.viewCount,
+                    title: mostViewedVideo.snippet.title,
+                    thumbnailUrl: mostViewedVideo.snippet.thumbnails.default.url,
+                    videoUrl: `https://www.youtube.com/watch?v=${mostViewedVideo.id}`
+                };
+
+                res.send(responseObject);
+            } else {
+                res.status(404).send('No videos found');
+            }
         })
         .catch(error => {
             console.error('Error fetching data:', error);
