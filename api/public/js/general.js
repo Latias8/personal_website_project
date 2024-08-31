@@ -277,13 +277,15 @@ async function loadContent() {
         /*fetchAndDisplayDevlogs(),*/
         displayMood(),
         fetchAndDisplayNewestVid(),
-        fetchAndDisplayBestVid()
+        fetchAndDisplayBestVid(),
+        streamstat()
     ]);
 }
 
 // Call the function to load content when the page loads
 window.onload = function() {
     loadContent();
+    chatscroll();
     document.querySelectorAll('.widg-elem').forEach((elem) => {
         elem.addEventListener('click', () => {
             elem.style.scale = '0.9'
@@ -389,4 +391,71 @@ window.onload = function() {
         document.querySelector('.main-content').style.backgroundImage = `linear-gradient(rgba(0, 0, 0, ${getOpacity(hours) * 0.8}), rgba(0, 0, 0, ${getOpacity(hours) * 0.8})), url('./images/houseline 1 2.png')`;
     }, 1000);
 
+    async function chatscroll() {
+        const mcnj = await fetch('/messcount');
+        const mcn = await mcnj.json()
+        const mc = mcn.length;
+        if (mc > 0) {
+            let chat = document.getElementById('messages')
+            let bottomElem = chat.querySelector('p');
+            bottomElem.scrollIntoView({ block: 'end' })
+        }
+    }
+
+    document.querySelector('.youtube_link').addEventListener('click', function () {
+        window.open('https://www.youtube.com/@Isigia_Official')
+    });
+
+    document.querySelector('.twitch_link').addEventListener('click', function () {
+        window.open('https://twitch.tv/isigia')
+    })
+
+
+
 };
+
+async function streamstat() {
+    const response = await fetch('/stream');
+    const data = await response.json();
+
+    const { youtubeLive: yt, twitchLive: tw } = data;
+
+    const yt_elem = document.querySelector('.st_yt')
+    const tw_elem = document.querySelector('.st_tw')
+
+    if (yt === true) {
+        yt_elem.innerHTML = `
+        <span>
+            [
+            <span class='status-yuhUh'> STREAMING</span>
+            ]
+        </span>
+        `
+    } else {
+        yt_elem.innerHTML = `
+        <span>
+            [
+            <span class='status-nuhUh'> OFFLINE</span>
+            ]
+        </span>
+        `
+    }
+
+    if (tw === true) {
+        tw_elem.innerHTML = `
+        <span>
+            [
+            <span class='status-ok'> STREAMING</span>
+            ]
+        </span>
+        `
+    } else {
+        tw_elem.innerHTML = `
+        <span>
+            [
+            <span class='status-nuhUh'> OFFLINE</span>
+            ]
+        </span>
+        `
+    }
+}

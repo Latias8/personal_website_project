@@ -4,20 +4,7 @@ document.addEventListener("DOMContentLoaded", content_loader);
 
 
 function content_loader() {
-    let socket = io('http://localhost:3000')//??
-    socket.on('greeting-from-server', function (message) {
-        let el = document.createElement("p");//??
-        let content =document.createTextNode(message.greeting);//??
-        el.appendChild(content);//??
-        document.getElementById('messages').appendChild(el);//??
-        //socket.emit('greeting-from-client', {//??
-        //    greeting: `User has joined.`//??
-        //});//??
-    });
-
-    socket.on('message-receive', function (message) {
-        const mess = message;
-        console.log(mess)
+    function message_loader(mess) {
         const currDate = mess.date;
         let message_content = mess.message;
         let user = mess.name;
@@ -36,6 +23,26 @@ function content_loader() {
                 <div class='chat-msg'>${message_content}</div>
             `;
         document.getElementById('messages').appendChild(messageElement);
+    }
+
+    let socket = io('http://localhost:3000')//??
+    socket.on('greeting-from-server', function (message) {
+        //socket.emit('greeting-from-client', {//??
+        //    greeting: `User has joined.`//??
+        //});//??
+        message.prev_mess.forEach((mess) => {
+            message_loader(mess)
+        })
+        let el = document.createElement("p");//??
+        let content =document.createTextNode(message.greeting);//??
+        el.appendChild(content);//??
+        document.getElementById('messages').appendChild(el);//??
+    });
+
+    socket.on('message-receive', function (message) {
+        const mess = message;
+        console.log(mess);
+        message_loader(mess);
         console.log('message loaded');
         console.log(mess);
     })
@@ -60,6 +67,13 @@ function content_loader() {
         // Clear message input
         document.getElementById('message').value = "";
 
+    });
+
+    document.getElementById('message').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            document.getElementById('send').click()
+        }
     });
 
     socket.on('user-joined')

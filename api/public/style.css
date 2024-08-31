@@ -1082,6 +1082,11 @@ table {
   align-items: center;
 }
 
+.sm p:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .site_logo {
   width: 20px;
   height: auto;
@@ -1146,6 +1151,10 @@ table {
   height: 215px;
   width: 90%;
   padding-right: 10px;
+}
+
+.layer h3 {
+  font-size: 1em;
 }
 
 .chat-gif {

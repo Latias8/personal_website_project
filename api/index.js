@@ -6,7 +6,40 @@ const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
 const http = require('http')//??
-const socketID = require('socket.io')//??
+const socketID = require('socket.io')
+const { parse } = require('node-html-parser');
+const { Profanity, ProfanityOptions } = require('@2toad/profanity');
+const options = new ProfanityOptions();
+options.wholeWord = false;
+const profanity = new Profanity(options);
+profanity.addWords([
+    "\t",  // Tab (U+0009)
+    "\n",  // Line Feed (U+000A)
+    "\v",  // Vertical Tab (U+000B)
+    "\f",  // Form Feed (U+000C)
+    "\r",  // Carriage Return (U+000D)
+    "\u00A0",  // No-Break Space
+    "\u1680",  // Ogham Space Mark
+    "\u2000",  // En Quad
+    "\u2001",  // Em Quad
+    "\u2002",  // En Space
+    "\u2003",  // Em Space
+    "\u2004",  // Three-Per-Em Space
+    "\u2005",  // Four-Per-Em Space
+    "\u2006",  // Six-Per-Em Space
+    "\u2007",  // Figure Space
+    "\u2008",  // Punctuation Space
+    "\u2009",  // Thin Space
+    "\u200A",  // Hair Space
+    "\u200B",  // Zero Width Space
+    "\u2028",  // Line Separator
+    "\u2029",  // Paragraph Separator
+    "\u202F",  // Narrow No-Break Space
+    "\u205F",  // Medium Mathematical Space
+    "\u3000"   // Ideographic Space
+])
+const message_list = [];
+//??
 //const Ably = require('ably');
 
 // Serve static files from the "public" directory
@@ -48,6 +81,10 @@ channel.subscribe('greeting-from-client', (message) => {
  */
 
 app.get("/", (req, res) => { res.send("Express on Vercel");})
+
+app.get('/messcount', (req, res) => {
+    res.send(message_list);
+});
 
 // Endpoint to get blog posts
 app.get('/entries', async (req, res) => {
@@ -116,18 +153,16 @@ app.get("/", (req, res) => { res.send("Express on Vercel");})
 
 // Endpoint to get chat messages
 app.get('/messages', async (req, res) => {
-    let messagesPath = path.join(__dirname, 'messages.json'); // Use __dirname to get the directory of the current script
+    let messagesPath = path.join(__dirname, 'messages.json');
     fs.readFile(messagesPath, 'utf-8', function(err, data) {
         if (err) {
-            // handle error
             console.error(err);
             res.status(500).send('Error reading file');
             return;
         }
         try {
-            // Parse the data as JSON
-            const jsonData = data.split('\n').filter(Boolean).map(JSON.parse); // Split by newline, filter empty entries, and parse each JSON object
-            res.json(jsonData); // Send JSON data back to the client
+            const jsonData = data.split('\n').filter(Boolean).map(JSON.parse);
+            res.json(jsonData);
         } catch (parseError) {
             console.error(parseError);
             res.status(500).send('Error parsing JSON');
@@ -168,7 +203,8 @@ let io = socketID(server)
 io.on('connection', function (socket) {//??
     //emit message to client
     socket.emit('greeting-from-server', {
-        greeting:'Remember! Be nice! :D'
+        greeting:'Remember! Be nice! :D',
+        prev_mess:message_list
     })
 
     io.emit('user-joined')
@@ -191,6 +227,21 @@ io.on('connection', function (socket) {//??
      */
 
     socket.on('message-send', message => {
+        message.message = profanity.censor(message.message)
+        /*
+        const jsonData = JSON.stringify(message);
+        let messagesPath = path.join(__dirname, 'messages.json');
+        fs.appendFile(messagesPath, jsonData + '\n', (err) => {
+            if (err)
+                console.log(err);
+            else {
+                console.log("File written successfully\n");
+                console.log("The written has the following contents:");
+            }
+        });
+
+         */
+        message_list.push(message)
         io.emit('message-receive', message)
         console.log(message)
     })
@@ -273,6 +324,50 @@ app.get('/mood', async (req, res) => {
         }
     });
 });
+
+
+app.get('/stream', async (req, res) => {
+    async function isYoutubeLive() {
+        // uhh youtube thing uhmmhuuhuhuhu
+        let channelid = "UCnB-Fhp5FQfCZNfdAvm27Qw";
+        let channelname = "@Isigia_Official";
+
+        let channelidurl = 'https://www.youtube.com/channel/' + channelid;
+        let channelnameurl = 'https://www.youtube.com/' + channelname;
+
+        try {
+            let response = await fetch(channelnameurl);
+            let html = await response.text();
+            return html.includes("hqdefault_live.jpg");
+        } catch (err) {
+            console.warn('Something went wrong', err);
+            return false;
+        }
+
+        // code 'borrowed' from https://github.com/bogeta11040/if-youtube-channel-live/blob/main/yt.js
+    }
+
+     async function isTwitchLive() {
+         try {
+             let response = await fetch(`https://twitch.tv/isigia`);
+             let html = await response.text();
+             return html.includes('isLiveBroadcast');
+         } catch (err) {
+             console.warn('Something went wrong', err);
+             return false;
+         }
+        // borrowed from user 'Cookie' on https://stackoverflow.com/questions/75376762/how-to-check-if-a-twitch-streamer-is-live
+    }
+
+    const youtubeLive = await isYoutubeLive();
+    const twitchLive = await isTwitchLive();
+
+    console.log(youtubeLive);
+    console.log(twitchLive);
+
+    res.send({ youtubeLive, twitchLive });
+
+})
 
 app.get('/youtube', (req, res) => {
     const apiKey = process.env.API_KEY;
