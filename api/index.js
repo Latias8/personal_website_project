@@ -13,7 +13,7 @@ const options = new ProfanityOptions();
 options.wholeWord = false;
 const profanity = new Profanity(options);
 let visit_count = 0;
-let vid_list = [];
+const vid_list = [];
 profanity.addWords([
     "\t",  // Tab (U+0009)
     "\n",  // Line Feed (U+000A)
@@ -453,16 +453,50 @@ app.get('/youtube/best', (req, res) => {
 });
 
 async function storeVids(vl) {
-    let newRes = await fetch('/youtube');
+    vl.length = 0;
+    let newRes = await fetch('http://localhost:3000/youtube');
     let newVid = await newRes.json();
-    let bestRes = await fetch('/youtube/best');
+    let bestRes = await fetch('http://localhost:3000/youtube/best');
     let bestVid = await bestRes.json();
     vl.push(newVid, bestVid);
 }
 
+storeVids(vid_list);
+
+setInterval(() => {
+    storeVids(vid_list);
+}, 4 * 60 * 60 * 1000);
+
 app.get('/vids', (req, res) => {
     res.send(vid_list)
 })
+
+// Takes an array of hours as number and a function to execute
+function executeOnHours(hours, callback) {
+    callback(); // First, execute once
+    let now = new Date();
+    const hoursWithToogle = hours.map(h => {
+        return {
+            value: h,
+            executedToday: now.getHours() === h // Don't run now if already on the given hour
+        }
+    });
+    setInterval(() => {
+        now = new Date();
+        const triggers = hoursWithToogle.filter(h => {
+            if (!h.executedToday && h.value === now.getHours()) {
+                return h.executedToday = true;
+            } else if (h.value !== now.getHours()) {
+                h.executedToday = false; // Clean the boolean on the next hour
+            }
+        });
+        if (triggers.length) callback(); // Trigger the action if some hours match
+    }, 30000); // Fix a precision for the check, here 30s
+}
+
+executeOnHours([0, 12], function() {
+    storeVids(vid_list)
+});
 
 
 
