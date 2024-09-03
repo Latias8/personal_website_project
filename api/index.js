@@ -12,6 +12,8 @@ const { Profanity, ProfanityOptions } = require('@2toad/profanity');
 const options = new ProfanityOptions();
 options.wholeWord = false;
 const profanity = new Profanity(options);
+let visit_count = 0;
+let vid_list = [];
 profanity.addWords([
     "\t",  // Tab (U+0009)
     "\n",  // Line Feed (U+000A)
@@ -86,31 +88,27 @@ app.get('/messcount', (req, res) => {
     res.send(message_list);
 });
 
-// Endpoint to get blog posts
+
 app.get('/entries', async (req, res) => {
     let blogsPath = path.join(__dirname, 'blogs.json');
     fs.readFile(blogsPath, 'utf-8', function(err, data){
         if (err) {
-            // handle error
             console.error(err);
             res.status(500).send('Error reading file');
             return;
         }
         try {
-            // Split the data by newline
             const lines = data.split('\n');
             console.log('LINES: ' + lines)
             const jsonData = lines.map(line => {
                 try {
-                    // Parse each line as JSON
                     return JSON.parse(line);
                 } catch (parseError) {
                     console.error(parseError);
-                    // Handle parse errors by returning null
                     return null;
                 }
-            }).filter(Boolean); // Filter out any null values
-            res.json(jsonData); // Send JSON data back to the client
+            }).filter(Boolean);
+            res.json(jsonData);
         } catch (parseError) {
             console.error(parseError);
             res.status(500).send('Error parsing JSON');
@@ -118,7 +116,6 @@ app.get('/entries', async (req, res) => {
     });
 });
 
-// Endpoint to submit new blog posts via URL parameters
 app.get('/gandalf/blog/submit/:text', (req, res) => {
     const text = req.params.text;
     console.log(text)
@@ -130,7 +127,7 @@ app.get('/gandalf/blog/submit/:text', (req, res) => {
         }
         const jsonData = JSON.stringify(data);
         let blogsPath = path.join(__dirname, 'blogs.json');
-        fs.appendFile(blogsPath, jsonData + '\n', (err) => { // Append new blog entry to file with comma and newline
+        fs.appendFile(blogsPath, jsonData + '\n', (err) => {
             if (err) {
                 console.log(err);
                 res.status(500).send('Error writing file');
@@ -138,7 +135,7 @@ app.get('/gandalf/blog/submit/:text', (req, res) => {
                 console.log("File written successfully\n");
                 console.log("The written has the following contents:");
                 console.log(fs.readFileSync("blogs.json", "utf8"));
-                res.redirect('/main'); // Redirect to the main page after submitting
+                res.redirect('/index');
             }
         });
     } else {
@@ -201,13 +198,18 @@ let io = socketID(server)
 
 
 io.on('connection', function (socket) {//??
+    visit_count += 1;
     //emit message to client
     socket.emit('greeting-from-server', {
         greeting:'Remember! Be nice! :D',
         prev_mess:message_list
     })
 
-    io.emit('user-joined')
+    io.emit('user-joined', {
+        uc:visit_count
+    });
+
+
 
     /*
     socket.on('greeting-from-client', data => {//??
@@ -284,20 +286,18 @@ channel.publish('greeting-from-server', {
  */
 
 
-// Endpoint to get devlogs
+
 app.get('/devlogs', async (req, res) => {
-    let devlogsPath = path.join(__dirname, 'devlogs.json'); // Use __dirname to get the directory of the current script
+    let devlogsPath = path.join(__dirname, 'devlogs.json');
     fs.readFile(devlogsPath, 'utf-8', function(err, data) {
         if (err) {
-            // handle error
             console.error(err);
             res.status(500).send('Error reading file');
             return;
         }
         try {
-            // Parse the data as JSON
-            const jsonData = data.split('\n').filter(Boolean).map(JSON.parse); // Split by newline, filter empty entries, and parse each JSON object
-            res.json(jsonData); // Send JSON data back to the client
+            const jsonData = data.split('\n').filter(Boolean).map(JSON.parse);
+            res.json(jsonData);
         } catch (parseError) {
             console.error(parseError);
             res.status(500).send('Error parsing JSON');
@@ -306,16 +306,14 @@ app.get('/devlogs', async (req, res) => {
 });
 
 app.get('/mood', async (req, res) => {
-    let moodPath = path.join(__dirname, 'mood.json'); // Use __dirname to get the directory of the current script
+    let moodPath = path.join(__dirname, 'mood.json');
     fs.readFile(moodPath, 'utf-8', function(err, data) {
         if (err) {
-            // handle error
             console.error(err);
             res.status(500).send('Error reading file');
             return;
         }
         try {
-            // Parse the data as JSON
             const jsonData = data.split('\n').filter(Boolean).map(JSON.parse); // Split by newline, filter empty entries, and parse each JSON object
             res.json(jsonData); // Send JSON data back to the client
         } catch (parseError) {
@@ -375,23 +373,21 @@ app.get('/youtube', (req, res) => {
 
     let videoId;
 
-    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&maxResults=1&type=video&key=${apiapiapi}`)
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&maxResults=1&type=video&key=${apiKey}`)
         .then(response => response.json())
         .then(data => {
             const newestVideo = data.items[0];
             videoId = newestVideo.id.videoId;
 
-            // Extract title and thumbnail from snippet
             const title = newestVideo.snippet.title;
             const thumbnailUrl = newestVideo.snippet.thumbnails.default.url;
             const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
-            fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoId}&key=${apiapiapi}`)
+            fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoId}&key=${apiKey}`)
                 .then(response => response.json())
                 .then(data => {
                     const views = data.items[0].statistics.viewCount;
 
-                    // Construct response object with views, title, and thumbnail
                     const responseObject = {
                         views: views,
                         title: title,
@@ -399,7 +395,6 @@ app.get('/youtube', (req, res) => {
                         videoUrl: videoUrl
                     };
 
-                    // Send the response object
                     res.send(responseObject);
                 })
                 .catch(error => {
@@ -418,18 +413,15 @@ app.get('/youtube/best', (req, res) => {
     const channelId = 'UCDnSCd7lAIilJI16TAfawRg';
     const maxResults = 50; // Maximum number of videos to fetch in one request
 
-    // Step 1: Fetch the videos from the channel
-    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=${maxResults}&type=video&key=${apiapiapi}`)
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=${maxResults}&type=video&key=${apiKey}`)
         .then(response => response.json())
         .then(data => {
             const videoIds = data.items.map(item => item.id.videoId);
 
-            // Step 2: Get the statistics (view count) for each video
-            return fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${videoIds.join(',')}&key=${apiapiapi}`);
+            return fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${videoIds.join(',')}&key=${apiKey}`);
         })
         .then(response => response.json())
         .then(data => {
-            // Step 3: Find the video with the highest view count
             let maxViews = 0;
             let mostViewedVideo = null;
 
@@ -442,7 +434,6 @@ app.get('/youtube/best', (req, res) => {
             });
 
             if (mostViewedVideo) {
-                // Step 4: Send the response with the details of the video with the most views
                 const responseObject = {
                     views: mostViewedVideo.statistics.viewCount,
                     title: mostViewedVideo.snippet.title,
@@ -460,6 +451,20 @@ app.get('/youtube/best', (req, res) => {
             res.status(500).send('Error fetching data');
         });
 });
+
+async function storeVids(vl) {
+    let newRes = await fetch('/youtube');
+    let newVid = await newRes.json();
+    let bestRes = await fetch('/youtube/best');
+    let bestVid = await bestRes.json();
+    vl.push(newVid, bestVid);
+}
+
+app.get('/vids', (req, res) => {
+    res.send(vid_list)
+})
+
+
 
 
 app.get('/main', (req, res) => {

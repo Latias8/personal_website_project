@@ -76,7 +76,14 @@ function content_loader() {
         }
     });
 
-    socket.on('user-joined')
+    socket.on('user-joined', function (data) {
+        let el = document.createElement("p");//??
+        el.classList.add('.user_join')
+        let content =document.createTextNode('User has joined');//??
+        el.appendChild(content);//??
+        document.getElementById('messages').appendChild(el);//??
+        let uc = data.uc;
+    })
 
     //??
 

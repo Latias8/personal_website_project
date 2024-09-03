@@ -1344,3 +1344,8 @@ a.yellow:hover {
     opacity: 1;
   }
 }
+
+.user_join {
+  color: #5d5d5d;
+  font-size: 7px;
+}
