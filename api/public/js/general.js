@@ -122,8 +122,17 @@ async function fetchAndDisplayDevlogs() {
 
 
 async function fetchAndDisplayNewestVid() {
+    /*
     const response = await fetch('/youtube');
     const data = await response.json();
+
+     */
+    const response = await fetch('/vids');
+    console.log(response)
+    const dataPre = await response.json()
+    console.log(dataPre)
+    const data = dataPre[0];
+    console.log(data)
     const musicElement = document.getElementById('newvid');
     musicElement.innerHTML = `<h3>Newest release:</h3>`;
     const fullBlock = document.createElement('DIV');
@@ -152,8 +161,16 @@ async function fetchAndDisplayNewestVid() {
 }
 
 async function fetchAndDisplayBestVid() {
+    /*
     const response = await fetch('/youtube/best');
     const data = await response.json();
+     */
+    const response = await fetch('/vids');
+    console.log(response)
+    const dataPre = await response.json()
+    console.log(dataPre)
+    const data = dataPre[1];
+    console.log(data)
     const musicElement = document.getElementById('bestvid');
     musicElement.innerHTML = `<h3>Most viewed release:</h3>`;
     const fullBlock = document.createElement('DIV');
