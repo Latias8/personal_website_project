@@ -89,7 +89,7 @@ body {
   font-family: russiangothic,ms ui gothic,nec_apc3,Tahoma;
   display: block;
   max-width: 1950px;
-  min-width: 960px;
+  min-width: 1070px;
 }
 
 @media screen and (min-width: 601px) {
@@ -135,7 +135,7 @@ body {
 .main-content {
   overflow-x: hidden;
   max-width: 1950px;
-  min-width: 960px;
+  min-width: 1070px;
   margin: auto;
   background-image: linear-gradient(rgba(0, 0, 0, 0),
   rgba(0, 0, 0, 0)), url("./images/houseline 1 2.png");
@@ -179,9 +179,10 @@ td {
 }
 
 .maintd {
-  width: 360px;
+  width: 340px;
   vertical-align: baseline;
   padding-bottom: 0;
+  max-width: 340px;
 }
 
 #menutd {
@@ -691,6 +692,7 @@ input {
   overflow: hidden;
   border-left: 6px solid #3bdffd;
   margin-top: 10px;
+  min-height: 390px;
 }
 
 #music_title {
@@ -726,27 +728,33 @@ input {
   -moz-transform: translateX(100%);
   -webkit-transform: translateX(100%);
   transform: translateX(100%);
-  overflow: hidden;
 
   -moz-animation: my-animation 10s linear infinite;
   -webkit-animation: my-animation 10s linear infinite;
   animation: my-animation 10s linear infinite;
+  display: flex;
 }
 
 .scroll-content:hover {
   animation-play-state: paused;
 }
 
+.scroll-content img {
+  width: 200px;
+  height: 70px;
+  padding: 0 5px;
+}
+
 /* for Firefox */
 @-moz-keyframes my-animation {
   from { -moz-transform: translateX(120%); }
-  to { -moz-transform: translateX(-80%); }
+  to { -moz-transform: translateX(-140%); }
 }
 
 /* for Chrome */
 @-webkit-keyframes my-animation {
   from { -webkit-transform: translateX(120%); }
-  to { -webkit-transform: translateX(-80%); }
+  to { -webkit-transform: translateX(-140%); }
 }
 
 @keyframes my-animation {
@@ -756,9 +764,9 @@ input {
     transform: translateX(120%);
   }
   to {
-    -moz-transform: translateX(-80%);
-    -webkit-transform: translateX(-80%);
-    transform: translateX(-80%);
+    -moz-transform: translateX(-140%);
+    -webkit-transform: translateX(-140%);
+    transform: translateX(-140%);
   }
 }
 
@@ -795,7 +803,7 @@ input {
 
 .letter {
   transition: .2s;
-  animation: bob 8s infinite;
+  /*animation: bob 8s infinite;*/
 }
 
 .letter:hover {
@@ -833,11 +841,11 @@ table {
   background-size: 100% 100%;
   height: 180px;
   overflow: hidden;
-  min-width: 960px;
+  min-width: 1070px;
   width: 100%;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1070px) {
   /*
   #road {
     background-size: 960px 180px;
@@ -916,7 +924,7 @@ table {
 #musicPole {
   border-left: 4px solid #2fffff;
   border-right: 4px solid #2fffff;
-  height: 100px;
+  height: 100px; /*normally 100px*/
   margin: 0 auto;
 }
 
@@ -1171,7 +1179,7 @@ button {
 .fNavElem {
   width: 60px;
   height: 60px;
-  background-image: url("images/fNavMenu/folder 1.png");
+  background-image: url("images/fNavMenu/site devlog folder 1 1.png");
   background-size: 60px;
   transition: .2s;
 }
@@ -1207,12 +1215,12 @@ button {
 }
 
 .fMoveElemDown {
-  background-image: url("images/fNavMenu/folder 1.png");
+  background-image: url("images/fNavMenu/site devlog folder 1 1.png");
   background-size: 60px;
 }
 
 .fLogElem {
-  background-image : url("images/fNavMenu/file 1.svg");
+  background-image : url("images/fNavMenu/site devlog file 1 1.png");
   background-size: 60px;
 }
 
@@ -1237,7 +1245,7 @@ button {
   opacity: 60%;
   z-index: 2000;
   transition: 1s;
-  min-width: 960px;
+  min-width: 1070px;
 }
 
 .user-warn-notif-parent {
@@ -1348,4 +1356,56 @@ a.yellow:hover {
 .user_join {
   color: #5d5d5d;
   font-size: 7px;
+}
+
+.visits {
+  display: flex;
+  flex-direction: row;
+  font-family: "Perfect DOS VGA 437 Win", sans-serif;
+  justify-content: space-between;
+  font-size: 15px;
+  width: 40%;
+}
+
+.swan {
+  font-family: digital, sans-serif;
+  color: #36fda0;
+  text-shadow: 0 0 20px #36fda0;
+}
+
+.bronglecronts {
+  color: #1482ff;
+  text-shadow: 0 0 20px #1482ff;
+}
+
+.visitlabel {
+  margin: 0;
+}
+
+.barstats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.labelvisi {
+  color: #36fda0;
+  text-shadow: 0 0 20px #36fda0;
+}
+
+#sinceFetchedOuter {
+  display: flex;
+  flex-direction: row;
+  font-family: "Perfect DOS VGA 437 Win", sans-serif;
+  justify-content: space-between;
+  font-size: 25px;
+  align-items: center;
+  color: #ff14eb;
+  text-shadow: 0 0 20px #ff14eb;
+  margin-top: 20px;
+}
+
+#sinceFetchedOuter p {
+  margin: 0;
 }

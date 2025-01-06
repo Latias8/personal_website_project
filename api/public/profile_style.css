@@ -9,7 +9,6 @@ body {
     font-family: "perfect dos vga 437 win";
     text-align: center;
     color: white;
-    background-color: black;
     padding: 6px;
 }
 
@@ -30,8 +29,15 @@ body {
     color: #ff1515;
 }
 
-h1 {
+.whoami {
     text-shadow: 0 0 20px #cbcbcb;
+    animation: spinnymore 4s infinite;
+    transition: 1s;
+    position: relative;
+}
+
+.whoami:hover {
+    font-size: 2.1em;
 }
 
 .mainContent {
@@ -42,6 +48,8 @@ h1 {
     padding-left: 0;
     display: flex;
     font-size: 18px;
+    /*animation: spinny 14s infinite;*/
+    background-color: black;
 }
 
 .profile {
@@ -65,4 +73,65 @@ h1 {
 
 pre {
     font-family: "perfect dos vga 437 win";
+}
+
+@keyframes spinny {
+    0% {
+        transform: rotate(-1deg);
+    }
+
+    50% {
+        transform: rotate(1deg);
+    }
+
+    100% {
+        transform: rotate(-1deg);
+    }
+}
+
+@keyframes spinnymore {
+    0% {
+        transform: rotate(-4deg);
+    }
+
+    50% {
+        transform: rotate(4deg);
+    }
+
+    100% {
+        transform: rotate(-4deg);
+    }
+}
+
+html {
+    --s: 100px; /* control the size*/
+    --c1: #046d8b;
+    --c2: #0685a9;
+
+    --_g: #0000 90deg,var(--c1) 0;
+    background:
+            conic-gradient(from 116.56deg at calc(100%/3) 0   ,var(--_g)),
+            conic-gradient(from -63.44deg at calc(200%/3) 100%,var(--_g))
+            var(--c2);
+    background-size: var(--s) var(--s);
+    animation: cascade 10s infinite linear;
+}
+
+@keyframes cascade {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 100px 165px;
+    }
+}
+
+.bacc {
+    background-color: black;
+    color: yellow;
+    padding: 5px;
+}
+
+.bacc:hover{
+    color: deeppink;
 }

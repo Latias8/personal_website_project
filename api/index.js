@@ -1,19 +1,20 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const chatPort = 4000;
 const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
 const http = require('http')//??
 const socketID = require('socket.io')
-const { parse } = require('node-html-parser');
 const { Profanity, ProfanityOptions } = require('@2toad/profanity');
 const options = new ProfanityOptions();
 options.wholeWord = false;
 const profanity = new Profanity(options);
-let visit_count = 0;
 const vid_list = [];
+const visPath = path.join(__dirname, 'vcuc.json');
+const brongPath = path.join(__dirname, 'bc.json');
+let visit_count = JSON.parse(fs.readFileSync(visPath, "utf8"));
+let brong_count = JSON.parse(fs.readFileSync(brongPath, "utf8"));
 profanity.addWords([
     "\t",  // Tab (U+0009)
     "\n",  // Line Feed (U+000A)
@@ -41,18 +42,13 @@ profanity.addWords([
     "\u3000"   // Ideographic Space
 ])
 const message_list = [];
-//??
-//const Ably = require('ably');
 
-// Serve static files from the "public" directory
 app.use(express.static('public'));
 
-// Middleware to parse JSON bodies
 app.use(express.json());
 app.use(express.static(__dirname + "/public/"));
 app.use(cors())
 
-// Middleware to set MIME type for CSS files
 app.use((req, res, next) => {
     if (req.url.endsWith('.css')) {
         res.setHeader('Content-Type', 'text/css');
@@ -60,27 +56,6 @@ app.use((req, res, next) => {
     next();
 });
 
-/*
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
-
- */
-
-// ably stuff!!!!
-
-/*
-
-const ably = new Ably.Realtime('cGvO1g.XwCFfg:qdisGd27vqDZUoJjoZ4SCsLl2GR7V2NEja3G3dy3nh4');
-const channel = ably.channels.get('chat');
-
-channel.subscribe('greeting-from-client', (message) => {
-    console.log('Greeting from client:', message.data);
-});
-
-
- */
 
 app.get("/", (req, res) => { res.send("Express on Vercel");})
 
@@ -148,7 +123,6 @@ app.get("/", (req, res) => { res.send("Express on Vercel");})
 
 /* MESSAGE STUFF OLD
 
-// Endpoint to get chat messages
 app.get('/messages', async (req, res) => {
     let messagesPath = path.join(__dirname, 'messages.json');
     fs.readFile(messagesPath, 'utf-8', function(err, data) {
@@ -168,14 +142,14 @@ app.get('/messages', async (req, res) => {
 });
 
 
-// Endpoint to submit new chat messages
+
 app.post('/messages', (req, res) => {
     const data = req.body;
     console.log(data)
     if (data) {
-        const jsonData = JSON.stringify(data); // Convert data object to JSON string
+        const jsonData = JSON.stringify(data);
         let messagesPath = path.join(__dirname, 'messages.json');
-        fs.appendFile(messagesPath, jsonData + '\n', (err) => { // Append new message to file with comma and newline
+        fs.appendFile(messagesPath, jsonData + '\n', (err) => {
             if (err)
                 console.log(err);
             else {
@@ -195,11 +169,43 @@ let server = http.Server(app)
 server.listen(port);
 let io = socketID(server)
 
+function randRange(data) {
+    return data[Math.floor(data.length * Math.random())];
+}
 
+function toggleSomething() {
+    const timeArray = [2000000, 3000000, 1500000, 2500000, 20000000, 30000000, 10000000, 15000000];
+    brong_count += 1;
+    const jsonData = JSON.stringify(brong_count);
+    fs.writeFileSync(brongPath, jsonData, (err) => {
+        if (err) {
+            console.log(err)
+        }
+    });
+    let data = fs.readFileSync(brongPath, "utf8")
+    brong_count = JSON.parse(data)
+    io.emit('free-brongles', {
+        bc:brong_count
+    });
 
-io.on('connection', function (socket) {//??
+    clearInterval(timer);
+    timer = setInterval(toggleSomething, randRange(timeArray));
+}
+
+let timer = setInterval(toggleSomething, 10000000);
+
+io.on('connection', function (socket) {
     visit_count += 1;
-    //emit message to client
+    const jsonData = JSON.stringify(visit_count);
+    console.log()
+    fs.writeFileSync(visPath, jsonData, (err) => {
+        if (err) {
+            console.log(err)
+        }
+    });
+    console.log("viscount" + visit_count)
+    let data = fs.readFileSync(visPath, "utf8")
+    visit_count = JSON.parse(data)
     socket.emit('greeting-from-server', {
         greeting:'Remember! Be nice! :D',
         prev_mess:message_list
@@ -208,6 +214,8 @@ io.on('connection', function (socket) {//??
     io.emit('user-joined', {
         uc:visit_count
     });
+
+
 
 
 
@@ -229,7 +237,13 @@ io.on('connection', function (socket) {//??
      */
 
     socket.on('message-send', message => {
-        message.message = profanity.censor(message.message)
+        let check = message.message.split(" ").join("");
+        if (profanity.exists(check)) {
+            message.message = '*****'
+        } else {
+            message.message = profanity.censor(message.message)
+        }
+
         /*
         const jsonData = JSON.stringify(message);
         let messagesPath = path.join(__dirname, 'messages.json');
@@ -245,7 +259,7 @@ io.on('connection', function (socket) {//??
          */
         message_list.push(message)
         io.emit('message-receive', message)
-        console.log(message)
+        //console.log(message)
     })
 
 
@@ -270,7 +284,7 @@ channel.subscribe('message-send', (message) => {
     });
 });
 
-// Emit greeting message when the server starts
+
 channel.publish('greeting-from-server', {
     greeting: 'Remember! Be nice! :D'
 }, (err) => {
@@ -314,8 +328,8 @@ app.get('/mood', async (req, res) => {
             return;
         }
         try {
-            const jsonData = data.split('\n').filter(Boolean).map(JSON.parse); // Split by newline, filter empty entries, and parse each JSON object
-            res.json(jsonData); // Send JSON data back to the client
+            const jsonData = data.split('\n').filter(Boolean).map(JSON.parse);
+            res.json(jsonData);
         } catch (parseError) {
             console.error(parseError);
             res.status(500).send('Error parsing JSON');
@@ -326,7 +340,6 @@ app.get('/mood', async (req, res) => {
 
 app.get('/stream', async (req, res) => {
     async function isYoutubeLive() {
-        // uhh youtube thing uhmmhuuhuhuhu
         let channelid = "UCnB-Fhp5FQfCZNfdAvm27Qw";
         let channelname = "@Isigia_Official";
 
@@ -398,20 +411,20 @@ app.get('/youtube', (req, res) => {
                     res.send(responseObject);
                 })
                 .catch(error => {
-                    console.error('Error fetching data:', error);
-                    res.status(500).send('Error fetching data');
+                    console.error('Error getting views: ', error);
+                    res.status(500).send('Error getting views');
                 });
         })
         .catch(error => {
-            console.error('Error fetching data:', error);
-            res.status(500).send('Error fetching data');
+            console.error('Error getting video: ', error);
+            res.status(500).send('Error getting video');
         });
 });
 
 app.get('/youtube/best', (req, res) => {
     const apiKey = process.env.API_KEY;
     const channelId = 'UCDnSCd7lAIilJI16TAfawRg';
-    const maxResults = 50; // Maximum number of videos to fetch in one request
+    const maxResults = 50;
 
     fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=${maxResults}&type=video&key=${apiKey}`)
         .then(response => response.json())
@@ -447,18 +460,26 @@ app.get('/youtube/best', (req, res) => {
             }
         })
         .catch(error => {
-            console.error('Error fetching data:', error);
-            res.status(500).send('Error fetching data');
+            console.error('Error getting most viewed vid: ', error);
+            res.status(500).send('Error getting most viewed vid');
         });
 });
 
+let vid_received_time = new Date();
+
 async function storeVids(vl) {
-    vl.length = 0;
-    let newRes = await fetch('http://localhost:3000/youtube');
-    let newVid = await newRes.json();
-    let bestRes = await fetch('http://localhost:3000/youtube/best');
-    let bestVid = await bestRes.json();
-    vl.push(newVid, bestVid);
+    try {
+        vid_received_time = new Date()
+        vl.length = 0;
+        let newRes = await fetch('http://localhost:3000/youtube');
+        let newVid = await newRes.json();
+        let bestRes = await fetch('http://localhost:3000/youtube/best');
+        let bestVid = await bestRes.json();
+        vl.push(newVid, bestVid);
+        console.log("NEWVIDLIST: ", vl)
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 storeVids(vid_list);
@@ -468,17 +489,20 @@ setInterval(() => {
 }, 4 * 60 * 60 * 1000);
 
 app.get('/vids', (req, res) => {
-    res.send(vid_list)
+    const responseObject = {
+        vid_list: vid_list,
+        received_time: vid_received_time
+    }
+    res.send(responseObject)
 })
 
-// Takes an array of hours as number and a function to execute
 function executeOnHours(hours, callback) {
-    callback(); // First, execute once
+    callback();
     let now = new Date();
     const hoursWithToogle = hours.map(h => {
         return {
             value: h,
-            executedToday: now.getHours() === h // Don't run now if already on the given hour
+            executedToday: now.getHours() === h
         }
     });
     setInterval(() => {
@@ -487,11 +511,11 @@ function executeOnHours(hours, callback) {
             if (!h.executedToday && h.value === now.getHours()) {
                 return h.executedToday = true;
             } else if (h.value !== now.getHours()) {
-                h.executedToday = false; // Clean the boolean on the next hour
+                h.executedToday = false;
             }
         });
-        if (triggers.length) callback(); // Trigger the action if some hours match
-    }, 30000); // Fix a precision for the check, here 30s
+        if (triggers.length) callback();
+    }, 30000);
 }
 
 executeOnHours([0, 12], function() {

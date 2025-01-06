@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Isigia's Nest</title>
-  <script src="https://cdn.ably.io/lib/ably.min-1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"
           integrity="sha512-Xm9qbB6Pu06k3PUwPj785dyTl6oHxgsv9nHp7ej7nCpAqGZT3OZpsELuCYX05DdonFpTlBpXMOxjavIAIUwr0w=="
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -62,7 +61,7 @@
       <td class='maintd'>
         <div class='exter' id='undablog'>
           <div class='box' id='awesome_top_box'>
-            <strong>Much of the CSS here is from <a class='spinny dimdenLink' href='https://dimden.dev'>dimden.dev</a></strong> (awesome site). All the JS has been independently coded however.
+            <strong>Some of the CSS here is from <a class='spinny dimdenLink' href='https://dimden.dev'>dimden.dev</a></strong> (awesome site). All the JS has been independently coded however.
             <br><br>
             <a href="https://dimden.dev/" target='_blank'><img src="https://dimden.dev/services/images/88x31.gif" alt=''></a>
             <br><br>
@@ -72,11 +71,12 @@
           </div>
           <div id='awesome_sub_box' class='box'>
             <p style='margin: 0' class='adHead1'>
-              Some awesome people to whom you should sub:
+              Some awesome people to check out:
             </p>
             <div id='cool_guys_box'>
               <div class='scroll-content'>
-                <a href="https://www.youtube.com/@mati_ilan"><img src="./images/banners/mati%20banner%201.png" alt=''></a>
+                <a href="https://www.youtube.com/@mati_ilan" target='_blank'><img src="./images/banners/mati%20neocites%20web%201%20banner%202%201.png" alt=''></a>
+                <a href='https://www.youtube.com/@Glitch-Cat-Music' target='_blank'><img src='./images/banners/glitch%20cat%20neocites%20web%20page%201%20banner%201%201.png' alt='glitch cat'></a>
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@
         </div>
         <div class='exter'>
         <div class='box' id='mainbox'>
-          <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/warning%202.png" id='warning' alt=''>
+          <img style="display: inline; margin-right: 5px;" height="16px" src="/images/sites%20blog%20alarm%201%201.png" id='warning' alt=''>
           <h2 style="display:inline">BLOGS:</h2>
           <br>
           <p>
@@ -96,9 +96,21 @@
 
         </div>
 
+
+
         <div class='pole' id='blogPole'></div>
         </td>
       <td class='centertd'>
+        <div class='exter barstats'>
+          <div class='box visits'>
+              <p class='visitlabel labelvisi'>Total visits:</p>
+              <span class='peaks swan'>0</span>
+          </div>
+            <div class='box visits brongles'>
+              <p class='visitlabel' style='color: #1482ff; text-shadow: 0 0 20px #1482ff;'>Bronglecronts:</p>
+              <span class='bronglecronts swan'>0</span>
+            </div>
+          </div>
         <div class='widget-bar'>
           <div class='widg-elem' id='whoami'>
             <div class='widg-img-parent'>
@@ -277,6 +289,7 @@
         <div id='music' class='box'>
           <img style="vertical-align: sub; margin-right: 5px;" height="26" src="/images/Note_Chaos.png" alt=''>
           <h2 style="display:inline" id='music_title'>Music-News!</h2>
+          <div id='sinceFetchedOuter'></div>
             <div class='music_element' id='newvid'>
               <img src='images/NIKOOOO.gif' height='80px' alt=''>
               <p>No internet or API token depleted bruh</p>
@@ -288,6 +301,7 @@
         </div>
 
         </div>
+
         <div class='pole' id='musicPole'></div>
       </td>
       </tr>
@@ -303,6 +317,12 @@
 </div>
 <script src='js/general.js'></script>
 <script src='js/fNavMenu.js'></script>
+
+<div class='main-content-low'>
+  <div>
+
+  </div>
+</div>
 
 </body>
 </html>
