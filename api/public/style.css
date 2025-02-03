@@ -137,9 +137,9 @@ body {
   max-width: 1950px;
   min-width: 1070px;
   margin: auto;
-  background-image: linear-gradient(rgba(0, 0, 0, 0),
-  rgba(0, 0, 0, 0)), url("./images/houseline 1 2.png");
-  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), /*yeah, normally this is rgba(0, 0, 0, 0)*/
+  rgba(0, 0, 0, 0.7)), url("./images/va11halla_1.jpg"); /*rgba(0, 0, 0, 0)), url("./images/houseline 1 2.png");*/
+  background-size: 100%;/*background-size: cover;*/
 }
 
 #container, #backside-container {
@@ -241,17 +241,20 @@ h2 {
   /*background-color: #002100;*/
 }
 
-#hotel {
-  top: 10px;
-  height: 1px;
+.hotel {
   font-size: 40px;
-  position: absolute;
   color: #f67dff;
   text-shadow: 0 0 10px #ffffff00, 0 0 20px #ffffff80, 0 0 30px rgba(232, 148, 255, 0.35), 0 0 40px #00e6b200, 0 0 50px #00e6bd3d, 0 0 60px #b200e629, 0 0 70px #a700e657;
   user-select: none;
   font-family: "Gang of Three";
   animation: flickering .1s infinite;
+}
+
+.open-hot {
+  height: 1px;
+  top: 10px;
   z-index: 5000;
+  position: absolute;
 }
 
 b {
@@ -1254,6 +1257,13 @@ button {
   transition: 0.5s;
 }
 
+.user-warn-notif-grandparent {
+  position: fixed;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+}
+
 .user-warn-notif {
   display: flex;
   position: absolute;
@@ -1408,4 +1418,54 @@ a.yellow:hover {
 
 #sinceFetchedOuter p {
   margin: 0;
+}
+
+.older_lower_content {
+  height: 500px;
+  padding: 20px;
+}
+
+.event_horizon {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7),
+  rgba(0, 0, 0, 0.7)), url("./images/drinks_imgs/tileset 2.png");
+  background-size: contain;
+}
+
+.line1 {
+  display: flex;
+  flex-direction: column;
+  width: 974px;
+  border: 1px solid white;
+  margin: auto;
+}
+
+.lower-child {
+  border: 1px solid rgba(108, 108, 108, 0.81);
+  width: 120px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.news {
+  width: 100%;
+
+}
+
+.event_horizon {
+  width: 100%;
+  z-index: 50;
+  background-color: black;
+  height: 100px;
+}
+
+.lower_dim {
+  /*background-size: 100px 100px;*/
+  background-color: black;
+  width: 100%;
+}
+
+#drink_box {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
 }

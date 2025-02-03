@@ -11,10 +11,17 @@ const options = new ProfanityOptions();
 options.wholeWord = false;
 const profanity = new Profanity(options);
 const vid_list = [];
+let drinks = undefined;
 const visPath = path.join(__dirname, 'vcuc.json');
 const brongPath = path.join(__dirname, 'bc.json');
 let visit_count = JSON.parse(fs.readFileSync(visPath, "utf8"));
 let brong_count = JSON.parse(fs.readFileSync(brongPath, "utf8"));
+let drinksPath = path.join(__dirname, 'drinks.json');
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
 profanity.addWords([
     "\t",  // Tab (U+0009)
     "\n",  // Line Feed (U+000A)
@@ -336,6 +343,29 @@ app.get('/mood', async (req, res) => {
         }
     });
 });
+
+// this here is for like the fucking uhh... drinks.
+
+function getNewDrink() {
+    fs.readFile(drinksPath, 'utf-8', function(err, data) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        const jsonData = data.split('\n').filter(Boolean).map(JSON.parse);
+        drinks = jsonData[getRandomInt(jsonData.length)]
+    });
+}
+
+setInterval(() => {
+    getNewDrink()
+}, 1000 * 60 * 60 * 24)/*1000 * 60 * 60 * 24*/
+
+getNewDrink() // just to make sure this actually runs when the backend starts.
+
+app.get('/drink', async (req, res) => {
+    res.send(drinks)
+})
 
 
 app.get('/stream', async (req, res) => {

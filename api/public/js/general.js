@@ -113,13 +113,13 @@ async function fetchAndDisplayNewestVid() {
 
      */
     const response = await fetch('/vids');
-    console.log(response)
+    /*console.log(response)*/
     const dataPrePre = await response.json()
     const dataPre = dataPrePre.vid_list
-    console.log(dataPre)
+    /*console.log(dataPre)*/
     if (dataPre.length != 0) {
         const data = dataPre[0];
-        console.log(data)
+        /*console.log(data)*/
         const musicElement = document.getElementById('newvid');
         musicElement.innerHTML = `<h3>Newest release:</h3>`;
         const fullBlock = document.createElement('DIV');
@@ -140,7 +140,7 @@ async function fetchAndDisplayNewestVid() {
               <a href='${vidUrl}' target='_blank'><img class='vid-thumb' src='${thumbnail}' alt=''></a>
           `;
         fullBlock.appendChild(block2)
-        console.log('latest video loaded')
+        /*console.log('latest video loaded')*/
 
         musicElement.appendChild(fullBlock)
 
@@ -154,13 +154,13 @@ async function fetchAndDisplayBestVid() {
     const data = await response.json();
      */
     const response = await fetch('/vids');
-    console.log(response)
+    /*console.log(response)*/
     const dataPrePre = await response.json()
     const dataPre = dataPrePre.vid_list
-    console.log(dataPre)
+    /*console.log(dataPre)*/
     if (dataPre.length != 0) {
         const data = dataPre[1];
-        console.log(data)
+        /*console.log(data)*/
         const musicElement = document.getElementById('bestvid');
         musicElement.innerHTML = `<h3>Most viewed release:</h3>`;
         const fullBlock = document.createElement('DIV');
@@ -181,7 +181,7 @@ async function fetchAndDisplayBestVid() {
                   <a href='${vidUrl}' target='_blank'><img class='vid-thumb' src='${thumbnail}' alt=''></a>
               `;
         fullBlock.appendChild(block2)
-        console.log('best video loaded')
+        /*console.log('best video loaded')*/
 
         musicElement.appendChild(fullBlock)
 
@@ -285,7 +285,8 @@ async function loadContent() {
         displayMood(),
         fetchAndDisplayNewestVid(),
         fetchAndDisplayBestVid(),
-        streamstat()
+        streamstat(),
+        getDrinks()
     ]);
 }
 
@@ -298,10 +299,12 @@ window.onload = function() {
     document.querySelector('.main-cover').addEventListener('click', () => {
         let cover = document.querySelector('.main-cover');
         let box = document.querySelector('.user-warn-notif-parent')
+        let gramps = document.querySelector('.user-warn-notif-grandparent')
         cover.style.opacity = '0';
         cover.style.pointerEvents = 'none';
         box.style.opacity = '0';
         box.style.pointerEvents = 'none';
+        gramps.style.pointerEvents = 'none';
     }, true);
     document.querySelectorAll('.widg-elem').forEach((elem) => {
         elem.addEventListener('mousedown', () => {
@@ -351,7 +354,7 @@ window.onload = function() {
     })
     setInterval(function(){
         const now = new Date();
-        const hours = now.getHours();
+        const hours = now.getHours(); /*now.getHours()*/
         const minutes = now.getMinutes();
 
         if (hours.toString().length == 2) {
@@ -364,6 +367,8 @@ window.onload = function() {
         } else {
             document.getElementById('minutes').innerHTML = '0' + minutes.toString();
         }
+
+        /* // COLORS N SHIT turned this off along with the color setting just below cuz I like dark nyeheh
 
         function getBackgroundColor(hour) {
             let color;
@@ -392,6 +397,8 @@ window.onload = function() {
             return result;
         }
 
+
+
         function getOpacity(hour) {
             let opacity;
             if (hour >= 5 && hour < 8) {
@@ -410,7 +417,7 @@ window.onload = function() {
 
         document.querySelector('body').style.backgroundColor = getBackgroundColor(hours);
         document.getElementById('road_shadow').style.opacity = getOpacity(hours);
-        document.querySelector('.main-content').style.backgroundImage = `linear-gradient(rgba(0, 0, 0, ${getOpacity(hours) * 0.8}), rgba(0, 0, 0, ${getOpacity(hours) * 0.8})), url('./images/houseline 1 2.png')`;
+        document.querySelector('.main-content').style.backgroundImage = `linear-gradient(rgba(0, 0, 0, ${getOpacity(hours) * 0.8}), rgba(0, 0, 0, ${getOpacity(hours) * 0.8})), url('./images/va11halla_1.jpg')`;/*url('./images/houseline 1 2.png')*/
     }, 1000);
 
     async function sinceVidFetch() {
@@ -423,7 +430,7 @@ window.onload = function() {
             <span id='siViFe'></span>
             `
         setInterval(function () {
-            console.log(`Time now: ${new Date()}, Time then: ${dataPre}`)
+            /*console.log(`Time now: ${new Date()}, Time then: ${dataPre}`)*/
             let time_since = new Date() - new Date(dataPre)
             const totalSeconds = Math.floor(time_since / 1000);
             const hours = Math.floor(totalSeconds / 3600);
@@ -457,6 +464,28 @@ window.onload = function() {
 
 
 };
+
+async function getDrinks() {
+    const response = await fetch('/drink')
+    const data = await response.json()
+    let drink_box = document.getElementById('drink_box')
+    drink_box.innerHTML = `
+            <div style='width: 500px;'>
+                <div class='motivation ' style='display: flex; justify-content: flex-start; padding: 0 10px;'>
+                    <p style='padding: 16px 10px 0 0; margin: 0'>Name:</p>
+                    <p style='color: #36fda0; padding: 16px 10px 0 0; margin: 0'>${data.name}</p>
+                </div>
+                <div class='motivation ' style='display: flex; flex-direction: column; align-items: flex-start; padding: 0 10px'>
+                    <p style='padding: 16px 10px 16px 0; margin: 0'>Desc:</p>
+                    <p style='color: #ffffff; margin-top: 0; text-align: justify'>${data.desc}</p>
+                </div>
+            </div>
+            
+            <div style='display: flex; align-items: center; align-content: center; justify-content: center; border: 1px solid white; margin-top: 16px; width: 207px; background-color: black'>
+                <img height='105px' src='./images/drinks_imgs/${data.pic}'>
+            </div>
+            `
+}
 
 async function streamstat() {
     const response = await fetch('/stream');
