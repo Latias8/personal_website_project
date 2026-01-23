@@ -2,7 +2,7 @@
   "name": "1",
   "version": "1.0.0",
   "scripts": {
-    "start": "node index.js"
+    "start": "node api/index.js"
   },
   "dependencies": {
     "@2toad/profanity": "^2.2.0",
