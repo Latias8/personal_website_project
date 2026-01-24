@@ -25,8 +25,11 @@ function content_loader() {
         document.getElementById('messages').appendChild(messageElement);
     }
 
-    //let socket = io('http://localhost:3000')//??
-    let socket = io({ path: "/socket.io" });
+    const socket = io(window.location.origin, {
+        path: "/socket.io",
+        transports: ["websocket", "polling"],
+    });
+
     socket.on('greeting-from-server', function (message) {
         //socket.emit('greeting-from-client', {//??
         //    greeting: `User has joined.`//??
