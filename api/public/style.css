@@ -806,7 +806,7 @@ input {
 
 .letter {
   transition: .2s;
-  /*animation: bob 8s infinite;*/
+  animation: bob 8s infinite;
 }
 
 .letter:hover {

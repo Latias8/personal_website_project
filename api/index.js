@@ -225,11 +225,16 @@ io.on('connection', function (socket) {
     socket.emit('greeting-from-server', {
         greeting:'Remember! Be nice! :D',
         prev_mess:message_list
-    })
-
-    io.emit('user-joined', {
-        uc:visit_count
     });
+
+
+
+
+    socket.on('client-user-joined', message => {
+        io.emit('user-joined', {
+            uc:visit_count
+        })
+    })
 
 
 

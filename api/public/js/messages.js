@@ -36,6 +36,9 @@ function content_loader() {
         //    greeting: `User has joined.`//??
         //});//??
         if (already_joined !== 1) {
+            socket.emit('client-user-joined', {
+                message: 'dummy'
+            })
             message.prev_mess.forEach((mess) => {
                 message_loader(mess)
             })
