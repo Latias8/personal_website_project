@@ -179,11 +179,9 @@ const { Server } = require("socket.io");
 const server = http.createServer(app);
 
 const io = new Server(server, {
-    cors: {
-        origin: ["https://isigia.dev", "https://www.isigia.dev", "http://localhost:3000"],
-        methods: ["GET", "POST"],
-    },
+    path: "/socket.io",
 });
+
 server.listen(port, "127.0.0.1", () => {
     console.log("Server listening on", port);
 });
