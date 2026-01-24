@@ -26,7 +26,7 @@ function content_loader() {
     }
 
     //let socket = io('http://localhost:3000')//??
-    let socket = io("https://isigia.dev", { path: "/socket.io" });
+    let socket = io({ path: "/socket.io" });
     socket.on('greeting-from-server', function (message) {
         //socket.emit('greeting-from-client', {//??
         //    greeting: `User has joined.`//??
