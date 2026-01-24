@@ -172,10 +172,19 @@ app.post('/messages', (req, res) => {
 });
 
 */
-let server = http.Server(app)
-server.listen(port);
-let io = socketID(server)
+const { Server } = require("socket.io");
 
+const server = http.createServer(app);
+
+const io = new Server(server, {
+    cors: {
+        origin: ["https://isigia.dev", "https://www.isigia.dev", "http://localhost:3000"],
+        methods: ["GET", "POST"],
+    },
+});
+server.listen(port, "127.0.0.1", () => {
+    console.log("Server listening on", port);
+});
 function randRange(data) {
     return data[Math.floor(data.length * Math.random())];
 }
