@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", content_loader);
-
+let already_joined = 0
 
 
 
 function content_loader() {
+    const default_username = nameMaker()
     function message_loader(mess) {
         const currDate = mess.date;
         let message_content = mess.message;
@@ -34,13 +35,16 @@ function content_loader() {
         //socket.emit('greeting-from-client', {//??
         //    greeting: `User has joined.`//??
         //});//??
-        message.prev_mess.forEach((mess) => {
-            message_loader(mess)
-        })
-        let el = document.createElement("p");//??
-        let content =document.createTextNode(message.greeting);//??
-        el.appendChild(content);//??
-        document.getElementById('messages').appendChild(el);//??
+        if (already_joined !== 1) {
+            message.prev_mess.forEach((mess) => {
+                message_loader(mess)
+            })
+            let el = document.createElement("p");//??
+            let content = document.createTextNode(message.greeting);//??
+            el.appendChild(content);//??
+            document.getElementById('messages').appendChild(el);//??
+        }
+        already_joined = 1;
     });
 
     socket.on('message-receive', function (message) {
@@ -57,7 +61,11 @@ function content_loader() {
         const preDate = new Date();
         const currDate = preDate.toLocaleString()
         const messageContent = document.getElementById('message').value;
-        const user = document.getElementById('userNameInput').value
+        let user = document.getElementById('userNameInput').value
+        if (user === undefined || user === '') {
+            user = default_username
+        }
+
         console.log(messageContent);
 
         socket.emit('message-send', {
@@ -101,4 +109,14 @@ function content_loader() {
 
 
 
+}
+
+function nameMaker() {
+    let pre_name = Math.floor(Math.random() * 100000000).toString();
+    if (8 - pre_name.length !== 0) {
+        while (pre_name.length < 8) {
+            pre_name = '0' + pre_name;
+        }
+    }
+    return pre_name;
 }
