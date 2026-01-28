@@ -296,6 +296,17 @@ window.onload = function() {
     sinceVidFetch();
     let isMouseOver = false;
 
+    if (localStorage.getItem("alreadyClickedBruh") === "true") {
+        let cover = document.querySelector('.main-cover');
+        let box = document.querySelector('.user-warn-notif-parent')
+        let gramps = document.querySelector('.user-warn-notif-grandparent')
+        cover.style.opacity = '0';
+        cover.style.pointerEvents = 'none';
+        box.style.opacity = '0';
+        box.style.pointerEvents = 'none';
+        gramps.style.pointerEvents = 'none';
+    }
+
     document.querySelector('.main-cover').addEventListener('click', () => {
         let cover = document.querySelector('.main-cover');
         let box = document.querySelector('.user-warn-notif-parent')
@@ -305,6 +316,7 @@ window.onload = function() {
         box.style.opacity = '0';
         box.style.pointerEvents = 'none';
         gramps.style.pointerEvents = 'none';
+        localStorage.setItem("alreadyClickedBruh", "true")
     }, true);
     document.querySelectorAll('.widg-elem').forEach((elem) => {
         elem.addEventListener('mousedown', () => {

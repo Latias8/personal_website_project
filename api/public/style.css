@@ -86,7 +86,8 @@ body, #debug {
 
 body {
   margin: 0 auto auto;
-  font-family: russiangothic,ms ui gothic,nec_apc3,Tahoma;
+  /*font-family: russiangothic,ms ui gothic,nec_apc3,Tahoma;*/
+  font-family: "perfect dos vga 437 win";
   display: block;
   max-width: 1950px;
   min-width: 1070px;
@@ -133,13 +134,18 @@ body {
 }
 
 .main-content {
-  overflow-x: hidden;
+  overflow: hidden;
   max-width: 1950px;
   min-width: 1070px;
   margin: auto;
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), /*yeah, normally this is rgba(0, 0, 0, 0)*/
   rgba(0, 0, 0, 0.7)), url("./images/va11halla_1.jpg"); /*rgba(0, 0, 0, 0)), url("./images/houseline 1 2.png");*/
   background-size: 100%;/*background-size: cover;*/
+  background-repeat: no-repeat;
+}
+
+#main-lower-content {
+  overflow: hidden;
 }
 
 #container, #backside-container {
@@ -274,6 +280,12 @@ b {
   0% {
     opacity: 0.63;
   }
+}
+
+#chex {
+  text-align: center;
+  top: 0;
+  position: relative;
 }
 
 .chat-msg {
@@ -484,7 +496,6 @@ input {
   text-align: center;
   padding-top: 5px;
   animation: flickeringAlt 4s infinite;
-  margin-right: 50px;
 }
 
 #logo img {
@@ -558,6 +569,7 @@ input {
   border-radius: 16px;
   display: flex;
   justify-content: space-evenly;
+  padding: 20px 0;
 }
 
 .widg-elem {
@@ -902,6 +914,15 @@ table {
 
 .exter {
   align-items: center;
+}
+
+.centertd {
+  height: calc(100% - 148px);
+  position: relative;
+  top: 148px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .pole {
@@ -1421,7 +1442,6 @@ a.yellow:hover {
 }
 
 .older_lower_content {
-  height: 500px;
   padding: 20px;
 }
 
@@ -1468,4 +1488,99 @@ a.yellow:hover {
   display: flex;
   justify-content: space-between;
   font-size: 20px;
+}
+
+/*START --- RAIN --- START*/
+
+.rain {
+  overflow-x: hidden;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1300px;
+  z-index: 2;
+  /*transform: scale(1, 2);*/
+  pointer-events: none;
+}
+
+.rain.back-row {
+  display: block;
+  z-index: 3;
+  /*bottom: 60px;*/
+  top: -60px;
+  opacity: 0.5;
+}
+
+.drop {
+  position: absolute;
+  bottom: 100%;
+  width: 15px;
+  height: 120px;
+  pointer-events: none;
+  animation: drop 1s linear infinite;
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(0vh) translateX(-80px)  rotate(-12deg);
+  }
+  75% {
+    transform: translateY(1100px) translateX(80px)  rotate(-12deg);
+  }
+  100% {
+    transform: translateY(1100px) translateX(80px)  rotate(-12deg);
+  }
+}
+
+.stem {
+  width: 1px;
+  height: 60%;
+  margin-left: 7px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.37));
+  animation: stem 1s linear infinite;
+}
+
+@keyframes stem {
+  0% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.splat {
+  width: 15px;
+  height: 10px;
+  border-top: 2px dotted rgba(255, 255, 255, 0.96);
+  border-radius: 50%;
+  opacity: 1;
+  transform: scale(0);
+  animation: splat 0.5s linear infinite;
+  display: block;
+}
+
+@keyframes splat {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  90% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
 }

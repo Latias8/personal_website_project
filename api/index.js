@@ -1,4 +1,4 @@
-require("dotenv").config();
+//require("dotenv").config();
 
 const express = require('express');
 const app = express();
@@ -561,10 +561,6 @@ function executeOnHours(hours, callback) {
         if (triggers.length) callback();
     }, 30000);
 }
-
-executeOnHours([0, 12], function() {
-    storeVids(vid_list)
-});
 
 
 
