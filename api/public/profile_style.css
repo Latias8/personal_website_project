@@ -69,6 +69,11 @@ body {
     text-align: left;
     padding: 4px;
     padding-left: 8px;
+    word-break: break-word;
+}
+
+.mainData ul li {
+    word-break: break-word;
 }
 
 pre {
@@ -122,7 +127,7 @@ html {
         background-position: 0;
     }
     100% {
-        background-position: 100px 165px;
+        background-position: 100px 195px;
     }
 }
 

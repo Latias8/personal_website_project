@@ -1,4 +1,4 @@
-require("dotenv").config();
+//require("dotenv").config();
 
 const express = require('express');
 const app = express();
@@ -13,7 +13,7 @@ const options = new ProfanityOptions();
 options.wholeWord = false;
 const profanity = new Profanity(options);
 const vid_list = [];
-let drinks = undefined;
+let drinks   = undefined;
 const visPath = path.join(__dirname, 'vcuc.json');
 const brongPath = path.join(__dirname, 'bc.json');
 let visit_count = JSON.parse(fs.readFileSync(visPath, "utf8"));

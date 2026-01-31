@@ -369,6 +369,8 @@ window.onload = function() {
         const hours = now.getHours(); /*now.getHours()*/
         const minutes = now.getMinutes();
 
+        /*
+
         if (hours.toString().length == 2) {
             document.getElementById('hours').innerHTML = hours.toString();
         } else {
@@ -379,6 +381,8 @@ window.onload = function() {
         } else {
             document.getElementById('minutes').innerHTML = '0' + minutes.toString();
         }
+
+         */
 
         /* // COLORS N SHIT turned this off along with the color setting just below cuz I like dark nyeheh
 
@@ -544,3 +548,57 @@ async function streamstat() {
         `
     }
 }
+
+/*
+old widget bar
+
+<div class='widget-bar'>
+            <div class='widg-elem' id='whoami'>
+              <div class='widg-img-parent'>
+                <img src='images/widgets/neocites%20website%201%201%20widgets%201%20profile%201.png' class='profile' alt='a handsome fella'>
+              </div>
+              <p class='widg-text glow'>whoami</p>
+            </div>
+            <div class='widg-elem'>
+              <div class='glitch-parent'>
+                <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
+              </div>
+            </div>
+            <div class='widg-elem'>
+              <div class='glitch-parent'>
+                <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
+              </div>
+            </div>
+            <div class='widg-elem'>
+              <div class='glitch-parent'>
+                <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
+              </div>
+            </div>
+            <div class='widg-elem'>
+              <div class='glitch-parent'>
+                <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
+              </div>
+            </div>
+            <div class='widg-elem'>
+              <div class='glitch-parent'>
+                <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
+              </div>
+            </div>
+          </div>
+ */
+
+/*
+* <p>in development...</p>
+    <div class='clock'>
+      <a><a id='hours'>xx</a>:<a id='minutes'>yy</a></a>
+    </div>
+* */
+
+/*
+<div id='whoami' class='widg-elem' style='min-width: 100px; max-height: 90px; border-radius: 0; margin: 0 20px 20px 0'>
+                  <p class='widg-text glow'>whoami</p>
+                  <img src='images/faceisi1.png' width='100px' height='90px'>
+                  <div></div>
+
+                </div>
+ */

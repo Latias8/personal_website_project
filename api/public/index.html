@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Isigia's Nest</title>
+  <title>isigia's Nest</title>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"
           integrity="sha512-Xm9qbB6Pu06k3PUwPj785dyTl6oHxgsv9nHp7ej7nCpAqGZT3OZpsELuCYX05DdonFpTlBpXMOxjavIAIUwr0w=="
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="js/messages.js?v=2"></script>
+
   <link href="/style.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -31,7 +32,13 @@
   <div class='main-cover'></div>
 </div>
 
+
+
 <div class='main-content'>
+
+  <div id="imgwrap">
+    <img src="./images/isigiadev%20tree%20border%202.png">
+  </div>
 
 <span id="debug"></span>
 
@@ -51,52 +58,39 @@
     <img src='images/letters/S%20letter%201.png' style='margin-right: -23px; animation-delay: 1100ms' class='letter' alt=''>
     <img src='images/letters/T%20letter%201.png' class='letter' style='animation-delay: 1200ms' alt=''>
     <p>in development...</p>
-    <div class='clock'>
-      <a><a id='hours'>xx</a>:<a id='minutes'>yy</a></a>
-    </div>
   </div>
 
   </div>
+
+
   <div id='main-lower-content'>
+
     <div class="rain front-row"></div>
     <div class="rain back-row"></div>
+
+    <span style='top: 100px;position: relative;'>
   <table>
     <tbody>
     <tr>
       <td class='maintd'>
         <div class='exter' id='undablog'>
-          <div class='box' id='awesome_top_box'>
-            <strong>Some of the CSS here is from <a class='spinny dimdenLink' href='https://dimden.dev'>dimden.dev</a></strong> (awesome site). All the JS has been independently coded however.
+          <div style='border-top: 0; border-right: 0; border-bottom: 0;' class='box' id='awesome_top_box'>
+            <strong>Some assets here are from <a class='spinny dimdenLink' href='https://dimden.dev'>dimden.dev</a></strong> along with being generally heavily inspired.
             <br><br>
             <a href="https://dimden.dev/" target='_blank'><img src="https://dimden.dev/services/images/88x31.gif" alt=''></a>
             <br><br>
-            I'm using it to start off and will gradually change it over time to be unique. :)
+            I have received permission from Dimden for this. I'm using them to start off and will gradually adapt everything over time to be unique. :)
             <br><br>
             additional credits: <a href='credits.html' class='credLink'>credits</a>
           </div>
-          <div id='awesome_sub_box' class='box'>
-            <p style='margin: 0' class='adHead1'>
-              Some awesome people to check out:
-            </p>
-            <div id='cool_guys_box'>
-              <div class='scroll-content'>
-                <a href="https://www.youtube.com/@mati_ilan" target='_blank'><img src="./images/banners/mati%20neocites%20web%201%20banner%202%201.png" alt=''></a>
-                <a href='https://www.youtube.com/@Glitch-Cat-Music' target='_blank'><img src='./images/banners/glitch%20cat%20neocites%20web%20page%201%20banner%201%201.png' alt='glitch cat'></a>
-              </div>
-            </div>
-          </div>
+
 
         </div>
-        <div class='exter'>
-        <div class='box' id='mainbox'>
-          <img style="display: inline; margin-right: 5px;" height="16px" src="/images/sites%20blog%20alarm%201%201.png" id='warning' alt=''>
-          <h2 style="display:inline">BLOGS:</h2>
-          <br>
-          <p>
-          <div id='root'>
-          </div>
-        </div>
+        <div style='margin-bottom: 0;' class='exter'>
 
+          <div style='border-top: 0; border-right: 0; border-bottom: 0; margin-bottom: 0;' class='box'>
+            <iframe width="308px" height="308px" style="border:none" src="https://dimden.neocities.org/navlink/" name="neolink"></iframe>
+          </div>
 
         </div>
 
@@ -105,67 +99,44 @@
         <div class='pole' id='blogPole'></div>
         </td>
       <td class='centertd'>
-        <div class='exter' id='chex'>
-
-          <div class='box' style='    border-radius: 4px; border-left: 6px solid white; margin: 20px'>
-            <h1>WELCOME TO ISIGIA.DEV!!!</h1>
-            <p>Welcome user to my little site :3</p>
-            <p>My name is isigia, and I use this space to act as a hub for all my creative works.</p>
-            <p>I wish you a pleasant stay!!!! ^^</p>
-
+        <div class='exter barstats'>
+          <div class='box visits'>
+            <p class='visitlabel labelvisi'>Total visits:</p>
+            <span class='peaks swan'>0</span>
           </div>
-
+          <div class='box visits brongles'>
+            <p class='visitlabel' style='color: #1482ff; text-shadow: 0 0 20px #1482ff;'>Bronglecronts:</p>
+            <span class='bronglecronts swan'>0</span>
+          </div>
         </div>
+        <div class='box' style='border-radius: 4px; border-left: 6px solid white; border-top: 0; border-right: 0; border-bottom: 0;'>
+          <div class='exter' id='chex'>
 
-        <div style='bottom: 0'>
 
-          <div class='exter barstats'>
-            <div class='box visits'>
-                <p class='visitlabel labelvisi'>Total visits:</p>
-                <span class='peaks swan'>0</span>
-            </div>
-              <div class='box visits brongles'>
-                <p class='visitlabel' style='color: #1482ff; text-shadow: 0 0 20px #1482ff;'>Bronglecronts:</p>
-                <span class='bronglecronts swan'>0</span>
+
+              <div class='intro-box'>
+                <div id='whoami' class='intro-sona'>
+                  no sona yet
+                </div>
+
+                <div>
+                  <p style='margin-top: 0'>Welcome user to my little site :3 </p>
+                    <p>It's a small hand-coded passion project I started in early 2024, taking heavy inspo from Dimden's site.</p>
+
+                  <p>I'm a programmer and nerd. I make random stuff sometimes. You can read more on me <a href='whoami.html'>here</a>!</p>
+
+                  <p>I wish you a pleasant stay!!!! ^^</p>
+                </div>
               </div>
-            </div>
-          <div class='widget-bar'>
-            <div class='widg-elem' id='whoami'>
-              <div class='widg-img-parent'>
-                <img src='images/widgets/neocites%20website%201%201%20widgets%201%20profile%201.png' class='profile' alt='a handsome fella'>
-              </div>
-              <p class='widg-text glow'>whoami</p>
-            </div>
-            <div class='widg-elem'>
-              <div class='glitch-parent'>
-                <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
-              </div>
-            </div>
-            <div class='widg-elem'>
-              <div class='glitch-parent'>
-                <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
-              </div>
-            </div>
-            <div class='widg-elem'>
-              <div class='glitch-parent'>
-                <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
-              </div>
-            </div>
-            <div class='widg-elem'>
-              <div class='glitch-parent'>
-                <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
-              </div>
-            </div>
-            <div class='widg-elem'>
-              <div class='glitch-parent'>
-                <img src='images/true%20static%20gif%201.gif' class='glitch' alt=''>
-              </div>
-            </div>
+
+
+
+
           </div>
-
-          <div class='chatPole_parent'>
-            <div class='wrap'>
-            <div class='miniprofile'>
+          </div>
+        <div class='box' style='margin-top: 10px; border-radius: 4px; border-left: 6px solid #9314fa; border-top: 0; border-right: 0; border-bottom: 0;'>
+          <div class='wrap'>
+            <div class='miniprofile' style='border-color: #2fffff'>
               <h2 style="display:inline" class='statusHead'>How do I feel?</h2>
               <div class='sites'>
                 <div class='platform_parent'>
@@ -174,9 +145,9 @@
                   </div>
                   <div class='status'>
 
-                    <span class='energ'>
+                      <span class='energ'>
 
-                    </span>
+                      </span>
 
                   </div>
                 </div>
@@ -186,9 +157,9 @@
                   </div>
                   <div class='status'>
 
-                    <span class='motiv'>
+                      <span class='motiv'>
 
-                    </span>
+                      </span>
 
                   </div>
                 </div>
@@ -197,15 +168,15 @@
                     <p>In Summary:</p>
                   </div>
                   <div class='status'>
-                    <span class='summa'>
+                      <span class='summa'>
 
-                    </span>
+                      </span>
                   </div>
                 </div>
               </div>
             </div>
-            <div class='miniprofile toThaRight'>
-              <h2 style="display:inline; color: #bf84ff" class='statusHead'>Tune in? :0</h2>
+            <div class='miniprofile toThaRight' style='border-color: #bf84ff'>
+              <h2 style="display:inline;" class='statusHead'>Tune in? :0</h2>
               <div class='sites'>
                 <div class='platform_parent'>
                   <div class='platform sm twitch'>
@@ -227,86 +198,85 @@
                 </div>
               </div>
             </div>
-            </div>
+          </div>
+
+          </div>
+        <div class='box' style='margin-top: 10px; border-radius: 4px; border-left: 6px solid #fff20e; border-top: 0; border-right: 0; border-bottom: 0;'>
+        Take highway to:
+        <div class='scroll-container'>
+          <div class='scroll-content'>
+            <a href="https://knoxstation.neocities.org"><img src="./images/banners/knoxstation.gif" alt="Visit Knoxstation"></a>
+            <a href="https://dimden.dev/"><img src="https://dimden.dev/services/images/88x31.gif"></a>
+            <a href='https://shiga.neocities.org/navi'><img src='./images/banners/Shiga.png'></a>
+            <a href='https://lynx.fail/'><img src='./images/banners/lynx.png'></a>
+            <a href='https://web.archive.org/web/20010405113104/http://www.rinn.art.cg/'><img height='31px' src='./images/banners/rinnbnnr.jpg'></a>
+          </div>
+        </div>
+        </div>
+
+
+
+
+
+
+          <div class='chatPole_parent'>
+
             <div class='pole' id='chatPole'></div>
           </div>
-        </div>
+
+
+
+
         </td>
       <td id='muex'>
-        <div class='miniprofile advertisement' id='ad1'>
-          <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/fNavMenu/file%201.svg" alt=''>
-          <h2 style="display:inline" class='devlog-title'>Devlog...</h2>
-          <br>
-          <div id='fNavRoot'>
-            <div class='layer0 layer'>
-              <h3>&gt</h3>
-              <div class='buttons'>
-                <div class='exterBtn'>
-                  <button class='patientZero fNavElem fMoveElemDown'></button>
-                  <p>projects</p>
-                </div>
-              </div>
-            </div>
-            <div class='layer1 layer'>
-              <h3>&gt <a class='fNavCookie projects'>Projects</a></h3>
-              <div class='buttons'>
-                <div class='exterBtn'>
-                  <button class='patientZero fNavElem fMoveElemUp'>
-
-                  </button>
-                  <p>..</p>
-                </div>
-                <div class='exterBtn'>
-                  <button class='patientZero fNavElem fMoveElemDown'>
-
-                  </button>
-                  <p>producer_racing</p>
-                </div>
 
 
-              </div>
-            </div>
-            <div class='layer2 layer'>
-              <h3>&gt <a class='fNavCookie projects'>Projects</a> &gt <a class='fNavCookie producerRacing'>producer_racing</a></h3>
-              <div class='buttons'>
-                <div class='exterBtn'>
-                  <button class='patientZero fNavElem fMoveElemUp'>
-
-                  </button>
-                  <p>..</p>
-                </div>
-
-
-
-              </div>
-            </div>
-          </div>
-
-        </div>
         <div class='exter'>
-        <div id='music' class='box'>
+        <div id='music' class='box' style='border-top: 0; border-right: 0; border-bottom: 0;'>
           <img style="vertical-align: sub; margin-right: 5px;" height="26" src="/images/Note_Chaos.png" alt=''>
           <h2 style="display:inline" id='music_title'>Music-News!</h2>
           <div id='sinceFetchedOuter'></div>
             <div class='music_element' id='newvid'>
               <img src='images/NIKOOOO.gif' height='80px' alt=''>
-              <p>No internet or API token depleted bruh</p>
+              <p>No internet or API token depleted waaaaah</p>
           </div>
           <div class='music_element' id='bestvid'>
             <img src='images/NIKOOOO.gif' height='80px' alt=''>
-            <p>No internet or API token depleted bruh</p>
+            <p>No internet or API token depleted waaaaah</p>
           </div>
         </div>
 
+          <div style='border-top: 0; border-right: 0; border-bottom: 0; margin-top: 10px' id='awesome_sub_box' class='box'>
+            <p style='margin: 0' class='adHead1'>
+              Some awesome people to check out:
+            </p>
+            <div id='cool_guys_box'>
+              <div class='scroll-content frens'>
+                <a href="https://www.youtube.com/@mati_ilan" target='_blank'><img src="./images/banners/mati%20neocites%20web%201%20banner%202%201.png" alt=''></a>
+                <a href='https://www.youtube.com/@Glitch-Cat-Music' target='_blank'><img src='./images/banners/glitch%20cat%20neocites%20web%20page%201%20banner%201%201.png' alt='glitch cat'></a>
+              </div>
+            </div>
+          </div>
+
+
+
         </div>
+
 
         <div class='pole' id='musicPole'></div>
       </td>
       </tr>
     </tbody>
   </table>
+      </span>
   </div>
   <div id='lefter'>bro</div>
+
+    <div class='walk-parent'>
+      <img src='./images/walkers/niko_walking.gif'>
+      <img height='64px' src='./images/walkers/frisk.gif'>
+    </div>
+
   <div id='road'>
     <div id='road_shadow'></div>
     <div id='kar'></div>
@@ -317,45 +287,183 @@
 
 
   </div>
-  <div class='older_lower_content box'>
+  <div class='older_lower_content' style='padding-bottom: 300px'>
+
     <div class='line1'>
-      <div style='display: flex'>
-        <div class='lower-child news'>
+
+      <div class='box' style='display: flex; gap: 10px; padding: 0; border: 0'>
+        <div class='lower-child news' style='border: 0'>
           <div class='hotel'>Today's drink:</div>
           <div id='drink_box'>
 
           </div>
         </div>
-        <div style='margin: 10px; display: flex; align-items: center; border: 1px solid rgba(108, 108, 108, 0.81);'>
+        <div style='display: flex; align-items: center;'>
           <img src='./images/drinks_imgs/jill%20gif.gif' style='height: 235px'>
         </div>
       </div>
 
-      <div>
-        <div id="chat" class="box" style="margin-top: 10px;">
-          <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/chat%20icon%201.png" alt=''>
-          <h2 style="display:inline" id='chat_title'>Chat_</h2>
-          <br><br>
-          <div id='messagesOuter'>
-            <div id="messages">
-              <noscript>
-                <span style="color:red" class="chat-msg">wahh!! javascript is disabled :(</span><br><br>
-              </noscript>
+      <div class='row'>
+        <div class='col--2'>
+
+          <div style='border-top: 0; border-right: 0; border-bottom: 0;' class='box' id='mainbox'>
+            <img style="display: inline; margin-right: 5px;" height="16px" src="/images/sites%20blog%20alarm%201%201.png" id='warning' alt=''>
+            <h2 style="display:inline">BLOGS:</h2>
+            <br>
+            <p>
+            <div id='root'>
             </div>
           </div>
-          <div id="bar">
-            ~> <input type="text" id="message" placeholder="no being mean (custom nickname below)" autocomplete="off" maxlength="300">
-            <button id="send">Send<a> -></a></button>
+
+
+          <div>
+            <div id="chat" class="box">
+              <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/chat%20icon%201.png" alt=''>
+              <h2 style="display:inline" id='chat_title'>Chat_</h2>
+              <br><br>
+              <div id='messagesOuter'>
+                <div id="messages">
+                  <noscript>
+                    <span style="color:red" class="chat-msg">wahh!! javascript is disabled :(</span><br><br>
+                  </noscript>
+                </div>
+              </div>
+              <div id="bar">
+                ~> <input type="text" id="message" placeholder="no being mean (custom nickname below)" autocomplete="off" maxlength="300">
+                <button id="send">Send<a> -></a></button>
+              </div>
+              <div style='display: flex' id='lowerInp'>
+                <div style='padding-right: 4px' class='pre_inp'>(arg)</div> <input type='text' id='userNameInput' placeholder='custom nickname' autocomplete='off' maxlength='20'>
+              </div>
+            </div>
           </div>
-          <div style='display: flex' id='lowerInp'>
-            <div style='padding-right: 4px' class='pre_inp'>(arg)</div> <input type='text' id='userNameInput' placeholder='custom nickname' autocomplete='off' maxlength='20'>
-          </div>
+
+
+
         </div>
+        <div class='col--1'>
+
+          <div class='box status_container'>
+            System status:
+            <span class='status-misc'>IMPAIRED</span>
+            <br>
+            <br>
+            <div class='status_grandparent'>
+              <div class='status_parent'>
+                <div class='status'>
+              <span>
+                [
+                <span class='status-ok'>OK</span>
+                ]
+              </span>
+                </div>
+                <div class='platform'>isigia.dev</div>
+              </div>
+              <div class='status_parent'>
+                <div class='status'>
+              <span>
+                [
+                <span class='status-ok'>OK</span>
+                ]
+              </span>
+                </div>            <div class='platform'>proxy</div>
+              </div>
+              <div class='status_parent'>
+                <div class='status'>
+              <span>
+                [
+                <span class='status-ok'>OK</span>
+                ]
+              </span>
+                </div>            <div class='platform'>socket</div>
+              </div>
+
+
+              <div class='status_parent'>
+                <div class='status'>
+              <span>
+                [
+                <span class='status-nuhUh'>OFFLINE</span>
+                ]
+              </span>
+                </div>            <div class='platform'>bot</div>
+              </div>
+
+            </div>
+          </div>
+
+          <div>
+            <div style='border-top: 0; border-right: 0; border-bottom: 0;' class='miniprofile box' id='ad1'>
+              <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/fNavMenu/file%201.svg" alt=''>
+              <h2 style="display:inline" class='devlog-title'>Devlog...</h2>
+              <br>
+              <div id='fNavRoot'>
+                <div class='layer0 layer'>
+                  <h3>&gt</h3>
+                  <div class='buttons'>
+                    <div class='exterBtn'>
+                      <button class='patientZero fNavElem fMoveElemDown'></button>
+                      <p>projects</p>
+                    </div>
+                  </div>
+                </div>
+                <div class='layer1 layer'>
+                  <h3>&gt <a class='fNavCookie projects'>Projects</a></h3>
+                  <div class='buttons'>
+                    <div class='exterBtn'>
+                      <button class='patientZero fNavElem fMoveElemUp'>
+
+                      </button>
+                      <p>..</p>
+                    </div>
+                    <div class='exterBtn'>
+                      <button class='patientZero fNavElem fMoveElemDown'>
+
+                      </button>
+                      <p>producer_racing</p>
+                    </div>
+
+
+                  </div>
+                </div>
+                <div class='layer2 layer'>
+                  <h3>&gt <a class='fNavCookie projects'>Projects</a> &gt <a class='fNavCookie producerRacing'>producer_racing</a></h3>
+                  <div class='buttons'>
+                    <div class='exterBtn'>
+                      <button class='patientZero fNavElem fMoveElemUp'>
+
+                      </button>
+                      <p>..</p>
+                    </div>
+
+
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+
       </div>
+
+
+
+
+
+
+
 
     </div>
 
   </div>
+
   </div>
 
 
