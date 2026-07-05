@@ -20,6 +20,12 @@ let visit_count = JSON.parse(fs.readFileSync(visPath, "utf8"));
 let brong_count = JSON.parse(fs.readFileSync(brongPath, "utf8"));
 let drinksPath = path.join(__dirname, 'drinks.json');
 
+const createDOMPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
@@ -264,6 +270,8 @@ io.on('connection', function (socket) {
         } else {
             message.message = profanity.censor(message.message)
         }
+
+        message.message = DOMPurify.sanitize(message.message);
 
         /*
         const jsonData = JSON.stringify(message);
