@@ -106,7 +106,7 @@ app.get('/entries', async (req, res) => {
     });
 });
 
-app.get('/gandalf/blog/submit/:text', (req, res) => {
+/*app.get('/gandalf/blog/submit/:text', (req, res) => {
     const text = req.params.text;
     console.log(text)
     if (text) {
@@ -132,6 +132,8 @@ app.get('/gandalf/blog/submit/:text', (req, res) => {
         res.status(400).send('Bad Request: Missing blog post text');
     }
 });
+
+ */
 
 
 app.get("/", (req, res) => { res.send("Express on Vercel");})
