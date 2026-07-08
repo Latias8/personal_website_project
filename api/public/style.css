@@ -1055,7 +1055,7 @@ table {
 .wrap {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 25px;
 }
 /*
 @media screen and (max-width: 1417px) {
@@ -1700,6 +1700,7 @@ a.yellow:hover {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  justify-content: space-between;
 }
 
 .status_grandparent {
@@ -1714,7 +1715,6 @@ a.yellow:hover {
 .status_container {
   color: #cccccc;
   font-size: 13px;
-  max-width: 50%;
 }
 
 .dc_stat_message {
