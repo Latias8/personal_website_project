@@ -181,16 +181,31 @@
               <h2 style="display:inline;" class='statusHead'>Tracker</h2>
               <div class='status_parent'>
                 <div class='status_container'>
-                  Discord status:
-                  <span class='status-garb'>2d</span>
-                  <br>
-                  <br>
-                  <div class='status_grandparent'>
-                    <div class='status_parent'>
-                      <div class='platform dc_stat_message'>im gonna go out on a limb here and just write</div>
-                    </div>
+
+                Stream status:
+                <span class='status-garb'>not live</span>
+                <br>
+                <br>
+                <div class='platform_parent'>
+                  <div class='status st_tw'>
+
+                  </div>
+                  <div class='platform sm twitch'>
+                    <img class='site_logo' alt='' src='https://cdn-icons-png.flaticon.com/512/5968/5968819.png'>
+                    <p class='twitch_link'>Twitch</p>
                   </div>
                 </div>
+                <div class='platform_parent'>
+                  <div class='status st_yt'>
+
+                  </div>
+                  <div class='platform sm youtube'>
+                    <img class='site_logo' alt='' src='https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png'>
+                    <p class='youtube_link'>Youtube</p>
+                  </div>
+
+                </div>
+              </div>
               </div>
             </div>
           </div>
@@ -301,33 +316,63 @@
       <div class='row'>
         <div class='col--2'>
 
-          <div class='box'>
-            <div class='status_parent'>
-              <div class='status_container'>
-                Stream status:
-                <span class='status-garb'>not live</span>
-                <br>
-                <br>
-                <div class='platform_parent'>
-                  <div class='status st_tw'>
+          <div style='border-top: 0; border-right: 0; border-bottom: 0;' class='box' id='mainbox'>
+            <img style="display: inline; margin-right: 5px;" height="16px" src="/images/sites%20blog%20alarm%201%201.png" id='warning' alt=''>
+            <h2 style="display:inline">BLOGS:</h2>
+            <br>
+            <p>
+            <div id='root'>
+            </div>
+          </div>
 
-                  </div>
-                  <div class='platform sm twitch'>
-                    <img class='site_logo' alt='' src='https://cdn-icons-png.flaticon.com/512/5968/5968819.png'>
-                    <p class='twitch_link'>Twitch</p>
-                  </div>
-                </div>
-                <div class='platform_parent'>
-                  <div class='status st_yt'>
 
-                  </div>
-                  <div class='platform sm youtube'>
-                    <img class='site_logo' alt='' src='https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png'>
-                    <p class='youtube_link'>Youtube</p>
-                  </div>
-
+          <div>
+            <div id="chat" class="box">
+              <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/chat%20icon%201.png" alt=''>
+              <h2 style="display:inline" id='chat_title'>Chat_</h2>
+              <br><br>
+              <div id='messagesOuter'>
+                <div id="messages">
+                  <noscript>
+                    <span style="color:red" class="chat-msg">wahh!! javascript is disabled :(</span><br><br>
+                  </noscript>
                 </div>
               </div>
+              <div id="bar">
+                ~> <input type="text" id="message" placeholder="no being mean (custom nickname below)" autocomplete="off" maxlength="300">
+                <button id="send">Send<a> -></a></button>
+              </div>
+              <div style='display: flex' id='lowerInp'>
+                <div style='padding-right: 4px' class='pre_inp'>(arg)</div> <input type='text' id='userNameInput' placeholder='custom nickname' autocomplete='off' maxlength='20'>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class='col--1'>
+
+          <div>
+            <div class='status_parent'>
+              <div class='status_container'>
+                Discord status:
+                <span class='status-garb'>2d</span>
+                <br>
+                <br>
+                <div class='status_grandparent'>
+                  <div class='status_parent'>
+                    <div class='platform dc_stat_message'>im gonna go out on a limb here and just write</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class='box'>
+
+            <div class='status_parent'>
+
               <div class='status_container'>
                 System status:
                 <span class='status-misc'>IMPAIRED</span>
@@ -380,42 +425,6 @@
 
           </div>
 
-          <div style='border-top: 0; border-right: 0; border-bottom: 0;' class='box' id='mainbox'>
-            <img style="display: inline; margin-right: 5px;" height="16px" src="/images/sites%20blog%20alarm%201%201.png" id='warning' alt=''>
-            <h2 style="display:inline">BLOGS:</h2>
-            <br>
-            <p>
-            <div id='root'>
-            </div>
-          </div>
-
-
-          <div>
-            <div id="chat" class="box">
-              <img style="vertical-align: sub; margin-right: 5px;" height="24" src="/images/chat%20icon%201.png" alt=''>
-              <h2 style="display:inline" id='chat_title'>Chat_</h2>
-              <br><br>
-              <div id='messagesOuter'>
-                <div id="messages">
-                  <noscript>
-                    <span style="color:red" class="chat-msg">wahh!! javascript is disabled :(</span><br><br>
-                  </noscript>
-                </div>
-              </div>
-              <div id="bar">
-                ~> <input type="text" id="message" placeholder="no being mean (custom nickname below)" autocomplete="off" maxlength="300">
-                <button id="send">Send<a> -></a></button>
-              </div>
-              <div style='display: flex' id='lowerInp'>
-                <div style='padding-right: 4px' class='pre_inp'>(arg)</div> <input type='text' id='userNameInput' placeholder='custom nickname' autocomplete='off' maxlength='20'>
-              </div>
-            </div>
-          </div>
-
-
-
-        </div>
-        <div class='col--1'>
 
 
           <div>
