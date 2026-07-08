@@ -579,7 +579,7 @@ input {
 .widg-elem {
   border: 1px #6c6c6c solid;
   border-radius: 4px;
-  width: 60px;
+  /*width: 60px;*/
   transition: .2s, transform .4s;
   background: black;
   justify-content: center;
@@ -1714,7 +1714,7 @@ a.yellow:hover {
 .status_container {
   color: #cccccc;
   font-size: 13px;
-  min-width: 50%;
+  max-width: 50%;
 }
 
 .dc_stat_message {
