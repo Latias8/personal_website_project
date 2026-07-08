@@ -1651,7 +1651,11 @@ a.yellow:hover {
 }
 
 .intro-sona {
-  min-width: 100px; max-width: 100px; min-height: 100px; max-height: 100px; border: 1px white solid
+  min-width: 100px; max-width: 100px; min-height: 100px; /*max-height: 100px;*/
+}
+
+.intro-sona img {
+  border: 1px white solid;
 }
 
 #imgwrap {
@@ -1710,6 +1714,11 @@ a.yellow:hover {
 .status_container {
   color: #cccccc;
   font-size: 13px;
+  min-width: 50%;
+}
+
+.dc_stat_message {
+  color: white;
 }
 
 .walk-parent {
