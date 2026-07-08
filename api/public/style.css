@@ -379,6 +379,10 @@ b {
   transition: .7s;
 }
 
+.bordered {
+  border: 1px solid #383838;
+}
+
 #send:hover {
   background-color: #212121;
   padding: 3px 16px;
@@ -1715,6 +1719,7 @@ a.yellow:hover {
 .status_container {
   color: #cccccc;
   font-size: 13px;
+  width: 100%;
 }
 
 .dc_stat_message {
