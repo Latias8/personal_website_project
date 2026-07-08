@@ -1044,6 +1044,10 @@ table {
   border-bottom: 2px solid #383838;*/
 }
 
+.status {
+  text-align: right;
+}
+
 .statusHead {
   color: white;
 }
@@ -1156,10 +1160,6 @@ table {
 .platform {
   display: flex;
   align-items: center;
-}
-
-.platform p {
-  margin: 0;
 }
 
 .sm p:hover {
