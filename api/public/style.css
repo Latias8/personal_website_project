@@ -1158,6 +1158,10 @@ table {
   align-items: center;
 }
 
+.platform p {
+  margin: 0;
+}
+
 .sm p:hover {
   text-decoration: underline;
   cursor: pointer;
